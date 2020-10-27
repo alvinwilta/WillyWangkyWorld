@@ -443,3 +443,6 @@ int CountXKol (MATRIKS M, indeks j, ElType X){
     return count;
 }
 /* Menghasilkan banyaknya kemunculan X pada kolom j dari M */
+void tulisPeta (){
+    
+}

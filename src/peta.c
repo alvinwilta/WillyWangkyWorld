@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
+void main_menu(){
     int menu1;
     char name[50];
+    system("@cls||clear");
     printf("------------------------------\n");
     printf("Welcome to Willy wangky's fum factory!!\n");
     printf("------------------------------\n");
