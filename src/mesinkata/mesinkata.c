@@ -1,10 +1,3 @@
-/*
-Nama: Leonard Matheus
-NIM: 13519215
-Topik: Pra-Praktikum 5
-Deskripsi: mesin kata
-*/
-
 #include <stdio.h>
 #include "mesinkata.h"
 #include "boolean.h"
@@ -12,18 +5,69 @@ Deskripsi: mesin kata
 boolean EndKata;
 Kata CKata;
 
+static char configFilename[] = "config.conf";
+static char savefileFilename[] = "savefile.dat";
+
+static FILE * savefile;
+
 void IgnoreBlank()
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang 
    F.S. : CC ≠ BLANK atau CC = MARK */
 {
-    while (CC != EOF && (CC==BLANK  || CC == '\n')){
+    while (CC != EOF && (CC==BLANK  || CC == NEWLINE)){
         ADV();
     }
 }
 
+void IgnoreBlankSCANF()
+/* Mengabaikan satu atau beberapa BLANK
+   I.S. : CC sembarang 
+   F.S. : CC ≠ BLANK atau CC = MARK */
+{
+    while (CC != EOF && (CC==BLANK)){
+        ADVSCANF();
+    }
+}
 
+/*Berguna untuk membaca angka dari File*/
+int readAngka(){
+    int n = 0;
+    IgnoreBlank();
+    while (!EOP && CC != EOF && CC != BLANK && CC != NEWLINE) {
+        n = n*10 + (CC-'0');
+        ADV();
+    }
+    return n;
+}
 
+void readSCANF(Kata *input)
+{
+    STARTSCANF();
+    IgnoreBlankSCANF();
+    (*input).Length = 0;
+
+    while((!EOP) && (CC!=NEWLINE))
+    {
+        (*input).TabKata[(*input).Length] = CC;
+        ++(*input).Length;
+        ADVSCANF();
+    }
+}
+
+// readNumberSTDIN returns number from STDIN input
+void readAngkaSCANF(int *X)
+{
+    int tmp;
+    STARTSCANF();
+    *X = 0;
+    while(!EOP && CC!=NEWLINE)
+    {
+        tmp = CC - '0';
+        *X = (*X)*10 + tmp; 
+        ADVSCANF(); 
+    }
+}
 
 void STARTKATA(){
     START();

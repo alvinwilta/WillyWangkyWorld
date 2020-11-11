@@ -1,8 +1,8 @@
 /* File: mesin.c */
 /* mesin.h implementation */
 
-# include "mesinkata2.h"
-# include <stdio.h>
+#include "mesinkata2.h"
+#include <stdio.h>
 
 static char configFilename[] = "config.conf";
 static char savefileFilename[] = "savefile.dat";
