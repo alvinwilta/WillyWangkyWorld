@@ -1,10 +1,3 @@
-/*
-Nama :Leonard Matheus
-Tanggal: 17 September 2020
-NIM:13519215
-Topik: Pra-praktikum 5
-Deskripsi: Matriks
-*/
 
 #include <stdio.h>
 #include "matriks.h"

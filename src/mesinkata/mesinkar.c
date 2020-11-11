@@ -10,7 +10,14 @@ boolean EOP;
 static FILE * pita;
 static int retval;
 
-void START() {
+// Mesin karakter untuk buka file
+void START(const char* filename) {
+    pita = fopen(filename,"r");
+    EOP = false;
+    ADV();
+}
+
+void STARTSCANF() {
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    I.S. : sembarang
@@ -19,7 +26,7 @@ void START() {
 
 	/* Algoritma */
 	pita = stdin;
-	ADV();
+	ADVSCANF();
 }
 
 void ADV() {
@@ -36,4 +43,14 @@ void ADV() {
 	if (EOP) {
        fclose(pita);
  	}
+}
+
+// Advances karakter from scanf
+void ADVSCANF()
+{
+    if (fscanf(pita,"%c",&CC)=='\n')
+    {
+       EOP = true;
+       fclose(pita);
+    }
 }

@@ -12,14 +12,18 @@ Deskripsi: mesin kata
 boolean EndKata;
 Kata CKata;
 
-void IgnoreBlank(){
-    while (CC==BLANK){
-        ADV();
-    }
-}
+void IgnoreBlank()
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang 
    F.S. : CC ≠ BLANK atau CC = MARK */
+{
+    while (CC != EOF && (CC==BLANK  || CC == '\n')){
+        ADV();
+    }
+}
+
+
+
 
 void STARTKATA(){
     START();
@@ -91,4 +95,3 @@ boolean IsKataSama(Kata K1, char * S){
     }
     return found;
 }
-
