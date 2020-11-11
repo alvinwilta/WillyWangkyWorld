@@ -73,3 +73,22 @@ void SalinKata(){
           CC = BLANK atau CC = MARK; 
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+boolean IsKataSama(Kata K1, char * S){
+    boolean found = true;
+    int pjg, i;
+    if (K1.Length != strlen(S)){
+        return false;
+    }else{
+        i = 0;
+        while ((i < pjg) && (found)){
+            if (K1.TabKata[i] != S[i]){
+                found = false;
+            }else{
+                i++;
+            }
+        }
+    }
+    return found;
+}
+
