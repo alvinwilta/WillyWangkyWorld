@@ -5,7 +5,7 @@
 #define __MESIN_H_
 
 # include "mesinkar.h"
-# include "boolean.h"
+# include "../boolean.h"
 #include "../graph/graph.h"
 #include "../queue/queue.h"
 #include "../array/array.h"

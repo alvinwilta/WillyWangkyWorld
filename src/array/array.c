@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include "array.h"
-#include "boolean.h"
+#include "../boolean.h"
 
  
 /* ********** SELEKTOR ********** */

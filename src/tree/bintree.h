@@ -8,7 +8,7 @@
 
 /* Modul lain yang digunakan : */
 #include "listrek.h"
-#include "boolean.h"
+#include "../boolean.h"
 
 /* #define Nil NULL */ /* konstanta Nil sesuai pada modul listrek */
 

@@ -5,7 +5,7 @@
 #ifndef _LISTREK_H_
 #define _LISTREK_H_
 
-#include "boolean.h"
+#include "../boolean.h"
 
 #define Nil NULL
 
