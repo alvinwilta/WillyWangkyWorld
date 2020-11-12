@@ -1,9 +1,9 @@
-Requirement:
+- Requirement:
     - [ ] Library baca file <unistd.h>
     - [ ] Library random number generator rand() <stdlib.h>
     - [ ] Library I/O <stdio.h>
 
-ADT:
+- ADT:
     - [ ] ADT Point => Posisi wahana pada peta
         - [x] point.h
         - [ ] point.c
@@ -37,8 +37,8 @@ ADT:
         - [ ] ubah bintree.c => hilangkan #define ...
     - [ ] ADT Graph (Variasi Multilist) => Berpindah area
     <!-- - [ ] ADT Lainnya (definisikan sendiri)-->
-    
-External files:
+
+- External files:
     - [ ] wahana.txt
         - Setiap node (1 node 1 wahana):
             - Nama wahana
@@ -57,4 +57,5 @@ External files:
         - [x] panduanpeta.txt => membantu pengertian matriks
     <!-- - [ ] state.txt => deskripsikan sendiri, OPTIONAL -->
 
-    Fungsi:
+- Fungsi:
+
