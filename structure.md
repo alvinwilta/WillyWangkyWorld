@@ -2,7 +2,7 @@
     - [ ] Library baca file <unistd.h>
     - [ ] Library random number generator rand() <stdlib.h>
     - [ ] Library I/O <stdio.h>
-
+    
 - ADT:
     - [ ] ADT Point => Posisi wahana pada peta
         - [x] point.h
