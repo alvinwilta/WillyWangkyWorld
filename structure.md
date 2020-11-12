@@ -1,0 +1,60 @@
+Requirement:
+    - [ ] Library baca file <unistd.h>
+    - [ ] Library random number generator rand() <stdlib.h>
+    - [ ] Library I/O <stdio.h>
+
+ADT:
+    - [ ] ADT Point => Posisi wahana pada peta
+        - [x] point.h
+        - [ ] point.c
+    - [ ] ADT Jam => Waktu in-game (saat melakukan aksi dll)
+        - [x] jam.h
+        - [ ] jam.c
+    - [ ] ADT List Implementasi Array => (daftar action) dan (daftar barang2 + harga)
+        - [ ] array.h
+        - [ ] array.c => gunakan list versi 1
+    - [ ] ADT Matriks => Representasi map wahana
+        - [ ] matriks.h
+        - [ ] matriks.c
+    - [ ] ADT Mesin Karakter + Kata => (parsing perintah) dan (save and load game)
+        - [ ] mesinkar.h
+        - [ ] mesinkar.c => dependency mesintoken
+        - [ ] mesintoken.h
+        - [ ] mesintoken.c => membaca input command user (kata dan input angka) 
+    - [ ] ADT Queue (Priority Queue) => Antrian pengunjung wahana
+        - [ ] prioqueue.h
+        - [ ] prioqueue.c
+    - [ ] ADT Stack => (menyimpan aksi preparation phase) dan (UNDO) dan (eksekusi aksi)
+        - [ ] stack.h
+        - [ ] stack.c
+    - [ ] ADT List Implementasi List Terkait => Menyimpan daftar upgrade wahana
+        - [ ] listlinier.h
+        - [ ] listlinier.c
+    - [ ] ADT Tree => Pohon upgrade wahana
+        - [ ] ubah listrek.h => hilangkan #define ...
+        - [ ] ubah listrek.c => hilangkan #define ...
+        - [ ] ubah bintree.h => hilangkan #define ...
+        - [ ] ubah bintree.c => hilangkan #define ...
+    - [ ] ADT Graph (Variasi Multilist) => Berpindah area
+    <!-- - [ ] ADT Lainnya (definisikan sendiri)-->
+    
+External files:
+    - [ ] wahana.txt
+        - Setiap node (1 node 1 wahana):
+            - Nama wahana
+            - Harga wahana
+            - Kapasitas wahana
+            - Durasi wahana
+            - Deskripsi wahana
+        - Cost upgrade (pindah ke node tree lain):
+            - Uang yg dibutuhkan
+            - Bahan bangunan yg dibutuhkan
+    - [x] material.txt
+        - Setiap jenis bahan:
+            - Nama bahan
+            - Harga bahan
+    - [x] map.txt
+        - [x] panduanpeta.txt => membantu pengertian matriks
+    <!-- - [ ] state.txt => deskripsikan sendiri, OPTIONAL -->
+
+    Fungsi:

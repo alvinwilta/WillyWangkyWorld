@@ -64,3 +64,30 @@ Legend peta:
 7 = O (office)
 8 = W (wahana)
 9 = P (pemain)          PEMAIN
+
+CONTOH TAMPILAN:
+Main phase day 2
+********************
+*A-----W-----------*
+*------------------>
+*------------------*
+*---------PW-------*
+*------------------*
+*---W--------------*
+*--------------O---*
+*------------------*
+*********V**********
+Legend:
+A = Antrian
+P = Player
+W = Wahana
+O = Office
+<, ^, >, V = Gerbang
+Name: wangkie kumalasari
+Money: 940
+Current Time: 09.00
+Closing Time: 21.00
+Time Remaining: 12 hour(s)
+Antrian [1/5] :
+(Wangky’s Universe), kesabaran: 5 //Customer A
+Masukkan Perintah:
