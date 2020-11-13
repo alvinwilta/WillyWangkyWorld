@@ -16,7 +16,7 @@ typedef struct {
     POINT pos;
     JAM wkt;
     ElType money;
-    TabInt material;
+    TabInt material; 
 } Player;
 
 /* Default value dari data Player */
@@ -77,40 +77,45 @@ void SubUang(Player P, ElType X);
 /* F.S. Jumlah uang berkurangsebanyak X */
 /* Proses: mengurangi uang sebanyak X */
 
+boolean IsUangCukup(Player P, ElType X, int jenis);
+/* I.S. P, X terdefinisi */
+/* F.S. return true jika uang cukup false jika tidak, jenis adalah indeks */
+/* Proses: mengecek uang cukup */
+
 
 /* ** MATERIAL ** */
 /* Untuk tambah kurang material, urutan sesuai indeksnya[0..2] adalah kayu, batu, kaca */
-boolean AddKayu(Player P, ElType X);
+void AddKayu(Player P, ElType X);
 /* I.S. P, X terdefinisi */
 /* F.S. Jumlah kayu bertambah sebanyak X (elemen indeks 0 tambah X) */
 /* Proses: mengecek uang cukup, jika cukup maka Elmt(P,0) ditambah X, uang dikurang, dan return true,
 jika uang tidak cukup, return false */
 
-boolean AddBatu(Player P, ElType X);
+void AddBatu(Player P, ElType X);
 /* I.S. P, X terdefinisi */
 /* F.S. Jumlah batu bertambah sebanyak X (elemen indeks 1 tambah X) */
 /* Proses: mengecek uang cukup, jika cukup maka Elmt(P,1) ditambah X, uang dikurang, dan return true,
 jika uang tidak cukup, return false */
 
-boolean AddKaca(Player P, ElType X);
+void AddKaca(Player P, ElType X);
 /* I.S. P, X terdefinisi */
 /* F.S. Jumlah kaca bertambah sebanyak X (elemen indeks 2 tambah X) */
 /* Proses: mengecek uang cukup, jika cukup maka Elmt(P,2) ditambah X, uang dikurang, dan return true,
 jika uang tidak cukup, return false */
 
-boolean SubKayu(Player P, ElType X);
+void SubKayu(Player P, ElType X);
 /* I.S. P, X terdefinisi */
 /* F.S. Jumlah kayu berkurang sebanyak X (elemen indeks 0 kurang X) */
 /* Proses: mengecek material cukup, jika cukup maka Elmt(P,0) dikurang X, uang ditambah dan return true,
 jika material tidak cukup, return false */
 
-boolean SubBatu(Player P, ElType X);
+void SubBatu(Player P, ElType X);
 /* I.S. P, X terdefinisi */
 /* F.S. Jumlah batu berkurang sebanyak X (elemen indeks 1 kurang X) */
 /* Proses: mengecek material cukup, jika cukup maka Elmt(P,1) dikurang X, uang ditambah dan return true,
 jika material tidak cukup, return false */
 
-boolean SubKaca(Player P, ElType X);
+void SubKaca(Player P, ElType X);
 /* I.S. P, X terdefinisi */
 /* F.S. Jumlah kaca berkurang sebanyak X (elemen indeks 2 tambah X) */
 /* Proses: mengecek material cukup, jika cukup maka Elmt(P,2) dikurang X, uang ditambah dan return true,
