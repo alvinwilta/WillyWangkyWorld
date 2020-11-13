@@ -6,13 +6,13 @@
 - ADT:
     - [ ] ADT Point => Posisi wahana pada peta
         - [x] point.h
-        - [ ] point.c
+        - [ ] point.c => comment fungsi tidak terpakai
     - [ ] ADT Jam => Waktu in-game (saat melakukan aksi dll)
         - [x] jam.h
         - [ ] jam.c
     - [ ] ADT List Implementasi Array => (daftar action) dan (daftar barang2 + harga)
         - [ ] array.h
-        - [ ] array.c => gunakan list versi 1
+        - [ ] array.c => gunakan list versi 1, comment fungsi tidak terpakai
     - [ ] ADT Matriks => Representasi map wahana
         - [ ] matriks.h
         - [ ] matriks.c
@@ -20,22 +20,32 @@
         - [ ] mesinkar.h
         - [ ] mesinkar.c => dependency mesintoken
         - [ ] mesintoken.h
-        - [ ] mesintoken.c => membaca input command user (kata dan input angka) 
+        - [ ] mesintoken.c => membaca input command user (kata dan input angka)
+        - [ ] mesinkata.h
+        - [ ] mesinkata.c
     - [ ] ADT Queue (Priority Queue) => Antrian pengunjung wahana
-        - [ ] prioqueue.h
-        - [ ] prioqueue.c
+        - [x] prioqueue.h
+        - [ ] prioqueue.c => comment fungsi tidak terpakai
     - [ ] ADT Stack => (menyimpan aksi preparation phase) dan (UNDO) dan (eksekusi aksi)
-        - [ ] stack.h
-        - [ ] stack.c
+        - [x] stack.h
+        - [ ] stack.c => comment fungsi tidak terpakai
     - [ ] ADT List Implementasi List Terkait => Menyimpan daftar upgrade wahana
-        - [ ] listlinier.h
-        - [ ] listlinier.c
+        - [x] listlinier.h
+        - [ ] listlinier.c => comment fungsi tidak terpakai
     - [ ] ADT Tree => Pohon upgrade wahana
         - [ ] ubah listrek.h => hilangkan #define ...
         - [ ] ubah listrek.c => hilangkan #define ...
         - [ ] ubah bintree.h => hilangkan #define ...
         - [ ] ubah bintree.c => hilangkan #define ...
     - [ ] ADT Graph (Variasi Multilist) => Berpindah area
+        - [x] graph.h
+        - [ ] graph.c => komen fungsi tidak terpakai
+    - [ ] ADT Player
+        - [x] player.h
+        - [ ] player.c
+    - [ ] ADT Wahana
+        - [ ] wahana.h
+        - [ ] wahana.c
     <!-- - [ ] ADT Lainnya (definisikan sendiri)-->
 
 - External files:
