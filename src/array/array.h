@@ -6,7 +6,7 @@
 #ifndef ARRAYPOS_H
 #define ARRAYPOS_H
 
-#include "boolean.h"
+#include "../boolean.h"
 
 /*  Kamus Umum */
 #define IdxMax 99

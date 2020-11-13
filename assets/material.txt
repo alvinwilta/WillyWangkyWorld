@@ -1,0 +1,8 @@
+kayu
+10
+
+batu
+20
+
+kaca
+30
