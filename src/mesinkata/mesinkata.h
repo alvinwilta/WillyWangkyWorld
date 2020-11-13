@@ -25,6 +25,11 @@ void IgnoreBlank();
    I.S. : CC sembarang 
    F.S. : CC ≠ BLANK atau CC = MARK */
 
+void IgnoreBlankSCANF();
+int readAngka();
+void readSCANF(Kata *input);
+void readAngkaSCANF(int *X);
+
 void STARTKATA();
 /* I.S. : CC sembarang 
    F.S. : EndKata = true, dan CC = MARK; 
