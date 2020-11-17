@@ -139,3 +139,13 @@ boolean IsKataSama(Kata K1, char * S){
     }
     return found;
 }
+
+int intstring(Kata W){
+    int result = 0;
+    int temp;
+    for(int i = 0; i < W.Length; i++){
+        temp = (int) W.TabKata[i] - '0';
+        result = result * 10 + temp;
+    }
+    return result;
+}
