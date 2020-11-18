@@ -16,13 +16,13 @@
     - [ ] ADT Matriks => Representasi map wahana
         - [ ] matriks.h
         - [ ] matriks.c
-    - [ ] ADT Mesin Karakter + Kata => (parsing perintah) dan (save and load game)
-        - [ ] mesinkar.h
-        - [ ] mesinkar.c => dependency mesintoken
-        - [ ] mesintoken.h
-        - [ ] mesintoken.c => membaca input command user (kata dan input angka)
-        - [ ] mesinkata.h
-        - [ ] mesinkata.c
+    - [x] ADT Mesin Karakter + Kata => (parsing perintah) dan (save and load game)
+        - [x] mesinkar.h
+        - [x] mesinkar.c => dependency mesintoken
+        - [x] mesintoken.h
+        - [x] mesintoken.c => membaca input command user (kata dan input angka)
+        - [x] mesinkata.h
+        - [x] mesinkata.c
     - [ ] ADT Queue (Priority Queue) => Antrian pengunjung wahana
         - [x] prioqueue.h
         - [ ] prioqueue.c => comment fungsi tidak terpakai
