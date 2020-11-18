@@ -6,6 +6,7 @@
 
 #include "../boolean.h"
 #include "mesinkar.h"
+#define NEWLINE '\n'
 
 #define NMax 50
 #define BLANK ' '
@@ -45,4 +46,5 @@ void SalinToken();
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
+void readTokenSCANF(Token T);
 #endif

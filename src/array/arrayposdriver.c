@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../boolean.h"
-#include "arraypos.c"
+#include "array.c"
 
 int main(){
     TabInt T1, T2;

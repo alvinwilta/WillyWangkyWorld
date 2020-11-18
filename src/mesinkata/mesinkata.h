@@ -6,6 +6,10 @@
 
 #include "../boolean.h"
 #include "mesinkar.h"
+#include "../graph/graph.h"
+#include "../queue/queue.h"
+#include "../array/arraydin.h"
+#include "../matriks/matriks.h"
 
 #define NMax 50
 #define BLANK ' '
@@ -52,4 +56,7 @@ void SalinKata();
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 boolean IsKataSama(Kata K1, char * S);
+int intstring(Kata K);
+void printKata(Kata K);
+
 #endif
