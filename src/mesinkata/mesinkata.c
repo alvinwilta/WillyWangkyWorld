@@ -466,8 +466,8 @@ void loadFromFile(matrix *M, buildingsArray *arr, graph *G, int *turn, boolean *
     *counterShieldP2 = readAngka();
 
     // Input to queue
-    int tempHead = unDef;
-    int tempTail = unDef;
+    int tempHead = IdxUndef;
+    int tempTail = IdxUndef;
 
     createQueue(Q1,10);
     int counter = 1;
