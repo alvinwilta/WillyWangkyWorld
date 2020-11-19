@@ -205,6 +205,7 @@ void DelAfter (List *L, addressList *Pdel, addressList Prec){
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
+/*
 void PrintInfo (List L){
     printf("[");
     if (!IsEmpty(L)){
@@ -219,6 +220,7 @@ void PrintInfo (List L){
     }
     printf("]");
 }
+*/
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
@@ -236,6 +238,7 @@ int NbElmt (List L){
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 /*** Prekondisi untuk Min: List tidak kosong ***/
+/*
 infotypeList Min (List L){
     addressList Min = First(L);
     addressList cpointer = First(L);
@@ -246,10 +249,11 @@ infotypeList Min (List L){
         cpointer = Next(cpointer);
     }
     return Info(Min);
-}
+} */
 /* Mengirimkan nilai Info(P) yang minimum */
 
 /*** Prekondisi untuk Max: List tidak kosong ***/
+/*
 infotypeList Max (List L){
     addressList Max = First(L);
     addressList cpointer = First(L);
@@ -260,7 +264,7 @@ infotypeList Max (List L){
         cpointer = Next(cpointer);
     }
     return Info(Max);
-}
+} */
 /* Mengirimkan nilai Info(P) yang maksimum */
 
 /****************** PROSES TERHADAP LIST ******************/

@@ -1,26 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bintree.h"
+/*
+#define max(a, b) a>b?a:b // clear
+#define min(a, b) a<b?a:b // clear
+#define abs(a) a<0?-a:a  // clear
+#define selisih(a, b) abs(a-b) // clear
+#define swap(a,b) {infotype tmp; tmp = b; b = a; a = tmp;} // clear
 
-#define max(a, b) a>b?a:b
-#define min(a, b) a<b?a:b
-#define abs(a) a<0?-a:a 
-#define selisih(a, b) abs(a-b)
-#define swap(a,b) {infotype tmp; tmp = b; b = a; a = tmp;}
+#define intput(a)     scanf("%d", &a) // clear
+#define intput2(a,b)  scanf("%d %d", &a, &b) // clear
+#define charput(a)    scanf(" %c", &a) // clear
+#define print(a)      printf("%d", a)  // clear
+#define prints(a)     printf("%d ", a) // clear
+#define println(a)    printf("%d\n", a) // clear
+#define printc(a)     printf("%c", a) // clear
+#define printcs(a)    printf("%c ", a) // clear
+#define printcln(a)   printf("%c\n", a) // clear
+#define ENDL          printf("\n") // clear
 
-#define intput(a)     scanf("%d", &a)
-#define intput2(a,b)  scanf("%d %d", &a, &b)
-#define charput(a)    scanf(" %c", &a)
-#define print(a)      printf("%d", a)
-#define prints(a)     printf("%d ", a)
-#define println(a)    printf("%d\n", a)
-#define printc(a)     printf("%c", a)
-#define printcs(a)    printf("%c ", a)
-#define printcln(a)   printf("%c\n", a)
-#define ENDL          printf("\n")
-
-#define fori(i,n)     for(int i = 0; i < n; i++)
-#define forii(i,s,e)  for(int i = s; i < e; i++)
+#define fori(i,n)     for(int i = 0; i < n; i++) //clear
+#define forii(i,s,e)  for(int i = s; i < e; i++) // clear
+*/
 
 /* *** Konstruktor *** */
 BinTree Tree(infotype Akar, BinTree L, BinTree R)
@@ -56,7 +57,7 @@ BinTree BuildBalanceTree(int n)
   */
 {
   if(n == 0) return Nil;
-  int Akar; intput(Akar);
+  int Akar; scanf("%d", &Akar); // scanf("%d", &Akar)
   BinTree Left = BuildBalanceTree(n/2);
   BinTree Right = BuildBalanceTree(n - n/2 - 1);
   return Tree(Akar, Left, Right);
@@ -128,13 +129,16 @@ void PrintPreorder(BinTree P)
    (A()()) adalah pohon dengan 1 elemen dengan akar A
    (A(B()())(C()())) adalah pohon dengan akar A dan subpohon kiri (B()()) dan subpohon kanan (C()()) */
 {
-  printc('(');
+  //printc('(');
+  printf("%c", '(');
   if(!IsTreeEmpty(P)){
-    print(Akar(P));
+    //print(Akar(P));
+    printf("%d", Akar(P)) ;
     PrintPreorder(Left(P));
     PrintPreorder(Right(P));
   }
-  printc(')');
+  //printc(')');
+  printf("%c", ')');
 }
 void PrintInorder(BinTree P)
 /* I.S. P terdefinisi */
@@ -146,13 +150,16 @@ void PrintInorder(BinTree P)
    (()A()) adalah pohon dengan 1 elemen dengan akar A
    ((()B())A(()C())) adalah pohon dengan akar A dan subpohon kiri (()B()) dan subpohon kanan (()C()) */
 {
-  printc('(');
+  //printc('(');
+  printf("%c", '(');
   if(!IsTreeEmpty(P)){
     PrintInorder(Left(P));
-    print(Akar(P));
+    //print(Akar(P));
+    printf("%d", Akar(P)) ;
     PrintInorder(Right(P));
   }
-  printc(')');
+  //printc(')');
+  printf("%c", ')');
 }
 
 void PrintPostorder(BinTree P)
@@ -165,24 +172,30 @@ void PrintPostorder(BinTree P)
    (()()A) adalah pohon dengan 1 elemen dengan akar A
    ((()()B)(()()C)A) adalah pohon dengan akar A dan subpohon kiri (()()B) dan subpohon kanan (()()C) */
 {
-  printc('(');
+  //printc('(');
+  printf("%c", '(');
   if(!IsTreeEmpty(P)){
     PrintPostorder(Left(P));
     PrintPostorder(Right(P));
-    print(Akar(P));
+    //print(Akar(P));
+    printf("%d", Akar(P)) ;
   }
-  printc(')');
+  //printc(')');
+  printf("%c", ')');
 }
 
 void PrintTreeUtil(BinTree P, int h, int level){
   if(IsTreeEmpty(P)) return;
-  print(Akar(P)); ENDL;
+  //print(Akar(P)); ENDL;
+  printf("%d", Akar(P)); printf("\n");
   if(!IsTreeEmpty(Left(P))){
-    fori(i, h*level) printc(' ');
+    //fori(i, h*level) printc(' ');
+    for(int i = 0; i < h*level; i++) printf("%c", ' ');
     PrintTreeUtil(Left(P), h, level+1);
   }
   if(!IsTreeEmpty(Right(P))){
-    fori(i, h*level) printc(' ');
+    //fori(i, h*level) printc(' ');
+    for(int i = 0; i < h*level; i++) printf("%c", ' ');
     PrintTreeUtil(Right(P), h, level+1);
   }
 }
@@ -268,7 +281,8 @@ int Level(BinTree P, infotype X)
   if(Kiri == -1 && Kanan == -1) return -1;
   if(Kiri == -1) return 1 + Kanan;
   if(Kanan == -1) return 1 + Kiri;
-  return 1+min(Kiri, Kanan);
+  //return 1+min(Kiri, Kanan);
+  return (1 + (Kiri < Kanan ? Kiri : Kanan)); // a<b?a:b
 }
 
 int Tinggi(BinTree P)
@@ -276,7 +290,8 @@ int Tinggi(BinTree P)
    Mengirim "height" yaitu tinggi dari pohon */
 {
   if(IsTreeEmpty(P)) return 0;
-  return max(1+Tinggi(Left(P)), 1+Tinggi(Right(P)));
+  //return max(1+Tinggi(Left(P)), 1+Tinggi(Right(P)));
+  return (1 + Tinggi(Left(P)) > 1 + Tinggi(Right(P)) ? 1 + Tinggi(Left(P)) : 1 + Tinggi(Right(P)));
 }
 
 /* *** Operasi lain *** */
@@ -403,8 +418,12 @@ void InsSearch(BinTree *P, infotype X)
 }
 
 void DelNode(BinTree *P){
-  if(Right(*P) != Nil) DelNode(&Right(*P));
-  else *P = Left(*P);
+  if(Right(*P) != Nil) {
+    DelNode(&Right(*P));
+  }
+  else {
+    *P = Left(*P);
+  }
 }
 
 void DelBtree(BinTree *P, infotype X)
@@ -412,14 +431,24 @@ void DelBtree(BinTree *P, infotype X)
 /* F.S. Nilai X yang dihapus pasti ada */
 /* Sebuah node dengan nilai X dihapus */
 {
-  if(X < Akar(*P)){
+  if(X < Akar(*P)) {
     DelBtree(&Left(*P), X);
-  } else if (X > Akar(*P)){
+  } 
+  else if (X > Akar(*P)) {
     DelBtree(&Right(*P), X);
-  } else {
-    if(IsTreeOneElmt(*P)) *P = Nil;
-    if(IsUnerLeft(*P)) *P = Left(*P);
-    if(IsUnerRight(*P)) *P = Right(*P);
-    if(IsBiner(*P)) DelNode(&Left(*P));
+  } 
+  else {
+    if(IsTreeOneElmt(*P)) {
+      *P = Nil;
+    }
+    if(IsUnerLeft(*P)){
+      *P = Left(*P);
+    } 
+    if(IsUnerRight(*P)) {
+      *P = Right(*P);
+    } 
+    if(IsBiner(*P)) {
+      DelNode(&Left(*P));
+    }
   }
 }

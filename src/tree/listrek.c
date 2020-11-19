@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listrek.h"
-
+/*
 #define max(a, b) a>b?a:b
 #define min(a, b) a<b?a:b
 #define abs(a) a<0?-a:a 
@@ -18,7 +18,7 @@
 
 #define fori(i, n) for(int i = 0; i < n; i++)
 #define forii(i, s, e) for(int i = s; i < e; i++)
-
+*/
 /* *** Manajemen Memori *** */
 address Alokasi (infotype X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
@@ -131,7 +131,8 @@ void PrintList (List L)
 /* F.S. Setiap elemen list dicetak. */
 {
 	if(IsEmpty(L)) return;
-	println(Info(L));
+	//println(Info(L));
+	printf("%d\n", Info(L));
 	PrintList(Tail(L));
 }
 
