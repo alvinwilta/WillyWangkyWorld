@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "graph.h"
 
+
+/* PERLU REVISI ULANG, DISESUAIKAN DENGAN ADT BARU */
+
+
 void CreateEmptyGraph(Graph *G){
     /* KAMUS LOKAL */
     addressGraph P;
@@ -17,7 +21,7 @@ boolean IsGraphEmpty(Graph G){
 }
 /* Mengirimkan true jika graph kosong */
 
-addressGraph AlokasiGraph(infotypeList X){
+addressGraph AlokasiGraph(MATRIKS X){
     addressGraph P;
 
     P = (ElmtGraph *) malloc (sizeof(ElmtList));
@@ -69,56 +73,8 @@ void PrintGraph(Graph G){
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Graph kosong : menulis [] */
 
-void AddLink(Graph *G, infotypeList n, infotypeList p){
-    /* KAMUS LOKAL */
-    addressGraph addrGn, addrGp;
 
-    /* ALGORITMA */
-    /* Proses menambahkan link elemen n dengan p */
-    addrGn = FirstGraph(*G);
-    while (InfoGraph(addrGn) != n) {
-        addrGn = NextGraph(addrGn);
-    }
-    if (Search(Link(addrGn), p) == NULL) {
-        InsVLast(&Link(addrGn), p);
-    }
-
-    /* Proses menambahkan link elemen p dengan n */
-    addrGp = FirstGraph(*G);
-    while (InfoGraph(addrGp) != p) {
-        addrGp = NextGraph(addrGp);
-    }
-    if (Search(Link(addrGp), n) == NULL) {
-        InsVLast(&Link(addrGp), n);
-    }
-}
-/* I. S. Graph G terdefinisi, n dan p pasti tidak lebih dari jumlah building
-   F. S. Link dari elemen n bertambah dengan p, dan sebaliknya (soalnya bolak balik)
-   contoh :
-   1 2->3
-   2 1
-   3 1
-   Add(&G, 2, 3) 
-   1 2->3
-   2 1->3
-   3 1->3 */
-
-void PrintLink(Graph G, infotypeList X){
-    /* KAMUS LOKAL */
-    addressGraph P;
-    List L;
-
-    /* ALGORITMA */
-    P = FirstGraph(G);
-    while (InfoGraph(P) != X) {
-        P = NextGraph(P);
-    }
-    L = Link(P);
-    PrintInfo(L);
-
-}
-
-boolean IsLinked(Graph G, infotypeList n, infotypeList p){
+boolean IsLinked(Graph G, List n, List p){
     /* KAMUS LOKAL */
     addressGraph addrGn;
 
@@ -137,7 +93,7 @@ boolean IsLinked(Graph G, infotypeList n, infotypeList p){
 }
 /* Mengembalikan true jika pada link n ada p */
 
-addressGraph SearchGraph(Graph G, infotypeList X){
+addressGraph SearchGraph(Graph G, MATRIKS X){
     /* KAMUS LOKAL */
     addressGraph addrG;
 
