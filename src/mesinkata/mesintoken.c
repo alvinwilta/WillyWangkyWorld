@@ -99,13 +99,13 @@ void readTokenSCANF(Token T)
     int tmp;
     STARTSCANF();
     T.val = 0 ;
-    while(!EOP && CC!=NEWLINE){
+    while(!EOP && CC!=BLANK){
         tmp = CC - '0';
         T.val = (T.val)*10 + tmp; 
         ADVSCANF(); 
     }
+    IgnoreBlank();
     while(!EOP && CC!=BLANK){
         T.tkn = CC;
-        ADVSCANF();
     }
 }
