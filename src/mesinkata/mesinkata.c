@@ -7,6 +7,7 @@ Kata CKata;
 
 static char configFilename[] = "config.conf";
 static char savefileFilename[] = "savefile.dat";
+static char saveMaterial[] = "../assets/material.txt";
 
 static FILE * savefile;
 
