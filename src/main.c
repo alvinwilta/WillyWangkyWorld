@@ -5,7 +5,12 @@ void main_menu(){
     int menu1;
     char name[50];
     system("@cls||clear");
-    printf("------------------------------\n");
+    printf(" __       __)              __       __)                       __       __)          \n");
+    printf("(, )  |  /  , /) /)       (, )  |  /          /)     /       (, )  |  /      /)  /) \n");
+    printf("   | /| /    // //           | /| / _ __  _  (/_      _         | /| / ____ // _(/  \n");
+    printf("   |/ |/  _((/_(/_(_/_       |/ |/ (_(/ ((_/_/(_(_/_ /_)_       |/ |/ (_) ((/_(_(_  \n");
+    printf("   /  |          .-/         /  |       .-/    .-/              /  |                \n");
+    printf("                (_/                    (_/    (_/                                   \n");
     printf("Welcome to Willy wangky's fum factory!!\n");
     printf("------------------------------\n");
 
