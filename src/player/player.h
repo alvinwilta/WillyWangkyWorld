@@ -22,7 +22,7 @@ typedef struct
 
 /* Default value dari data Player */
 #define DefPos 9     //untuk absis atau ordinat
-#define DefJamHH 09  //jam awal main
+#define DefJamHH 9   //jam awal main
 #define DefJamMM 00  //menit awal main
 #define DefMoney 100 //uang player baru
 #define DefMat 5     //jumlah material awal (semua jenis)
@@ -92,9 +92,9 @@ void AddBatu(Player *P, ElType X);
 /* F.S. Jumlah batu bertambah sebanyak X (elemen indeks 1 tambah X) */
 /* Proses: mengecek uang cukup, jika cukup maka Elmt(P,1) ditambah X, uang dikurang*/
 
-void AddKaca(Player *P, ElType X);
+void AddPaku(Player *P, ElType X);
 /* I.S. P, X terdefinisi */
-/* F.S. Jumlah kaca bertambah sebanyak X (elemen indeks 2 tambah X) */
+/* F.S. Jumlah paku bertambah sebanyak X (elemen indeks 2 tambah X) */
 /* Proses: mengecek uang cukup, jika cukup maka Elmt(P,2) ditambah X, uang dikurang*/
 
 void SubKayu(Player *P, ElType X);
@@ -107,9 +107,9 @@ void SubBatu(Player *P, ElType X);
 /* F.S. Jumlah batu berkurang sebanyak X (elemen indeks 1 kurang X) */
 /* Proses: mengecek material cukup, jika cukup maka Elmt(P,1) dikurang X, uang ditambah*/
 
-void SubKaca(Player *P, ElType X);
+void SubPaku(Player *P, ElType X);
 /* I.S. P, X terdefinisi */
-/* F.S. Jumlah kaca berkurang sebanyak X (elemen indeks 2 tambah X) */
+/* F.S. Jumlah paku berkurang sebanyak X (elemen indeks 2 tambah X) */
 /* Proses: mengecek material cukup, jika cukup maka Elmt(P,2) dikurang X, uang ditambah */
 
 #endif

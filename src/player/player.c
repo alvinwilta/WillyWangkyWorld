@@ -15,13 +15,15 @@ Player NewPlayer(POINT pos, JAM wkt, int money)
 kemudian assign Pos(P), Wkt(P), Money(P) sesuai default valuenya */
     Player P;
     TabInt material;
-    Pos(&P) = pos;
-    Wkt(&P) = wkt;
-    Money(&P) = money;
+    Absis(Pos(&P)) = DefPos;
+    Ordinat(Pos(&P)) = DefPos;
+    Hour(Wkt(&P)) = DefJamHH;
+    Minute(Wkt(&P)) = DefJamMM;
+    Money(&P) = DefMoney;
 
-    Elmt(material, 0) = 0;
-    Elmt(material, 1) = 0;
-    Elmt(material, 2) = 0;
+    Elmt(material, 0) = DefMat;
+    Elmt(material, 1) = DefMat;
+    Elmt(material, 2) = DefMat;
     for (int i = 3; i <= IdxMax; i++)
     {
         Elmt(material, i) = ValUndef;
@@ -127,7 +129,7 @@ void AddKayu(Player *P, ElType X)
     /* I.S. P, X terdefinisi */
     /* F.S. Jumlah kayu bertambah sebanyak X (elemen indeks 0 tambah X) */
     /* Proses: mengecek uang cukup, jika cukup maka Elmt(P,0) ditambah X, uang dikurang*/
-    if (IsUangCukup(*P, X, 1))
+    if (IsUangCukup(*P, X, 0))
     {
         int total = X * 10;
         SubUang(P, total);
@@ -148,12 +150,12 @@ void AddBatu(Player *P, ElType X)
     }
 }
 
-void AddKaca(Player *P, ElType X)
+void AddPaku(Player *P, ElType X)
 {
     /* I.S. P, X terdefinisi */
-    /* F.S. Jumlah kaca bertambah sebanyak X (elemen indeks 2 tambah X) */
+    /* F.S. Jumlah paku bertambah sebanyak X (elemen indeks 2 tambah X) */
     /* Proses: mengecek uang cukup, jika cukup maka Elmt(P,2) ditambah X, uang dikurang*/
-    if (IsUangCukup(*P, X, 1))
+    if (IsUangCukup(*P, X, 2))
     {
         int total = X * 30;
         SubUang(P, total);
@@ -187,15 +189,14 @@ void SubBatu(Player *P, ElType X)
     }
 }
 
-void SubKaca(Player *P, ElType X)
+void SubPaku(Player *P, ElType X)
 {
     /* I.S. P, X terdefinisi */
-    /* F.S. Jumlah kaca berkurang sebanyak X (elemen indeks 2 tambah X) */
+    /* F.S. Jumlah paku berkurang sebanyak X (elemen indeks 2 tambah X) */
     /* Proses: mengecek material cukup, jika cukup maka Elmt(P,2) dikurang X, uang ditambah */
     if (Elmt(Mat(P), 2) - X >= 0)
     {
         int total = X * 30;
-        AddUang(P, total);
         Elmt(Mat(P), 2) -= X;
     }
 }
