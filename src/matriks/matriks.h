@@ -4,15 +4,16 @@
 #define MATRIKS_H
 
 #include "../boolean.h"
+#include "../point/point.h"
+#include "../player/player.h"
 
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 0
-#define BrsMax 99
+#define BrsMax 11
 #define KolMin 0
-#define KolMax 99
+#define KolMax 22
 
 typedef int indeks; /* indeks baris, kolom */
-typedef int ElType; 
 typedef struct { 
 	ElType Mem[BrsMax+1][KolMax+1];
    int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
@@ -32,10 +33,10 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M);
 /* *** Selektor *** */
 #define NBrsEff(M) (M).NBrsEff
 #define NKolEff(M) (M).NKolEff
-#define Elmt(M,i,j) (M).Mem[(i)][(j)]
+#define ElmtM(M,i,j) (M).Mem[(i)][(j)]
 
 /* *** Selektor "DUNIA MATRIKS" *** */
-boolean IsIdxValid (int i, int j);
+/*boolean IsIdxValid (int i, int j);*/
 /* Mengirimkan true jika i, j adalah indeks yang valid untuk matriks apa pun */
 
 /* *** Selektor: Untuk sebuah matriks M yang terdefinisi: *** */
@@ -47,7 +48,7 @@ indeks GetLastIdxBrs (MATRIKS M);
 /* Mengirimkan indeks baris terbesar M */
 indeks GetLastIdxKol (MATRIKS M);
 /* Mengirimkan indeks kolom terbesar M */
-boolean IsIdxEff (MATRIKS M, indeks i, indeks j);
+/*boolean IsIdxEff (MATRIKS M, indeks i, indeks j);*/
 /* Mengirimkan true jika i, j adalah indeks efektif bagi M */
 ElType GetElmtDiagonal (MATRIKS M, indeks i);
 /* Mengirimkan elemen M(i,i) */
@@ -57,7 +58,7 @@ void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl);
 /* Melakukan assignment MHsl  MIn */
 
 /* ********** KELOMPOK BACA/TULIS ********** */ 
-void BacaMATRIKS (MATRIKS * M, int NB, int NK);
+/*void BacaMATRIKS (MATRIKS * M, int NB, int NK);*/
 /* I.S. IsIdxValid(NB,NK) */ 
 /* F.S. M terdefinisi nilai elemen efektifnya, berukuran NB x NK */
 /* Proses: Melakukan MakeMATRIKS(M,NB,NK) dan mengisi nilai efektifnya */
@@ -67,7 +68,7 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK);
 4 5 6
 8 9 10 
 */
-void TulisMATRIKS (MATRIKS M);
+/*void TulisMATRIKS (MATRIKS M);*/
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi */
@@ -133,5 +134,9 @@ void PInverse1 (MATRIKS * M);
 void Transpose (MATRIKS * M);
 /* I.S. M terdefinisi dan IsBujursangkar(M) */
 /* F.S. M "di-transpose", yaitu setiap elemen M(i,j) ditukar nilainya dengan elemen M(j,i) */
-
+void makeMap(MATRIKS M, Player P);
+boolean isKanan(MATRIKS *M, POINT P);
+boolean isKiri(MATRIKS *M, POINT P);
+boolean isAtas(MATRIKS *M, POINT P);
+boolean isBawah(MATRIKS *M, POINT P);
 #endif

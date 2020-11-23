@@ -11,7 +11,7 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M){
     indeks i,j;
     for (i = BrsMin; i < NB; i++){
         for (j = KolMin; j < NK; j++){
-            Elmt(*M, i, j) = 0;
+            ElmtM(*M, i, j) = 0;
         }
     }
 }
@@ -22,12 +22,12 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M){
 /* *** Selektor *** */
 #define NBrsEff(M) (M).NBrsEff
 #define NKolEff(M) (M).NKolEff
-#define Elmt(M,i,j) (M).Mem[(i)][(j)]
+#define ElmtM(M,i,j) (M).Mem[(i)][(j)]
 
 /* *** Selektor "DUNIA MATRIKS" *** */
-boolean IsIdxValid (int i, int j){
+/*boolean IsIdxValid (int i, int j){
     return (((i>=BrsMin)&&(i<=BrsMax))&&((j>=KolMin)&&(j<=KolMax)));
-}
+}*/
 /* Mengirimkan true jika i, j adalah indeks yang valid untuk matriks apa pun */
 
 /* *** Selektor: Untuk sebuah matriks M yang terdefinisi: *** */
@@ -47,12 +47,12 @@ indeks GetLastIdxKol (MATRIKS M){
     return(NKolEff(M)-1+KolMin);
 }
 /* Mengirimkan indeks kolom terbesar M */
-boolean IsIdxEff (MATRIKS M, indeks i, indeks j){
+/*boolean IsIdxEff (MATRIKS M, indeks i, indeks j){
     return (((i>=BrsMin)&&(i<NBrsEff(M)))&&((j>=KolMin)&&(j<NKolEff(M))));
-}
+}*/
 /* Mengirimkan true jika i, j adalah indeks efektif bagi M */
 ElType GetElmtDiagonal (MATRIKS M, indeks i){
-    return (Elmt(M,i,i));
+    return (ElmtM(M,i,i));
 }
 /* Mengirimkan elemen M(i,i) */
 
@@ -63,7 +63,7 @@ void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl){
     MakeMATRIKS(NBrsEff(MIn), NKolEff(MIn), MHsl);
     for (i = GetFirstIdxBrs(MIn); i <= GetLastIdxBrs(MIn); i++){
         for (j = GetFirstIdxKol(MIn); j <= GetLastIdxKol(MIn); j++){
-            Elmt(*MHsl, i, j) = Elmt(MIn, i, j);
+            ElmtM(*MHsl, i, j) = ElmtM(MIn, i, j);
         }
     }
     NKolEff(*MHsl)=NKolEff(MIn);
@@ -71,7 +71,7 @@ void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl){
 }
 /* Melakukan assignment MHsl  MIn */
 
-/* ********** KELOMPOK BACA/TULIS ********** */ 
+/* ********** KELOMPOK BACA/TULIS ********** 
 void BacaMATRIKS (MATRIKS * M, int NB, int NK){
     indeks i,j;
     ElType input;
@@ -80,13 +80,13 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
         for (i = BrsMin; i <= NB-1+BrsMin; i++){
             for (j = KolMin; j <= NK-1+KolMin; j++){
                 scanf("%d",&input);
-                Elmt(*M,i,j)=input;
+                ElmtM(*M,i,j)=input;
             }
     }
     NBrsEff(*M)=NB;
     NKolEff(*M)=NK;
     }
-}
+}*/
 /* I.S. IsIdxValid(NB,NK) */ 
 /* F.S. M terdefinisi nilai elemen efektifnya, berukuran NB x NK */
 /* Proses: Melakukan MakeMATRIKS(M,NB,NK) dan mengisi nilai efektifnya */
@@ -96,11 +96,12 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 4 5 6
 8 9 10 
 */
+/*
 void TulisMATRIKS (MATRIKS M){
     indeks i,j;
     for (i = GetFirstIdxBrs(M); i <= GetLastIdxBrs(M); i++){
         for (j = GetFirstIdxKol(M); j <= GetLastIdxKol(M); j++){
-            printf("%d", Elmt(M,i,j));
+            printf("%d", ElmtM(M,i,j));
             if (j!=GetLastIdxKol(M)){
                 printf(" ");
             }
@@ -110,6 +111,7 @@ void TulisMATRIKS (MATRIKS M){
         }
     }
 }
+*/
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi */
@@ -120,18 +122,20 @@ void TulisMATRIKS (MATRIKS M){
 8 9 10
 */
 
-/* ********** KELOMPOK OPERASI ARITMATIKA TERHADAP TYPE ********** */                                  
+/* ********** KELOMPOK OPERASI ARITMATIKA TERHADAP TYPE ********** */   
+/*                               
 MATRIKS TambahMATRIKS (MATRIKS M1, MATRIKS M2){
     MATRIKS M;
     indeks i,j;
     MakeMATRIKS(NBrsEff(M1), NKolEff(M1), &M);
     for (i = GetFirstIdxBrs(M1); i <= GetLastIdxBrs(M1); i++){
         for (j = GetFirstIdxKol(M1); j <= GetLastIdxKol(M1); j++){
-            Elmt(M,i,j)=Elmt(M1,i,j)+Elmt(M2,i,j);
+            ElmtM(M,i,j)=ElmtM(M1,i,j)+ElmtM(M2,i,j);
             }
         }
     return M;
 }
+*/
 /* Prekondisi : M1  berukuran sama dengan M2 */
 /* Mengirim hasil penjumlahan matriks: M1 + M2 */ 
 MATRIKS KurangMATRIKS (MATRIKS M1, MATRIKS M2){
@@ -140,7 +144,7 @@ MATRIKS KurangMATRIKS (MATRIKS M1, MATRIKS M2){
     MakeMATRIKS(NBrsEff(M1), NKolEff(M1), &M);
     for (i = GetFirstIdxBrs(M1); i <= GetLastIdxBrs(M1); i++){
         for (j = GetFirstIdxKol(M1); j <= GetLastIdxKol(M1); j++){
-            Elmt(M,i,j)=Elmt(M1,i,j)-Elmt(M2,i,j);
+            ElmtM(M,i,j)=ElmtM(M1,i,j)-ElmtM(M2,i,j);
         }
     }
     return M;
@@ -158,9 +162,9 @@ MATRIKS KaliMATRIKS (MATRIKS M1, MATRIKS M2){
         for (j = KolMin; j <= NKolEff(M); j++){
             sum = 0;
             for (k = KolMin; k <= NKolEff(M1) ; k++){
-                sum += Elmt(M1,i,k) * Elmt(M2,k, j);
+                sum += ElmtM(M1,i,k) * ElmtM(M2,k, j);
             }
-            Elmt(M, i, j) = sum;
+            ElmtM(M, i, j) = sum;
         }
     }
     return M;
@@ -173,7 +177,7 @@ MATRIKS KaliKons (MATRIKS M, ElType X){
     MakeMATRIKS(NBrsEff(M), NKolEff(M), &M1);
     for (i = GetFirstIdxBrs(M1); i <= GetLastIdxBrs(M1); i++){
         for (j = GetFirstIdxKol(M1); j <= GetLastIdxKol(M1); j++){
-            Elmt(M1,i,j)=Elmt(M,i,j)*X;
+            ElmtM(M1,i,j)=ElmtM(M,i,j)*X;
         }
     }
     return M1;
@@ -183,7 +187,7 @@ void PKaliKons (MATRIKS * M, ElType K){
     indeks i,j;
     for (i = GetFirstIdxBrs(*M); i <= GetLastIdxBrs(*M); i++){
         for (j = GetFirstIdxKol(*M); j <= GetLastIdxKol(*M); j++){
-            Elmt(*M,i,j)=Elmt(*M,i,j)*K;
+            ElmtM(*M,i,j)=ElmtM(*M,i,j)*K;
         }
     }
 }
@@ -197,7 +201,7 @@ boolean EQ (MATRIKS M1, MATRIKS M2){
         int i,j;
         for (i = GetFirstIdxBrs(M1); i <= GetLastIdxBrs(M1); i++){
             for (j = GetFirstIdxKol(M1); j <= GetLastIdxKol(M1); j++){
-                hasil = hasil && (Elmt(M1, i, j) == Elmt(M2, i, j));
+                hasil = hasil && (ElmtM(M1, i, j) == ElmtM(M2, i, j));
             }
         }
     }
@@ -237,7 +241,7 @@ boolean IsSimetri (MATRIKS M){
     else {
         for (i = BrsMin; i <= NBrsEff(M); i++){
             for (j = KolMin; j <= NKolEff(M); j++){
-                if (Elmt(M, i, j) != Elmt(M, j, i)){
+                if (ElmtM(M, i, j) != ElmtM(M, j, i)){
                     return false;
                 }
             }
@@ -258,9 +262,9 @@ boolean IsSatuan (MATRIKS M){
             j = KolMin;
             while (j<=GetLastIdxKol(M)&&(equal)){
                 if (i==j){
-                    equal = equal && (Elmt(M, i, j)==1);
+                    equal = equal && (ElmtM(M, i, j)==1);
                 }else{
-                    equal = equal && (Elmt(M, i, j)==0);
+                    equal = equal && (ElmtM(M, i, j)==0);
                 }
                 j++;
             }
@@ -278,7 +282,7 @@ boolean IsSparse (MATRIKS M){
 
     for (i = BrsMin; i <= NBrsEff(M); i++){
         for (j = KolMin; j <= NKolEff(M); j++){
-            if (Elmt(M, i, j) != 0){
+            if (ElmtM(M, i, j) != 0){
                 count += 1;
                 }
             }
@@ -299,7 +303,7 @@ float Determinan (MATRIKS M){
 
     for (i = 0; i < size; i++){
         for (j = 0; j < size; j++){
-            m[i][j] = Elmt(M, i, j);
+            m[i][j] = ElmtM(M, i, j);
         }
     }
 
@@ -352,9 +356,9 @@ void Transpose (MATRIKS * M){
 
     for (i = BrsMin; i <= NBrsEff(*M); i++){
         for (j = i; j <= NKolEff(*M); j++){
-            temp = Elmt(*M, i, j);
-            Elmt(*M, i, j) = Elmt(*M, j, i);
-            Elmt(*M, j, i) = temp;
+            temp = ElmtM(*M, i, j);
+            ElmtM(*M, i, j) = ElmtM(*M, j, i);
+            ElmtM(*M, j, i) = temp;
         }
     }
 }
@@ -364,7 +368,7 @@ float RataBrs (MATRIKS M, indeks i){
     indeks j;
     float sum = 0;
     for (j=GetFirstIdxKol(M);j<=GetLastIdxKol(M);j++){
-        sum += Elmt(M, i, j);
+        sum += ElmtM(M, i, j);
     }
     return (sum/NKolEff(M));
 }
@@ -374,7 +378,7 @@ float RataKol (MATRIKS M, indeks j){
     indeks i;
     float sum = 0;
     for (i=GetFirstIdxBrs(M);i<=GetLastIdxBrs(M);i++){
-        sum += Elmt(M, i, j);
+        sum += ElmtM(M, i, j);
     }
     return (sum/NBrsEff(M));
 }
@@ -382,15 +386,15 @@ float RataKol (MATRIKS M, indeks j){
 /* Prekondisi: j adalah indeks kolom efektif dari M */
 void MaxMinBrs (MATRIKS M, indeks i, ElType * max, ElType * min){
     indeks j;
-    *min = Elmt(M, i, GetFirstIdxKol(M));
-    *max = Elmt(M, i, GetLastIdxKol(M));
+    *min = ElmtM(M, i, GetFirstIdxKol(M));
+    *max = ElmtM(M, i, GetLastIdxKol(M));
 
     for (j=(GetFirstIdxKol(M)+1);j<=GetLastIdxKol(M);j++){
-        if(Elmt(M, i, j)> *max){
-            *max = Elmt(M, i, j);
+        if(ElmtM(M, i, j)> *max){
+            *max = ElmtM(M, i, j);
         }
-        if(Elmt(M, i, j)< *min){
-            *min = Elmt(M, i, j);
+        if(ElmtM(M, i, j)< *min){
+            *min = ElmtM(M, i, j);
         }
     }
 }
@@ -399,15 +403,15 @@ void MaxMinBrs (MATRIKS M, indeks i, ElType * max, ElType * min){
            min berisi elemen minimum pada baris i dari M */
 void MaxMinKol (MATRIKS M, indeks j, ElType * max, ElType * min){
     indeks i;
-    *min = Elmt(M, GetFirstIdxBrs(M), j);
-    *max = Elmt(M, GetFirstIdxBrs(M), j);
+    *min = ElmtM(M, GetFirstIdxBrs(M), j);
+    *max = ElmtM(M, GetFirstIdxBrs(M), j);
 
     for (i=(GetFirstIdxBrs(M)+1);i<=GetLastIdxBrs(M);i++){
-        if(Elmt(M, i, j)> *max){
-            *max = Elmt(M, i, j);
+        if(ElmtM(M, i, j)> *max){
+            *max = ElmtM(M, i, j);
         }
-        if(Elmt(M, i, j)< *min){
-            *min = Elmt(M, i, j);
+        if(ElmtM(M, i, j)< *min){
+            *min = ElmtM(M, i, j);
         }
     }
 }
@@ -418,7 +422,7 @@ int CountXBrs (MATRIKS M, indeks i, ElType X){
     indeks j;
     int count = 0;
     for (j=GetFirstIdxKol(M);j<=GetLastIdxKol(M);j++){
-        if (Elmt(M, i, j) == X){
+        if (ElmtM(M, i, j) == X){
             count += 1;
         }
     }
@@ -429,7 +433,7 @@ int CountXKol (MATRIKS M, indeks j, ElType X){
     indeks i;
     int count = 0;
     for (i=GetFirstIdxBrs(M);i<=GetLastIdxBrs(M);i++){
-        if (Elmt(M, i, j) == X){
+        if (ElmtM(M, i, j) == X){
             count += 1;
         }
     }
@@ -437,6 +441,35 @@ int CountXKol (MATRIKS M, indeks j, ElType X){
 }
 /* Menghasilkan banyaknya kemunculan X pada kolom j dari M */
 
-void printMap(POINT P, POINT W, POINT O){
-    
+void makeMap(MATRIKS M, Player P){
+    int i,j;
+    for (i = BrsMin; i<=BrsMax; i++){
+        for(j = KolMin; j<=KolMax; j++){
+            if ((i==Absis(Pos(P)))&&(j==Ordinat(Pos(P)))){
+                ElmtM(M,i,j) = 1;
+            }
+            if((i==BrsMin)||(j==KolMin)||(j==KolMax)||(i==BrsMax)){
+                ElmtM(M,i,j) = 999;
+            }else{
+                ElmtM(M,i,j) = 0;
+            }
+        }
+        printf("\n");
+    }
+}
+
+boolean isKanan(MATRIKS *M, POINT P){
+   return (Absis(P) == GetLastIdxKol(*M));
+}
+
+boolean isKiri(MATRIKS *M, POINT P){
+   return (Absis(P) == GetFirstIdxKol(*M));
+}
+
+boolean isAtas(MATRIKS *M, POINT P){
+   return (Ordinat(P) == GetFirstIdxBrs(*M));
+}
+
+boolean isBawah(MATRIKS *M, POINT P){
+   return (Ordinat(P) == GetLastIdxBrs(*M));
 }
