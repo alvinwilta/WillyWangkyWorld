@@ -1,9 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "mesinkata.h"
+#include "mesinkar.h"
+#include "wahana/wahana.h"
+#include "matriks/matriks.h"
+#include "graph/graph.h"
+#include "player/player.h"
+#include "queue/queue.h"
+#include "stack/stack.h"
+#include "array/array.h"
+#include "point/point.h"
 
 void main_menu(){
-    int menu1;
-    char name[50];
     system("@cls||clear");
     printf(" __       __)              __       __)                       __       __)          \n");
     printf("(, )  |  /  , /) /)       (, )  |  /          /)     /       (, )  |  /      /)  /) \n");
@@ -26,6 +34,7 @@ void main_menu(){
         printf("Memulai permainan baru...");
         printf("Masukkan nama:");
         scanf("%s", name);
+        NewPlayer()
         game();
     }
     else{
@@ -37,4 +46,22 @@ void main_menu(){
 void quit(){
     printf("Thanks for playing!!");
     exit(0);
+}
+
+void awal(){
+    printMap(M);
+    printf("Legend:\n");
+    printf("P = Player\n");
+    printf("W = Wahana\n");
+    printf("O = Office\n");
+    printf("<, ^, >, V = Gerbang\n");
+    printf("\n");
+    printf("Nama: ");
+    printf("%s", name);
+    printf("Money: ");
+    printf("%d", Money(name));
+}
+
+int main(){
+
 }

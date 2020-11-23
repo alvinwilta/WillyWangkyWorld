@@ -2,8 +2,8 @@
 /* ADT list linier dengan representasi pointer */
 /* Implementasi list linier secara rekursif */
 
-#ifndef _CUSTOM_H_
-#define _CUSTOM_H_
+#ifndef _PLAYER_H_
+#define _PLAYER_H_
 
 #include "../boolean.h"
 #include "../point/point.h"

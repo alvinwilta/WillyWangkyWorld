@@ -436,3 +436,7 @@ int CountXKol (MATRIKS M, indeks j, ElType X){
     return count;
 }
 /* Menghasilkan banyaknya kemunculan X pada kolom j dari M */
+
+void printMap(POINT P, POINT W, POINT O){
+    
+}
