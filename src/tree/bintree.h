@@ -1,6 +1,6 @@
 /* ADT Pohon Biner */
 /* Implementasi dengan menggunakan pointer */
-/* Penamaan type infotype, type addrNode, dan beberapa fungsi disesuikan 
+/* Penamaan type infotypeString, type addrNode, dan beberapa fungsi disesuikan 
    karena melibatkan modul list rekursif. */
 
 #ifndef _BINTREE_H_
@@ -13,10 +13,10 @@
 /* #define Nil NULL */ /* konstanta Nil sesuai pada modul listrek */
 
 /* *** Definisi Type Pohon Biner *** */
-/* typedef int infotype; */ /* type infotype sesuai pada modul listrek */
+/* typedef int infotypeString; */ /* type infotypeString sesuai pada modul listrek */
 typedef struct tNode *addrNode;
 typedef struct tNode {
-  infotype info;
+  infotypeString info;
   addrNode left;
   addrNode right;
 } Node;
@@ -33,10 +33,10 @@ typedef addrNode BinTree;
 #define Right(P) (P)->right
 
 /* *** Konstruktor *** */
-BinTree Tree(infotype Akar, BinTree L, BinTree R);
+BinTree Tree(infotypeString Akar, BinTree L, BinTree R);
 /* Menghasilkan sebuah pohon biner dari A, L, dan R, jika alokasi berhasil */
 /* Menghasilkan pohon kosong (Nil) jika alokasi gagal */
-void MakeTree(infotype Akar, BinTree L, BinTree R, BinTree *P);
+void MakeTree(infotypeString Akar, BinTree L, BinTree R, BinTree *P);
 /* I.S. Akar, L, R terdefinisi. P Sembarang */
 /* F.S. Membentuk pohon P dengan Akar(P)=Akar, Left(P)=L, dan Right(P)=R
    jika alokasi berhasil. P = Nil jika alokasi gagal. */
@@ -52,7 +52,7 @@ BinTree BuildBalanceTree(int n);
   */
 
 /* Manajemen Memory */
-addrNode AlokNode(infotype X);
+addrNode AlokNode(infotypeString X);
 /* Mengirimkan addrNode hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka addrNode tidak Nil, dan misalnya menghasilkan P,
   maka Akar(P) = X, Left(P) = Nil, Right(P)=Nil */
@@ -122,7 +122,7 @@ A
 */
 
 /* *** Searching *** */
-boolean SearchTree(BinTree P, infotype X);
+boolean SearchTree(BinTree P, infotypeString X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 
 /* *** Fungsi-Fungsi Lain *** */
@@ -137,7 +137,7 @@ boolean IsSkewLeft(BinTree P);
 boolean IsSkewRight(BinTree P);
 /* Mengirimkan true jika P adalah pohon condong kanan */
 /* Pohon kosong adalah pohon condong kanan */
-int Level(BinTree P, infotype X);
+int Level(BinTree P, infotypeString X);
 /* Mengirimkan level dari node X yang merupakan salah satu simpul dari pohon biner P.
    Akar(P) level-nya adalah 1. Pohon P tidak kosong. */
 int Tinggi(BinTree P);
@@ -145,19 +145,19 @@ int Tinggi(BinTree P);
    Mengirim "height" yaitu tinggi dari pohon */
 
 /* *** Operasi lain *** */
-void AddDaunTerkiri(BinTree *P, infotype X);
+void AddDaunTerkiri(BinTree *P, infotypeString X);
 /* I.S. P boleh kosong */
 /* F.S. P bertambah simpulnya, dengan X sebagai simpul daun terkiri */
-void AddDaun(BinTree *P, infotype X, infotype Y, boolean Kiri);
+void AddDaun(BinTree *P, infotypeString X, infotypeString Y, boolean Kiri);
 /* I.S. P tidak kosong, X adalah salah satu daun Pohon Biner P */
 /* F.S. P bertambah simpulnya, dengan Y sebagai anak kiri X (jika Kiri = true), atau
         sebagai anak Kanan X (jika Kiri = false) */
 /*		Jika ada > 1 daun bernilai X, diambil daun yang paling kiri */
-void DelDaunTerkiri(BinTree *P, infotype *X);
+void DelDaunTerkiri(BinTree *P, infotypeString *X);
 /* I.S. P tidak kosong */
 /* F.S. P dihapus daun terkirinya, dan didealokasi, dengan X adalah info yang semula
         disimpan pada daun terkiri yang dihapus */
-void DelDaun(BinTree *P, infotype X);
+void DelDaun(BinTree *P, infotypeString X);
 /* I.S. P tidak kosong, minimum ada 1 daun bernilai X. */
 /* F.S. Semua daun bernilai X dihapus dari P. */
 List MakeListDaun(BinTree P);
@@ -179,15 +179,19 @@ List MakeListLevel(BinTree P, int N);
    Menghasilkan list kosong jika ada alokasi yang gagal. */
 
 /* *** Binary  Search  Tree  *** */
-boolean BSearch(BinTree P, infotype X);
+boolean BSearch(BinTree P, infotypeString X);
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 
-void InsSearch(BinTree *P, infotype X);
+void InsSearch(BinTree *P, infotypeString X);
 /* Menghasilkan sebuah pohon Binary Search Tree P dengan tambahan simpul X. Belum ada simpul P yang bernilai X. */
 
-void DelBtree(BinTree *P, infotype X);
+void DelBtree(BinTree *P, infotypeString X);
 /* I.S. Pohon P tidak  kosong */
 /* F.S. Nilai X yang dihapus pasti ada */
 /* Sebuah node dengan nilai X dihapus */
+
+void DelNode(BinTree* P);
+
+void PrintTree2(BinTree P, int h, int indentation);
 
 #endif
