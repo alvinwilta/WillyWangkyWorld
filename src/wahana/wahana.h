@@ -29,6 +29,7 @@ typedef struct twahana
     int record_total_penggunaan; // total penggunaan wahana selama game berjalan
     int pendapatan;              // banyak penghasilan hari ini
     int record_penggunaan;       // banyak penggunaan hari ini
+    boolean rusak;               //status rusak
 } Wahana;
 
 /* Default value dari data Wahana */
@@ -50,6 +51,7 @@ typedef struct twahana
 #define TotalPenggunaan(W) (W)->record_total_penggunaan
 #define CurrentPendapatan(W) (W)->pendapatan
 #define CurrentPenggunaan(W) (W)->record_penggunaan
+#define Rusak(W) (W)->rusak
 
 /* *** Konstruktor Wahana **** */
 Wahana NewWahana(char jenis[], int id, POINT pos);
