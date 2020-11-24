@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "mesinkata.h"
 #include "../boolean.h"
+#include "../wahana/wahana.h"
+#include "../graph/graph.h"
 
 boolean EndKata;
 Kata CKata;
@@ -31,7 +33,9 @@ void IgnoreBlankSCANF()
     }
 }
 
-/*Berguna untuk membaca angka dari File*/
+/*Berguna untuk membaca angka dari File
+    I.S. : Angka Sembarang
+    F.S. : CC ≠ BLANK atau CC = NEWLINE*/
 int readAngka(){
     int n = 0;
     IgnoreBlank();
@@ -140,6 +144,9 @@ boolean IsKataSama(Kata K1, char * S){
     return found;
 }
 
+/* Konversi dari integer ke string
+    I.S. Integer dimasukkan sembarang
+    F.S. Menghasilkan string*/
 int intstring(Kata K){
     int result = 0;
     int temp;
@@ -156,7 +163,7 @@ void printKata(Kata K)
     printf("\n");
 }
 
-void readConfigFile(MATRIKS *M, buildingsArray *arr, graph *G, int * buildingCounter)
+void readConfigFile(MATRIKS *M, Wahana *arr, Graph *G, int * wahanaCounter)
 {
     // Start reading config file
     START(configFilename);
@@ -176,7 +183,7 @@ void readConfigFile(MATRIKS *M, buildingsArray *arr, graph *G, int * buildingCou
     // Read building count
     IgnoreBlank();
     int t = readAngka();
-    *buildingCounter = t;
+    *wahanaCounter = t;
     printf("Building count: ");
     printf("%d\n", t);
 
@@ -249,7 +256,6 @@ void saveToFile(MATRIKS *M, buildingsArray *arr, graph *G, int turn, boolean ign
     fprintf(savefile,"%d\n", t);
 
     // Output all bulding with its state
-    // Format : type rb cb owner level troops defense
     /*
     for(int i=1;i<=t;i++)
     {
@@ -345,7 +351,7 @@ void saveToFile(MATRIKS *M, buildingsArray *arr, graph *G, int turn, boolean ign
 }
 
 // Load from file
-void loadFromFile(matrix *M, buildingsArray *arr, graph *G, int *turn, boolean *ignore, boolean *critical, boolean *extraTurn, queue *Q1, queue *Q2, int *buildingCounter, boolean *criticalP1, boolean *criticalP2, boolean *isShieldActiveP1, boolean *shieldActivatedP1, boolean *isShieldActiveP2, boolean *shieldActivatedP2, int *counterShieldP1, int *counterShieldP2, int * lengthFlagAttack_, int * lengthFlagMove_, int ** arrFlagAttack, int ** arrFlagMove)
+void loadFromFile(matrix *M, buildingsArray *arr, graph *G, int *turn, boolean *ignore, boolean *critical, boolean *extraTurn, queue *Q1, queue *Q2, int *wahanaCounter, boolean *criticalP1, boolean *criticalP2, boolean *isShieldActiveP1, boolean *shieldActivatedP1, boolean *isShieldActiveP2, boolean *shieldActivatedP2, int *counterShieldP1, int *counterShieldP2, int * lengthFlagAttack_, int * lengthFlagMove_, int ** arrFlagAttack, int ** arrFlagMove)
 {
     // Start reading filename
     START(savefileFilename);
@@ -363,7 +369,7 @@ void loadFromFile(matrix *M, buildingsArray *arr, graph *G, int *turn, boolean *
     // Read building count
     IgnoreBlank();
     int t = readAngka();
-    *buildingCounter = t;
+    *wahanaCounter = t;
 
     colorPrint("Map size: ", BRIGHT);
     printf("%dx%d\n", row, col);

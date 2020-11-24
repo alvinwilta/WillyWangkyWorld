@@ -8,7 +8,17 @@
 #include "../array/array.h"
 #include "../point/point.h"
 
-
 void MasukOffice(){
-
+    Kata perintahoffice;
+    readSCANF(&perintahoffice);
+    if (IsKataSama(perintahoffice, "Details")){
+        /*Tampilkan List Wahana*/
+        /*Pilih Detail Wahana*/
+    }else if (IsKataSama(perintahoffice, "Report")){
+        /*Tampilkan List Wahana*/
+        /*Pilih Report Wahana*/
+    }else{/*exit*/
+        main_menu();
+    }
 }
+

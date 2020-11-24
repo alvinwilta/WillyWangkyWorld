@@ -28,9 +28,10 @@ int main()
     int * arrfa;
     int * arrfb;
     boolean i,c,e,c1,c2,is1,is2,s1,s2;
-    
+    /*
     loadFromFile(&m, &b,&g,&t,&i,&c,&e,&q1,&q2,&bc,&c1,&c2,&is1,&s1,&is2,&s2,&cp1,&cp2,&lfa,&lfm,&arrfa,&arrfb);   
     saveToFile(&m, &b,&g,t,i,c,e,&q1,&q2,c1,c2,is1,s1,is2,s2,cp1,cp2,lfa,lfm,arrfa,arrfb);    
+    */
     readConfigFile(&m, &b, &g,&bc);
     printf("masuk sini");
     for(int i=1;i<=Neff(b);i++)
