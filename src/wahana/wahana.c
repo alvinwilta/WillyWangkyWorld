@@ -1,7 +1,6 @@
 #include "../tree/bintree.h"
 #include "../tree/listrek.h"
 #include "../point/point.h"
-#include "../matriks/matriks.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,7 +13,7 @@ Wahana NewWahana(char jenis[], int id, POINT pos)
     /* F.S Wahana baru terbentuk dengan pos di tempat player membuat wahana. pendapatan dan penggunaan diset default 0 */
     /* deskripsi diset sesuai dengan deskripsi di wahana.txt */
     Wahana W;
-    if (!strcmp(jenis, "Big Wheel"))
+    if (!strcmp(jenis, "BigWheel"))
     {
         strcpy(JenisW(&W), jenis);
         strcpy(DeskripsiW(&W), "This classic Ferris Wheel is a firm family favorite");
@@ -24,12 +23,12 @@ Wahana NewWahana(char jenis[], int id, POINT pos)
         strcpy(JenisW(&W), jenis);
         strcpy(DeskripsiW(&W), "A teacup party. Fits in a small area.");
     }
-    else if (!strcmp(jenis, "Venetian Carousel"))
+    else if (!strcmp(jenis, "VenetianCarousel"))
     {
         strcpy(JenisW(&W), jenis);
         strcpy(DeskripsiW(&W), "A traditional Victorian carousel brought back to life.");
     }
-    else if (!strcmp(jenis, "Smoll Coaster"))
+    else if (!strcmp(jenis, "SmollCoaster"))
     {
         strcpy(JenisW(&W), jenis);
         strcpy(DeskripsiW(&W), "Standard coaster for everybody-almost everybody.");
@@ -39,7 +38,7 @@ Wahana NewWahana(char jenis[], int id, POINT pos)
     KapasitasW(&W) = DefKapasitas;
     TarifW(&W) = DefTarif;
     DurasiW(&W) = DefDurasi;
-    address P = Alokasi(0);
+    address P = Alokasi(jenis);
     HistoryW(&W) = P;
     IsiW(&W) = 0;
     TotalPendapatan(&W) = 0;
@@ -59,7 +58,36 @@ void upgrade(Wahana *W, int pilihan, BinTree treeWahana)
     /* Proses: Akan dicari node pada Bintree treeWahana yang sesuai dengan nama wahana sebelum diupgrade. Nama wahana akan diubah sesuai dengan pilihan. History upgrade wahana ditambahkan di akhir list */
     TarifW(W) += 50;
     KapasitasW(W) += 2;
-    // belum selesai
+    addrNode N = treeWahana;
+    while (!strcmp(Akar(N), JenisW(W)))
+    {
+        if (SearchTree(Left(N), JenisW(W)))
+        {
+            N = Left(N);
+        }
+        else
+        {
+            N = Right(N);
+        }
+    }
+    if (pilihan == 0) // pilihan == 0, pilih tree kiri
+    {
+        strcpy(JenisW(W), Akar(Left(N)));
+        N = Left(N);
+    }
+    else // pilihan == 1, pilih tree kanan
+    {
+        strcpy(JenisW(W), Akar(Right(N)));
+        N = Right(N);
+    }
+    address A = HistoryW(W);
+    while (Next(A) != Nil)
+    {
+        A = Next(A);
+    }
+    Next(A) = Alokasi(Akar(N));
+    strcpy(JenisW(W), Akar(N));
+    // strcpy(DeskripsiW(W), deskripsi);
 }
 
 boolean isPenuh(Wahana W)
@@ -77,12 +105,33 @@ void addPengunjung(Wahana *W)
     IsiW(W) += 1;
 }
 
-void kosongkanIsi(Wahana *W)
+void subPengunjung(Wahana *W)
 {
     /* I.S wahana terdefinisi, wahana telah selesai menjalankan permainan sekali */
-    /* F.S atribut isi_pengunjung wahana W dikosongkan menjadi 0 kembali */
-    IsiW(W) = 0;
+    /* F.S atribut isi_pengunjung wahana W berkurang 1 */
+    IsiW(W) -= 1;
 }
+
+// boolean isBroken(Wahana W)
+// {
+//     /* I.S wahana terdefinisi */
+//     /* F.S mengembalikan true jika status rusak */
+//     // return !StatusW(&W);
+// }
+
+// void ubahStatusW(Wahana *W)
+// {
+//     /* I.S wahana terdefinisi */
+//     /* F.S status wahana W berubah. Jika pada kondisi awal bernilai true maka akan menjadi false, begitu pula kebalikannya */
+//     if (StatusW(W))
+//     {
+//         StatusW(W) = false;
+//     }
+//     else
+//     {
+//         StatusW(W) = true;
+//     }
+// }
 
 /* ** Laporan Wahana ** */
 void addPendapatan(Wahana *W)

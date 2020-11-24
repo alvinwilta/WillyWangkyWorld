@@ -7,7 +7,6 @@
 #include "../tree/bintree.h"
 #include "../tree/listrek.h"
 #include "../point/point.h"
-#include "../matriks/matriks.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -75,9 +74,13 @@ void addPengunjung(Wahana *W);
 /* I.S wahana W terdefinisi, wahana pasti belum penuh */
 /* F.S isi_pengunjung wahana W bertambah 1. Bisa menjadi penuh */
 
-void kosongkanIsi(Wahana *W);
+void subPengunjung(Wahana *W);
 /* I.S wahana terdefinisi, wahana telah selesai menjalankan permainan sekali */
-/* F.S atribut isi_pengunjung wahana W dikosongkan menjadi 0 kembali */
+/* F.S atribut isi_pengunjung wahana W berkurang 1 */
+
+boolean isBroken(Wahana W);
+/* I.S wahana terdefinisi */
+/* F.S mengembalikan true jika status rusak */
 
 /* ** Laporan Wahana ** */
 void addPendapatan(Wahana *W);

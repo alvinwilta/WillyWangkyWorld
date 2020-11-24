@@ -1,7 +1,6 @@
 #include "../tree/bintree.h"
 #include "../tree/listrek.h"
 #include "../point/point.h"
-#include "../matriks/matriks.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "wahana.h"

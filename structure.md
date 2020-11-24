@@ -1,71 +1,70 @@
 - Requirement:
-    - [ ] Library baca file <unistd.h>
-    - [ ] Library random number generator rand() <stdlib.h>
-    - [ ] Library I/O <stdio.h>
-    
+  - [ ] Library baca file <unistd.h>
+  - [ ] Library random number generator rand() <stdlib.h>
+  - [ ] Library I/O <stdio.h>
 - ADT:
-    - [ ] ADT Point => Posisi wahana pada peta
-        - [x] point.h
-        - [ ] point.c => comment fungsi tidak terpakai
-    - [ ] ADT Jam => Waktu in-game (saat melakukan aksi dll)
-        - [x] jam.h
-        - [ ] jam.c
-    - [ ] ADT List Implementasi Array => (daftar action) dan (daftar barang2 + harga)
-        - [ ] array.h
-        - [ ] array.c => gunakan list versi 1, comment fungsi tidak terpakai
-    - [ ] ADT Matriks => Representasi map wahana
-        - [ ] matriks.h
-        - [ ] matriks.c
-    - [x] ADT Mesin Karakter + Kata => (parsing perintah) dan (save and load game)
-        - [x] mesinkar.h
-        - [x] mesinkar.c => dependency mesintoken
-        - [x] mesintoken.h
-        - [x] mesintoken.c => membaca input command user (kata dan input angka)
-        - [x] mesinkata.h
-        - [x] mesinkata.c
-    - [ ] ADT Queue (Priority Queue) => Antrian pengunjung wahana
-        - [x] prioqueue.h
-        - [ ] prioqueue.c => comment fungsi tidak terpakai
-    - [ ] ADT Stack => (menyimpan aksi preparation phase) dan (UNDO) dan (eksekusi aksi)
-        - [x] stack.h
-        - [ ] stack.c => comment fungsi tidak terpakai
-    - [ ] ADT List Implementasi List Terkait => Menyimpan daftar upgrade wahana
-        - [x] listlinier.h
-        - [ ] listlinier.c => comment fungsi tidak terpakai
-    - [ ] ADT Tree => Pohon upgrade wahana
-        - [ ] ubah listrek.h => hilangkan #define ...
-        - [ ] ubah listrek.c => hilangkan #define ...
-        - [ ] ubah bintree.h => hilangkan #define ...
-        - [ ] ubah bintree.c => hilangkan #define ...
-    - [ ] ADT Graph (Variasi Multilist) => Berpindah area
-        - [x] graph.h
-        - [ ] graph.c => komen fungsi tidak terpakai
-    - [ ] ADT Player
-        - [x] player.h
-        - [ ] player.c
-    - [ ] ADT Wahana
-        - [ ] wahana.h
-        - [ ] wahana.c
+
+  - [ ] ADT Point => Posisi wahana pada peta
+    - [x] point.h
+    - [ ] point.c => comment fungsi tidak terpakai
+  - [ ] ADT Jam => Waktu in-game (saat melakukan aksi dll)
+    - [x] jam.h
+    - [ ] jam.c
+  - [ ] ADT List Implementasi Array => (daftar action) dan (daftar barang2 + harga)
+    - [ ] array.h
+    - [ ] array.c => gunakan list versi 1, comment fungsi tidak terpakai
+  - [ ] ADT Matriks => Representasi map wahana
+    - [ ] matriks.h
+    - [ ] matriks.c
+  - [x] ADT Mesin Karakter + Kata => (parsing perintah) dan (save and load game)
+    - [x] mesinkar.h
+    - [x] mesinkar.c => dependency mesintoken
+    - [x] mesintoken.h
+    - [x] mesintoken.c => membaca input command user (kata dan input angka)
+    - [x] mesinkata.h
+    - [x] mesinkata.c
+  - [ ] ADT Queue (Priority Queue) => Antrian pengunjung wahana
+    - [x] prioqueue.h
+    - [ ] prioqueue.c => comment fungsi tidak terpakai
+  - [ ] ADT Stack => (menyimpan aksi preparation phase) dan (UNDO) dan (eksekusi aksi)
+    - [x] stack.h
+    - [ ] stack.c => comment fungsi tidak terpakai
+  - [ ] ADT List Implementasi List Terkait => Menyimpan daftar upgrade wahana
+    - [x] listlinier.h
+    - [ ] listlinier.c => comment fungsi tidak terpakai
+  - [ ] ADT Tree => Pohon upgrade wahana
+    - [ ] ubah listrek.h => hilangkan #define ...
+    - [ ] ubah listrek.c => hilangkan #define ...
+    - [ ] ubah bintree.h => hilangkan #define ...
+    - [ ] ubah bintree.c => hilangkan #define ...
+  - [ ] ADT Graph (Variasi Multilist) => Berpindah area
+    - [x] graph.h
+    - [ ] graph.c => komen fungsi tidak terpakai
+  - [ ] ADT Player
+    - [x] player.h
+    - [ ] player.c
+  - [x] ADT Wahana
+    - [x] wahana.h
+    - [x] wahana.c
     <!-- - [ ] ADT Lainnya (definisikan sendiri)-->
 
 - External files:
-    - [ ] wahana.txt
-        - Setiap node (1 node 1 wahana):
-            - Nama wahana
-            - Harga wahana
-            - Kapasitas wahana
-            - Durasi wahana
-            - Deskripsi wahana
-        - Cost upgrade (pindah ke node tree lain):
-            - Uang yg dibutuhkan
-            - Bahan bangunan yg dibutuhkan
-    - [x] material.txt
-        - Setiap jenis bahan:
-            - Nama bahan
-            - Harga bahan
-    - [x] map.txt
-        - [x] panduanpeta.txt => membantu pengertian matriks
-    <!-- - [ ] state.txt => deskripsikan sendiri, OPTIONAL -->
+
+  - [ ] wahana.txt
+    - Setiap node (1 node 1 wahana):
+      - Nama wahana
+      - Harga wahana
+      - Kapasitas wahana
+      - Durasi wahana
+      - Deskripsi wahana
+    - Cost upgrade (pindah ke node tree lain):
+      - Uang yg dibutuhkan
+      - Bahan bangunan yg dibutuhkan
+  - [x] material.txt
+    - Setiap jenis bahan:
+      - Nama bahan
+      - Harga bahan
+  - [x] map.txt - [x] panduanpeta.txt => membantu pengertian matriks
+  <!-- - [ ] state.txt => deskripsikan sendiri, OPTIONAL -->
 
 - Fungsi:
-
