@@ -46,6 +46,7 @@ Wahana NewWahana(char jenis[], int id, POINT pos)
     TotalPenggunaan(&W) = 0;
     CurrentPendapatan(&W) = 0;
     CurrentPenggunaan(&W) = 0;
+    Rusak(&W) = 0;
     return W;
 }
 
