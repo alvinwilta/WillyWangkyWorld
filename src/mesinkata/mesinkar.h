@@ -5,7 +5,8 @@
 #define __MESIN_KAR_H_
 
 #include "../boolean.h"
-
+#define BLANK ' '
+#define NEWLINE '\n'
 #define MARK '.'
 /* State Mesin */
 extern char CC;

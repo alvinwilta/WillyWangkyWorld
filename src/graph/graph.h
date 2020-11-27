@@ -8,44 +8,31 @@
 #include "../linkedlist/listlinier.h"
 #include "../matriks/matriks.h"
 
+#define Nil NULL
 
-// Maksimum simpul dari graph = maks bangunan
-#define N 600;
-
-// Struktur data pake list of list jancok
-typedef struct tElmtgraph *addressGraph;
-typedef struct tElmtgraph {
+typedef struct adrNode *addressNode;
+typedef struct succNode *addressSuccNode;
+typedef struct adrNode {
 	MATRIKS info;
-	List link;
-	addressGraph next;
+	addressNode next;
+	addressSuccNode trail;
 } ElmtGraph;
+typedef struct succNode {
+	addressSuccNode nexts;
+	addressNode succ;
+} ElmtSucc;
 typedef struct {
-	addressGraph First;
+	addressNode First;
 } Graph;
 
-/* Definisi graph :
-   Graph kosong : First(L) = Nil
-   Setiap elemen dengan addressGraph P dapat diacu Info(P), Next(P)
-   Elemen terakhir graph : jika addressnya Last, maka NextGraph(Last)=Nil */
+// P adalah pointer node
+// Ps adalah pointer trail
 
-/*	Penggunaan pada tubes:
-	Graph digunakan untuk menyimpan indeks dari building pada array of building.
-	contoh = graph untuk jumlah building 4
-	file config =
-   			0 1 1 1
-   			1 0 0 0
-   			1 0 0 1
-   			1 0 1 0
-	graph yang terjadi
-		1 2->3->4
-		2 1
-		3 1->4
-		4 1->3
-*/
-
-#define InfoGraph(P) (P)->info
-#define NextGraph(P) (P)->next
-#define Link(P) 	 (P)->link
+#define MatriksGraph(P) (P)->info
+#define NextNode(P) (P)->next
+#define Trail(P) 	 (P)->trail
+#define NextSucc(Ps) (Ps)->nexts
+#define Succ(Ps) (Ps)->succ
 #define FirstGraph(G) ((G).First)
 
 void CreateEmptyGraph(Graph *G);
@@ -55,31 +42,36 @@ void CreateEmptyGraph(Graph *G);
 boolean IsGraphEmpty(Graph G);
 /* Mengirimkan true jika graph kosong */
 
-ElmtGraph CreateElmt(MATRIKS X, List L);
-/* I.S. Matriks X dan List L tidak kosong, L dan X merupakan link dan matriks bacaan dari file */
-/* F.S. menghasilkan ElmtGraph dengan next=NULL */
-
-addressGraph AlokasiGraph(ElmtGraph E);
-/* Mengirimkan addressGraph hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka addressGraph tidak NULL, dan misalnya */
-/* menghasilkan P, maka InfoGraph(P)=X, NextGraph(P)=NULL, dan Link(P) berisi list kosong */
+addressNode AlokasiNode(MATRIKS X);
+/* Mengirimkan addressNode hasil alokasi sebuah matriks */
+/* Jika alokasi berhasil, maka addressNode tidak NULL, dan misalnya */
+/* menghasilkan P, maka MatriksGraph(P)=X, NextNode(P)=NULL, dan Trail(P)=NULL */
 /* Jika alokasi gagal, mengirimkan NULL */
 
-void addElmtGraph(Graph *G, ElmtGraph E);
+void DealokasiNode(addressNode P);
+/* I.S. P terdefinisi */
+/* F.S. P dikembalikan ke sistem */
+/* Melakukan dealokasi/pengembalian address P */
+
+addressSuccNode AlokasiSuccNode(ElmntGraph P);
+/* Mengirimkan addressNode hasil alokasi sebuah matriks */
+/* Jika alokasi berhasil, maka addressSuccNode tidak NULL, dan misalnya */
+/* menghasilkan Ps, maka Succ(Ps)=P, NextSucc(Ps)=NULL */
+/* Jika alokasi gagal, mengirimkan NULL */
+
+void DealokasiSuccNode(addressSuccNode Ps);
+/* I.S. Ps terdefinisi */
+/* F.S. Ps dikembalikan ke sistem */
+/* Melakukan dealokasi/pengembalian address Ps */
+
+void addElmtGraph(Graph *G, MATRIKS X);
 /* I.S. Graph terdefinisi, ElmtGraph tidak mungkin kosong */
-/* F.S. Menambahkan elemen graph berupa E */
+/* F.S. Menambahkan elemen graph berisi matriks X */
 
-void initGraph(Graph *G, MATRIKS X1, MATRIKS X2, MATRIKS X3, MATRIKS X4, List L1, List L2, List L3, List L4);
-/* I. S. Graph G sembarang, matriks X1-X4, serta list L1-L4 adalah matriks dan list hasil bacaan dari file
-   F. S. Terbentuk Graph utuh yang siap dipakai dalam game */
+void addPanahGraph(Graph *G, ElmtGraph A, ElmtGraph B);
+/* I.S. Graph A dan B mungkin sudah ada koneksi, ElmtGraph A dan B tidak mungkin kosong */
+/* F.S. Terbentuk panah dari node A ke B */
 
-boolean IsLinked(Graph G, List n, List p);
-/* Mengembalikan true jika pada link n ada p */
 
-//void PrintGraph(Graph G);
-/* I.S. Graph mungkin kosong */
-/* F.S. Jika Graph tidak kosong, isi info Graph dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Graph kosong : menulis [] */
 
 #endif

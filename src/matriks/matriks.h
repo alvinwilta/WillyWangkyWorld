@@ -4,14 +4,16 @@
 #define MATRIKS_H
 
 #include "../boolean.h"
-#include "../point/point.h"
-#include "../player/player.h"
+/*#include "../point/point.h"*/
+/*#include "../player/player.h"*/
+#include "../mesinkata/mesinkar.h"
+#include "../mesinkata/mesinkata.h"
 
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 0
-#define BrsMax 11
+#define BrsMax 50
 #define KolMin 0
-#define KolMax 22
+#define KolMax 50
 
 typedef int indeks; /* indeks baris, kolom */
 typedef struct { 
@@ -68,7 +70,7 @@ void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl);
 4 5 6
 8 9 10 
 */
-/*void TulisMATRIKS (MATRIKS M);*/
+void TulisMATRIKS (MATRIKS M);
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi */
@@ -134,9 +136,10 @@ void PInverse1 (MATRIKS * M);
 void Transpose (MATRIKS * M);
 /* I.S. M terdefinisi dan IsBujursangkar(M) */
 /* F.S. M "di-transpose", yaitu setiap elemen M(i,j) ditukar nilainya dengan elemen M(j,i) */
-void makeMap(MATRIKS M, Player P);
+void BacaMap (MATRIKS *M1, MATRIKS *M2, MATRIKS *M3, MATRIKS *M4);
+/*
 boolean isKanan(MATRIKS *M, POINT P);
 boolean isKiri(MATRIKS *M, POINT P);
 boolean isAtas(MATRIKS *M, POINT P);
-boolean isBawah(MATRIKS *M, POINT P);
+boolean isBawah(MATRIKS *M, POINT P);*/
 #endif

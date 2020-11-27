@@ -6,11 +6,9 @@
 
 #include "../boolean.h"
 #include "mesinkar.h"
-#include "../graph/graph.h"
 #include "../queue/queue.h"
 #include "../array/array.h"
 #include "../matriks/matriks.h"
-
 
 #define NMax 50
 #define BLANK ' '

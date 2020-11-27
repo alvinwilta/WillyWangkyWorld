@@ -1,0 +1,88 @@
+1 //ID
+halilintar //nama (array of character)
+roller coaster terseru //deskripsi
+10 //kapasitas
+200 //tarif
+5 //durasi
+listrikhalilintar //Left dari tree
+attahalilintar //Right dari tree
+
+2
+bianglala
+gondola terbesar dan paling menegangkan di dunia
+15
+100
+5
+listrikbianglala
+attabianglala
+
+3
+niagara
+wahana arum jeram yang mendebarkan
+15
+150
+10
+listrikniagara
+attabianglala
+
+4
+korakora
+wahana yang menantang dan dapat menguji nyali anda
+20
+200
+10
+listrikkorakora
+attakorakora
+
+5
+tornado
+wahana yang dijamin membuat kamu pusing 7 keliling
+10
+250
+5
+listriktornado
+attatornado
+
+6
+kicirkicir
+membuat kamu berputar seperti sebuah kipas
+15
+100
+10
+listrikkicirkicir
+attakicirkicir
+
+7
+skydiver
+wahana ini menyajikan sensasi diayun sampai ke luar angkasa
+20
+150
+10
+listrikskydiver
+attaskydiver
+
+8
+balloon
+wahana balon udara
+15
+200
+15
+listrikballoon
+attaballoon
+
+9
+freefall
+wahana yang menyajikan sensasi dijatuhkan dari ketinggian 10.000 kaki
+250
+5
+listrikfreefall
+attafreefall
+
+10
+madhouse
+wahana rumah hantu yang menyajikan pengalaman seram yang berlum pernah anda rasakan
+200
+10
+listrikmadhouse
+attamadhouse
+

@@ -80,3 +80,7 @@ void awal(Player P1){
 int main(){
 
 }
+
+void init() {
+
+}

@@ -12,6 +12,7 @@
 /* Definisi Type */
 //typedef int infotypeString;
 typedef char *infotypeString;
+//typedef char aaa[20];
 typedef struct tElmtlist* address;
 typedef struct tElmtlist {
 	infotypeString info;

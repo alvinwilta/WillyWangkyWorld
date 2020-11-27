@@ -1,6 +1,9 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "matriks.h"
+#include "../mesinkata/mesinkar.h"
+#include "../mesinkata/mesinkata.h"
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */              
 /* *** Konstruktor membentuk MATRIKS *** */
@@ -96,7 +99,7 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 4 5 6
 8 9 10 
 */
-/*
+
 void TulisMATRIKS (MATRIKS M){
     indeks i,j;
     for (i = GetFirstIdxBrs(M); i <= GetLastIdxBrs(M); i++){
@@ -111,7 +114,7 @@ void TulisMATRIKS (MATRIKS M){
         }
     }
 }
-*/
+
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi */
@@ -441,23 +444,52 @@ int CountXKol (MATRIKS M, indeks j, ElType X){
 }
 /* Menghasilkan banyaknya kemunculan X pada kolom j dari M */
 
-void makeMap(MATRIKS M, Player P){
-    int i,j;
-    for (i = BrsMin; i<=BrsMax; i++){
-        for(j = KolMin; j<=KolMax; j++){
-            if ((i==Absis(Pos(P)))&&(j==Ordinat(Pos(P)))){
-                ElmtM(M,i,j) = 1;
-            }
-            if((i==BrsMin)||(j==KolMin)||(j==KolMax)||(i==BrsMax)){
-                ElmtM(M,i,j) = 999;
-            }else{
-                ElmtM(M,i,j) = 0;
-            }
+void BacaMap (MATRIKS *M1, MATRIKS *M2, MATRIKS *M3, MATRIKS *M4){
+    int i = 0;
+    int j = 0;
+    // Membuat map dari file eksternal
+    START("../assets/map.txt");
+    while ((i<10)&&(CC != BLANK)){
+        while ((j<20)&&(CC!=BLANK)){
+            ElmtM(*M1, i, j) = CC-'0';
+            ADV();
+            j++;
         }
-        printf("\n");
+        i++;
     }
+    IgnoreBlank();
+    i = 0; j = 0;
+    while ((i<10)&&(CC != BLANK)){
+        while ((j<20)&&(CC!=BLANK)){
+            ElmtM(*M2, i, j) = CC-'0';
+            ADV();
+            j++;
+        }
+        i++;
+    }
+    IgnoreBlank();
+    i = 0; j = 0;
+    while ((i<10)&&(CC != BLANK)){
+        while ((j<20)&&(CC!=BLANK)){
+            ElmtM(*M3, i, j) = CC-'0';
+            ADV();
+            j++;
+        }
+        i++;
+    }
+    IgnoreBlank();
+    i = 0; j = 0;
+    while ((i<10)&&(CC != BLANK)){
+        while ((j<20)&&(CC!=BLANK)){
+            ElmtM(*M4, i, j) = CC-'0';
+            ADV();
+            j++;
+        }
+        i++;
+    }
+    TulisMATRIKS(*M1);
 }
-
+/*
 boolean isKanan(MATRIKS *M, POINT P){
    return (Absis(P) == GetLastIdxKol(*M));
 }
@@ -472,4 +504,4 @@ boolean isAtas(MATRIKS *M, POINT P){
 
 boolean isBawah(MATRIKS *M, POINT P){
    return (Ordinat(P) == GetLastIdxBrs(*M));
-}
+}*/
