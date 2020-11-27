@@ -33,7 +33,9 @@ void IgnoreBlank();
 void IgnoreBlankSCANF();
 int readAngka();
 void readSCANF(Kata *input);
+
 void readAngkaSCANF(int *X);
+/*Membaca Angka dan menyimpan di variabel tertentu*/
 
 void STARTKATA();
 /* I.S. : CC sembarang 
@@ -57,7 +59,11 @@ void SalinKata();
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
 boolean IsKataSama(Kata K1, char * S);
-int intstring(Kata K);
+/*Mengecek apakah masukan valid dengan kata yang diminta*/
+
+int stringint(Kata K);
+/*Konversi string to integer*/
+
 void printKata(Kata K);
 /*
 void readConfigFile(MATRIKS *M, buildingsArray *arr, graph *G, int * buildingCounter);

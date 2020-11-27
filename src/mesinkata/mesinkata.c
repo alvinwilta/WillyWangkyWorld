@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include "mesinkar.h"
 #include "mesinkata.h"
 #include "../boolean.h"
+#include <string.h>
+/*
 #include "../wahana/wahana.h"
 #include "../graph/graph.h"
-
+*/
 boolean EndKata;
 Kata CKata;
 
@@ -147,7 +150,7 @@ boolean IsKataSama(Kata K1, char * S){
 /* Konversi dari integer ke string
     I.S. Integer dimasukkan sembarang
     F.S. Menghasilkan string*/
-int intstring(Kata K){
+int stringint(Kata K){
     int result = 0;
     int temp;
     for(int i = 0; i < K.Length; i++){
