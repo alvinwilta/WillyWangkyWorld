@@ -53,7 +53,7 @@ void DealokasiNode(addressNode P);
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
 
-addressSuccNode AlokasiSuccNode(ElmntGraph P);
+addressSuccNode AlokasiSuccNode(ElmtGraph P);
 /* Mengirimkan addressNode hasil alokasi sebuah matriks */
 /* Jika alokasi berhasil, maka addressSuccNode tidak NULL, dan misalnya */
 /* menghasilkan Ps, maka Succ(Ps)=P, NextSucc(Ps)=NULL */
