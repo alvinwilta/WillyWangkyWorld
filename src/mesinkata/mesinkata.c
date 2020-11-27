@@ -131,9 +131,10 @@ void SalinKata(){
 
 boolean IsKataSama(Kata K1, char * S){
     boolean found = true;
-    int pjg, i;
-    if (K1.Length != strlen(S)){
-        return false;
+    int pjg = K1.Length; 
+    int i;
+    if (pjg != strlen(S)){
+        found = false;
     }else{
         i = 0;
         while ((i < pjg) && (found)){

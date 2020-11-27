@@ -13,17 +13,12 @@
 
 typedef struct {
 	char tkn; /* token yang dibaca */
-    int val;  /* nilai bilangan jika tkn = 'b' */
+   int val;  /* nilai bilangan */
 } Token;
 
 /* State Mesin Kata */
 extern boolean EndToken;
 extern Token CToken;
-
-void IgnoreBlank();
-/* Mengabaikan satu atau beberapa BLANK
-   I.S. : CC sembarang 
-   F.S. : CC ≠ BLANK atau CC = MARK */
 
 void STARTTOKEN();
 /* I.S. : CC sembarang 
@@ -46,5 +41,6 @@ void SalinToken();
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
-void readTokenSCANF(Token T);
+Token readTokenSCANF(Kata K1);
+/*Membaca masukan angka dan konversi untuk pembelian item*/
 #endif

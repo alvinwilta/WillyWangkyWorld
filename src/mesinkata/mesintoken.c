@@ -7,7 +7,11 @@ Deskripsi: Mesin Kata
 
 #include "../boolean.h"
 #include "mesinkar.h"
+#include "mesinkata.h"
 #include "mesintoken.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 #define NMax 50
 #define BLANK ' '
@@ -17,17 +21,10 @@ Deskripsi: Mesin Kata
 boolean EndToken;
 Token CToken;
 
-
-void IgnoreBlank(){
-    while ((CC == BLANK) && (CC != MARK)){
-        ADV();
-    }
-}
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang
    F.S. : CC ≠ BLANK atau CC = MARK */
     
-
 void STARTTOKEN(){
     EndToken = false;
     START();
@@ -38,7 +35,6 @@ void STARTTOKEN(){
           atau EndToken = false, CToken adalah Token yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir Token */
     
-
 void ADVTOKEN(){
     IgnoreBlank();
     if (CC == MARK) {
@@ -94,18 +90,28 @@ void SalinToken(){
           CC adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
-void readTokenSCANF(Token T)
+Token readTokenSCANF(Kata K1)
 {
-    int tmp;
-    STARTSCANF();
-    T.val = 0 ;
-    while(!EOP && CC!=BLANK){
-        tmp = CC - '0';
-        T.val = (T.val)*10 + tmp; 
-        ADVSCANF(); 
+    Token T1;
+    char newString[10][10]; 
+    int i,j,ctr;
+    j=0; ctr=0;
+    for(i=0;i<=K1.Length;i++)
+    {
+        // if space or NULL found, assign NULL into newString[ctr]
+        if(K1.TabKata[i]==' ')
+        {
+            newString[ctr][j]='\0';
+            ctr++;  //for next word
+            j=0;    //for next word, init index to 0
+        }
+        else
+        {
+            newString[ctr][j]=K1.TabKata[i];
+            j++;
+        }
     }
-    IgnoreBlank();
-    while(!EOP && CC!=BLANK){
-        T.tkn = CC;
-    }
+    T1.val = atoi(newString[0]);
+    T1.tkn = newString[1][0];
+    return T1;
 }

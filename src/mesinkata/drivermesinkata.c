@@ -16,6 +16,9 @@
 
 int main()
 {
+    Kata K4;
+    Token T;
+    /*Test Mesin Kata*//*
     Kata K1,K2,K3;
     int N1,N2;
     readSCANF(&K1);
@@ -26,6 +29,11 @@ int main()
     printf("%d\n",N1);
     N2 = stringint(K3);
     printf("%d\n",N2);
-
+*/
+    /*Test Mesin Token*/
+    readSCANF(&K4);
+    T = readTokenSCANF(K4);
+    printf("Jumlah : %d\n",T.val);
+    printf("Token item: %c\n",T.tkn);
     return 0;
 }
