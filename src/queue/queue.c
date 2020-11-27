@@ -4,17 +4,17 @@
 #include "queue.h"
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Queue Q){
+boolean IsEmptyQueue (Queue Q){
     return ((Head(Q) == Nil) && (Tail(Q) == Nil)); 
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (Queue Q){
-    return (NBElmt(Q)==MaxEl(Q));
+boolean IsFullQueue (Queue Q){
+    return (NBElmtQueue(Q)==MaxEl(Q));
 }
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmt (Queue Q){
-    if (IsEmpty(Q)) {
+int NBElmtQueue (Queue Q){
+    if (IsEmptyQueue(Q)) {
         return 0;
     } else if ((Tail(Q) >= Head(Q))) {
         return (Tail(Q) - Head(Q) + 1);
@@ -25,7 +25,7 @@ int NBElmt (Queue Q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void MakeEmpty (Queue * Q, int Max){
+void MakeEmptyQueue (Queue * Q, int Max){
     (*Q).T = (infotype *) malloc (Max * sizeof(infotype));
     if ((*Q).T != NULL) {
         MaxEl(*Q) = Max;
@@ -54,7 +54,7 @@ void DeAlokasi(Queue * Q){
 
 /* *** Primitif Add/Delete *** */
 void Enqueue (Queue * Q, infotype X){
-    if (IsEmpty(*Q)) {
+    if (IsEmptyQueue(*Q)) {
         Head(*Q) = 0;
         Tail(*Q) = 0;
     } else if (Tail(*Q) == MaxEl(*Q)-1) {
@@ -69,7 +69,7 @@ void Enqueue (Queue * Q, infotype X){
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
 void Dequeue (Queue * Q, infotype * X){
    *X= InfoHead(*Q);
-    if (NBElmt(*Q) == 1) {
+    if (NBElmtQueue(*Q) == 1) {
         Head(*Q) = Nil;
         Tail(*Q) = Nil;
     }else if (Head(*Q) == MaxEl(*Q)) {

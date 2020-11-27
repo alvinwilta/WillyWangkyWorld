@@ -21,7 +21,7 @@ void MakeEmpty (TabInt * T){
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabInt T){
+int NbElmtArrayArray (TabInt T){
   /* Mengirimkan banyaknya elemen efektif tabel */
   /* Mengirimkan nol jika tabel kosong */
   /* *** Daya tampung container *** */
@@ -49,7 +49,7 @@ IdxType GetFirstIdx (TabInt T){
 IdxType GetLastIdx (TabInt T){
   /* Prekondisi : Tabel T tidak kosong */
   /* Mengirimkan indeks elemen T terakhir */
-  return NbElmt(T)+IdxMin-1;
+  return NbElmtArray(T)+IdxMin-1;
 }
 
 /* ********** Test Indeks yang valid ********** */
@@ -66,14 +66,14 @@ boolean IsIdxEff (TabInt T, IdxType i){
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test tabel kosong *** */
-boolean IsEmpty (TabInt T){
+boolean IsEmptyArray (TabInt T){
   /* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
-  return NbElmt(T) == 0;
+  return NbElmtArray(T) == 0;
 }
 /* *** Test tabel penuh *** */
 boolean IsFull (TabInt T){
   /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
-  return NbElmt(T) == MaxNbEl(T);
+  return NbElmtArray(T) == MaxNbEl(T);
 }
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
@@ -147,7 +147,7 @@ TabInt PlusMinusTab (TabInt T1, TabInt T2, boolean plus){
 boolean IsEQ (TabInt T1, TabInt T2){
   /* Mengirimkan true jika T1 sama dengan T2 yaitu jika ukuran T1 = T2 dan semua elemennya sama */
   boolean isEq;
-  isEq = NbElmt(T1) == NbElmt(T2);
+  isEq = NbElmtArray(T1) == NbElmtArray(T2);
   IdxType i;
 
   i = GetFirstIdx(T1);
@@ -223,7 +223,7 @@ ElType SumTab (TabInt T){
   IdxType i;
 
   sum = 0;
-  if(!IsEmpty(T)){
+  if(!IsEmptyArray(T)){
     for(i = GetFirstIdx(T); i <= GetLastIdx(T); i++){
       sum += Elmt(T,i);
     }
@@ -235,7 +235,7 @@ int CountX (TabInt T, ElType X){
   /* Jika T kosong menghasilkan 0 */
   IdxType i, count;
   count = 0;
-  if(!IsEmpty(T)){
+  if(!IsEmptyArray(T)){
     for(i = GetFirstIdx(T); i <= GetLastIdx(T); i++){
       if(Elmt(T,i) == X){ count++; }
     }
@@ -296,7 +296,7 @@ void DelLastEl (TabInt * T, ElType * X){
   /* F.S. X adalah nilai elemen terakhir T sebelum penghapusan, */
   /*      Banyaknya elemen tabel berkurang satu */
   /*      Tabel T mungkin menjadi kosong */
-  if(!IsEmpty(*T)){
+  if(!IsEmptyArray(*T)){
     *X = Elmt(*T, GetLastIdx(*T));
     Elmt(*T, GetLastIdx(*T)) = ValUndef;
   }

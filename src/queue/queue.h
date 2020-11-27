@@ -7,7 +7,7 @@
 
 #include "../boolean.h"
 
-#define Nil -1
+#define Nil NULL
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
@@ -32,16 +32,16 @@ typedef struct { infotype * T;   /* tabel penyimpan elemen */
 #define MaxEl(Q) (Q).MaxEl
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Queue Q);
+boolean IsEmptyQueue (Queue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (Queue Q);
+boolean IsFullQueue (Queue Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmt (Queue Q);
+int NBElmtQueue (Queue Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void MakeEmpty (Queue * Q, int Max);
+void MakeEmptyQueue (Queue * Q, int Max);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */

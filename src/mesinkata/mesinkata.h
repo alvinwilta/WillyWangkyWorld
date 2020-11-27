@@ -8,7 +8,7 @@
 #include "mesinkar.h"
 #include "../graph/graph.h"
 #include "../queue/queue.h"
-#include "../array/arraydin.h"
+#include "../array/array.h"
 #include "../matriks/matriks.h"
 
 
@@ -59,7 +59,9 @@ void SalinKata();
 boolean IsKataSama(Kata K1, char * S);
 int intstring(Kata K);
 void printKata(Kata K);
+/*
 void readConfigFile(MATRIKS *M, buildingsArray *arr, graph *G, int * buildingCounter);
 void saveToFile(MATRIKS *M, buildingsArray *arr, graph *G, int turn, boolean ignore, boolean critical, boolean extraTurn, queue *Q1, queue *Q2, boolean criticalP1, boolean criticalP2, boolean isShieldActiveP1, boolean shieldActivatedP1, boolean isShieldActiveP2, boolean shieldActivatedP2, int counterShieldP1, int counterShieldP2, int lengthFlagAttack, int lengthFlagMove, int * arrFlagAttack, int * arrFlagMove);
 void readtxtMaterial(TabInt Material, )
+*/
 #endif

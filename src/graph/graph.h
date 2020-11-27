@@ -10,7 +10,7 @@
 
 
 // Maksimum simpul dari graph = maks bangunan
-#define N  600
+#define N 600;
 
 // Struktur data pake list of list jancok
 typedef struct tElmtgraph *addressGraph;

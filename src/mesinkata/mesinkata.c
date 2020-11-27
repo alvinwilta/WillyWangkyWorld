@@ -163,6 +163,7 @@ void printKata(Kata K)
     printf("\n");
 }
 
+/*
 void readConfigFile(MATRIKS *M, Wahana *arr, Graph *G, int * wahanaCounter)
 {
     // Start reading config file
@@ -220,7 +221,7 @@ void readConfigFile(MATRIKS *M, Wahana *arr, Graph *G, int * wahanaCounter)
         insertStructure(M, Elmt(*arr,i));
         
     }
-    */
+    
 
     printf("Membuat graph...\n");
     // Initialize graph
@@ -236,7 +237,7 @@ void readConfigFile(MATRIKS *M, Wahana *arr, Graph *G, int * wahanaCounter)
             if(connection) insertChild(G,i,j);
         }
     }
-    */
+    
     printf("Configuration file loaded!\n");
     // printGraph(*G);
 }
@@ -267,7 +268,7 @@ void saveToFile(MATRIKS *M, buildingsArray *arr, graph *G, int turn, boolean ign
 
         fprintf(savefile, "%c %d %d %d %d %d %d\n", type, row(*Elmt(*arr,i)), col(*Elmt(*arr,i)), owner(*build(*Elmt(*arr,i))), level(*build(*Elmt(*arr,i))), troops(*build(*Elmt(*arr,i))), defense(*build(*Elmt(*arr,i))));
     }
-    */
+    
     // Output graph representation in adjacency list form
     for(int i=1;i<=t;i++)
     {
@@ -527,3 +528,4 @@ void loadFromFile(matrix *M, buildingsArray *arr, graph *G, int *turn, boolean *
     *lengthFlagMove_ = lengthFlagMove;
     colorPrint("Save file loaded, ready to play!\n", GREEN);
 }
+*/

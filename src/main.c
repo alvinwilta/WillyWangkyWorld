@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "mesinkata.h"
-#include "mesinkar.h"
+#include "mesinkata/mesinkata.h"
+#include "mesinkata/mesinkar.h"
 #include "wahana/wahana.h"
 #include "matriks/matriks.h"
 #include "graph/graph.h"
@@ -10,6 +10,15 @@
 #include "stack/stack.h"
 #include "array/array.h"
 #include "point/point.h"
+#include "main/main_command.h"
+
+MATRIKS M;
+Player P1;
+int menu1;
+Kata name;
+POINT PosPlayer;
+JAM CurrTime;
+int Money;
 
 void main_menu(){
     system("@cls||clear");
@@ -33,8 +42,8 @@ void main_menu(){
     else if (menu1 == 2){
         printf("Memulai permainan baru...");
         printf("Masukkan nama:");
-        scanf("%s", name);
-        NewPlayer()
+        readSCANF(&name);
+        P1 = NewPlayer(PosPlayer, CurrTime, Money);
         game();
     }
     else{
@@ -43,12 +52,18 @@ void main_menu(){
     return 0;
 }
 
+int load(){
+    return 0;
+}
 void quit(){
     printf("Thanks for playing!!");
     exit(0);
 }
 
-void awal(){
+void game(){
+
+}
+void awal(Player P1){
     printMap(M);
     printf("Legend:\n");
     printf("P = Player\n");
@@ -59,7 +74,7 @@ void awal(){
     printf("Nama: ");
     printf("%s", name);
     printf("Money: ");
-    printf("%d", Money(name));
+    printf("%d\n", Money(&P1));
 }
 
 int main(){
