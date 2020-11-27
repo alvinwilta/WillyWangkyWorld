@@ -4,7 +4,7 @@
 #define SIZE 20
 
 struct DataItem {
-   int data;   
+   char * data;   
    int key;
 };
 
@@ -14,6 +14,6 @@ struct DataItem* item;
 
 int hashCode(int key);
 struct DataItem *search(int key);
-void insert(int key,int data);
+void insert(int key,char * data);
 struct DataItem* delete(struct DataItem* item);
 void display();
