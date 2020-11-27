@@ -5,7 +5,7 @@
 
 
 void CreateEmptyGraph(Graph *G);
-/* I.S. sembarang             */
+/* I.S. sembarang */
 /* F.S. Terbentuk graph kosong */
 
 boolean IsGraphEmpty(Graph G);
