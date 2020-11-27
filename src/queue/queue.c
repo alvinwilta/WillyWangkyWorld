@@ -42,7 +42,7 @@ void MakeEmptyQueue (Queue * Q, int Max){
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
 /* *** Destruktor *** */
-void DeAlokasi(Queue * Q){
+void DeAlokasiQueue(Queue * Q){
     MaxEl(*Q) = 0;
     Tail(*Q)=Nil;
     Head(*Q)=Nil;
@@ -53,7 +53,7 @@ void DeAlokasi(Queue * Q){
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (Queue * Q, infotype X){
+void EnqueueQ (Queue * Q, infotype X){
     if (IsEmptyQueue(*Q)) {
         Head(*Q) = 0;
         Tail(*Q) = 0;
@@ -67,7 +67,7 @@ void Enqueue (Queue * Q, infotype X){
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-void Dequeue (Queue * Q, infotype * X){
+void DequeueQ (Queue * Q, infotype * X){
    *X= InfoHead(*Q);
     if (NBElmtQueue(*Q) == 1) {
         Head(*Q) = Nil;

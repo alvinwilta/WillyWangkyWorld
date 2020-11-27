@@ -3,17 +3,17 @@
 #include <stdlib.h>
 
 /* ********* Prototype ********* */
-boolean IsEmptyQ (PrioQ Q){
+boolean IsEmptyPrio (PrioQ Q){
     return ((Head(Q) == Nil) && (Tail(Q) == Nil));
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFullQ (PrioQ Q){
-    return (NBElmt(Q)==MaxEl(Q));
+boolean IsFullPrio (PrioQ Q){
+    return (NBElmtPrio(Q)==MaxEl(Q));
 }
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmtQ (PrioQ Q){
-    if (IsEmptyQ(Q))
+int NBElmtPrio (PrioQ Q){
+    if (IsEmptyPrio(Q))
         return 0;
     else if (Head(Q) <= Tail(Q)){
         return (Tail(Q) - Head(Q) + 1);
@@ -24,7 +24,7 @@ int NBElmtQ (PrioQ Q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void MakeEmpty (PrioQ * Q, int Max){
+void MakeEmptyPrio (PrioQ * Q, int Max){
     (*Q).T = (InfotypeQ *) malloc ((Max + 1) * sizeof(InfotypeQ));
     if ((*Q).T != NULL) {
         MaxEl(*Q) = Max;
@@ -41,7 +41,7 @@ void MakeEmpty (PrioQ * Q, int Max){
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
 /* *** Destruktor *** */
-void DeAlokasi(PrioQ * Q){
+void DeAlokasiPrio(PrioQ * Q){
     MaxEl(*Q) = 0;
     Tail(*Q)=Nil;
     Head(*Q)=Nil;
@@ -52,19 +52,19 @@ void DeAlokasi(PrioQ * Q){
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (PrioQ * Q, InfotypeQ X){
-    if (IsEmptyQ(*Q)){
+void EnqueuePrio (PrioQ * Q, InfotypeQ X){
+    if (IsEmptyPrio(*Q)){
         Head(*Q) = 0;
         Tail(*Q) = 0;
         InfoTail(*Q) = X;
     }else{
-        int i = NBElmt(*Q);
+        int i = NBElmtPrio(*Q);
         int tail = Tail(*Q);
         while ((Prio(X) < Prio(Elmt(*Q, tail))) && (i > 0)){
             Elmt(*Q,(tail % MaxEl(*Q)) + 1) = Elmt(*Q,tail);
             tail--;
             i--;
-            if (tail == NBElmt(*Q)){
+            if (tail == NBElmtPrio(*Q)){
                 tail = MaxEl(*Q);
             }
         }
@@ -77,9 +77,9 @@ void Enqueue (PrioQ * Q, InfotypeQ X){
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
         
-void Dequeue (PrioQ * Q, InfotypeQ * X){
+void DequeuePrio (PrioQ * Q, InfotypeQ * X){
     *X= InfoHead(*Q);
-    if (NBElmt(*Q) == 1) {
+    if (NBElmtPrio(*Q) == 1) {
         Head(*Q) = Nil;
         Tail(*Q) = Nil;
     }else if (Head(*Q) == MaxEl(*Q)) {
@@ -100,7 +100,7 @@ void PrintPrioQueue (PrioQ Q){ //PERLU DIUBAH
     for(i = Head(Q); i < Tail(Q); i++){
 		printf("%d %c\n", Prio(Elmt(Q, i)), InfoQ(Elmt(Q, i)));
 	}
-	if(!IsEmptyQ(Q)){
+	if(!IsEmptyPrio(Q)){
 		i = Tail(Q);
 		printf("%d %c\n", Prio(Elmt(Q, i)), InfoQ(Elmt(Q, i)));
     }

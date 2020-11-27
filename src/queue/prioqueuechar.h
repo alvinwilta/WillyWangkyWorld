@@ -50,16 +50,16 @@ Untuk mengakses elemen pertama list pada head Q
 
 /* Untuk mengakses */
 /* ********* Prototype ********* */
-boolean IsEmptyQ (PrioQ Q);
+boolean IsEmptyPrio (PrioQ Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFullQ (PrioQ Q);
+boolean IsFullPrio (PrioQ Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmtQ (PrioQ Q);
+int NBElmtPrio (PrioQ Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void MakeEmptyQ (PrioQ * Q, int Max);
+void MakeEmptyPrio (PrioQ * Q, int Max);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max */
@@ -67,19 +67,19 @@ void MakeEmptyQ (PrioQ * Q, int Max);
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 
 /* *** Destruktor *** */
-void DeAlokasiQ (PrioQ * Q);
+void DeAlokasiPrio (PrioQ * Q);
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Enqueue (PrioQ * Q, InfotypeQ X);
+void EnqueuePrio (PrioQ * Q, InfotypeQ X);
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
         
-void Dequeue (PrioQ * Q, InfotypeQ * X);
+void DequeuePrio (PrioQ * Q, InfotypeQ * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;

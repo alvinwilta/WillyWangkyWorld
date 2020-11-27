@@ -4,6 +4,12 @@
 #include "../boolean.h"
 #include "hashtable.h"
 
+void MakeEmptyHashTable(){
+   dummyItem = (struct DataItem*) malloc(sizeof(struct DataItem));
+   dummyItem->data = "";  
+   dummyItem->key = -1; 
+}
+
 int hashCode(int key) {
    return key % SIZE;
 }

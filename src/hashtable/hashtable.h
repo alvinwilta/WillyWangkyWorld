@@ -12,6 +12,7 @@ struct DataItem* hashArray[SIZE];
 struct DataItem* dummyItem;
 struct DataItem* item;
 
+void MakeEmptyHashTable();
 int hashCode(int key);
 struct DataItem *search(int key);
 void insert(int key,char * data);
