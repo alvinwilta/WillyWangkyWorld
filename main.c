@@ -58,168 +58,27 @@ void init(Player P1){
     MakeMATRIKS(10,20,&M2);
     MakeMATRIKS(10,20,&M3);
     MakeMATRIKS(10,20,&M4);
-    for (int i=0;i<NBrsEff(M1);i++){
-        for (int j=0;j<NKolEff(M1);j++){
-            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
-                ElmtM(M1,i,j) = 9;
-            }
-            if ((i == GetFirstIdxBrs(M1))||(i == GetLastIdxBrs(M1))||(j == GetFirstIdxKol(M1))||(j == GetLastIdxKol(M1))){
-                ElmtM(M1,i,j) = 0;
-            }
-            if ((i == 2)&&(j == 4)){
-                ElmtM(M1,i,j) = 6;
-            }
-            if ((i == 2)&&(j == 7)){
-                ElmtM(M1,i,j) = 7;
-            }
-            if ((i == 4)&&(j == GetLastIdxKol(M1))){
-                ElmtM(M1,i,j) = 3;
-            }
-            if (i == (GetLastIdxBrs(M1))&&(j == 9)){
-                ElmtM(M1,i,j) = 4;
-            }
-        }
-    }
-    for (int i=0;i<NBrsEff(M3);i++){
-        for (int j=0;j<NKolEff(M3);j++){
-            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
-                ElmtM(M3,i,j) = 9;
-            }
-            if ((i == GetFirstIdxBrs(M3))||(i == GetLastIdxBrs(M3))||(j == GetFirstIdxKol(M3))||(j == GetLastIdxKol(M3))){
-                ElmtM(M3,i,j) = 0;
-            }
-            if ((i == 2)&&(j == 4)){
-                ElmtM(M3,i,j) = 6;
-            }
-            if ((i == 4)&&(j == GetFirstIdxKol(M3))){
-                ElmtM(M3,i,j) = 5;
-            }
-            if (i == (GetFirstIdxBrs(M3))&&(j == 9)){
-                ElmtM(M3,i,j) = 2;
-            }
-        }
-    }
-    for (int i=0;i<NBrsEff(M4);i++){
-        for (int j=0;j<NKolEff(M4);j++){
-            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
-                ElmtM(M4,i,j) = 9;
-            }
-            if ((i == GetFirstIdxBrs(M4))||(i == GetLastIdxBrs(M4))||(j == GetFirstIdxKol(M4))||(j == GetLastIdxKol(M4))){
-                ElmtM(M4,i,j) = 0;
-            }
-            if ((i == 2)&&(j == 4)){
-                ElmtM(M4,i,j) = 6;
-            }
-            if ((i == 4)&&(j == GetLastIdxKol(M4))){
-                ElmtM(M4,i,j) = 3;
-            }
-            if (i == (GetFirstIdxBrs(M2))&&(j == 9)){
-                ElmtM(M4,i,j) = 2;
-            }
-        }
-    }
     currDay = 1;
     prepFase = true;
+    currGraph = 1;
     stacktotalAksi, stacktotalJam, stacktotalUang = 0;
     CreateEmpty(&S1);
     CreateEmpty(&S2);
     CreateEmpty(&S3);
     MakeEmptyPrio(&PQ1,5);
+    TulisMATRIKS(M1);
     legenda(P1);
 }
 
-void updateMap(Player P1){
-    MakeMATRIKS(10,20,&M1);
-    MakeMATRIKS(10,20,&M2);
-    MakeMATRIKS(10,20,&M3);
-    MakeMATRIKS(10,20,&M4);
-    for (int i=0;i<NBrsEff(M1);i++){
-        for (int j=0;j<NKolEff(M1);j++){
-            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
-                ElmtM(M1,i,j) = 9;
-            }
-            if ((i == GetFirstIdxBrs(M1))||(i == GetLastIdxBrs(M1))||(j == GetFirstIdxKol(M1))||(j == GetLastIdxKol(M1))){
-                ElmtM(M1,i,j) = 0;
-            }
-            if ((i == 2)&&(j == 4)){
-                ElmtM(M1,i,j) = 6;
-            }
-            if ((i == 2)&&(j == 7)){
-                ElmtM(M1,i,j) = 7;
-            }
-            if ((i == 4)&&(j == GetLastIdxKol(M1))){
-                ElmtM(M1,i,j) = 3;
-            }
-            if (i == (GetLastIdxBrs(M1))&&(j == 9)){
-                ElmtM(M1,i,j) = 4;
-            }
-        }
-    }
-    for (int i=0;i<NBrsEff(M3);i++){
-        for (int j=0;j<NKolEff(M3);j++){
-            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
-                ElmtM(M3,i,j) = 9;
-            }
-            if ((i == GetFirstIdxBrs(M3))||(i == GetLastIdxBrs(M3))||(j == GetFirstIdxKol(M3))||(j == GetLastIdxKol(M3))){
-                ElmtM(M3,i,j) = 0;
-            }
-            if ((i == 2)&&(j == 4)){
-                ElmtM(M3,i,j) = 6;
-            }
-            if ((i == 4)&&(j == GetFirstIdxKol(M3))){
-                ElmtM(M3,i,j) = 5;
-            }
-            if (i == (GetFirstIdxBrs(M3))&&(j == 9)){
-                ElmtM(M3,i,j) = 2;
-            }
-        }
-    }
-    for (int i=0;i<NBrsEff(M4);i++){
-        for (int j=0;j<NKolEff(M4);j++){
-            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
-                ElmtM(M4,i,j) = 9;
-            }
-            if ((i == GetFirstIdxBrs(M4))||(i == GetLastIdxBrs(M4))||(j == GetFirstIdxKol(M4))||(j == GetLastIdxKol(M4))){
-                ElmtM(M4,i,j) = 0;
-            }
-            if ((i == 2)&&(j == 4)){
-                ElmtM(M4,i,j) = 6;
-            }
-            if ((i == 4)&&(j == GetLastIdxKol(M4))){
-                ElmtM(M4,i,j) = 3;
-            }
-            if (i == (GetFirstIdxBrs(M2))&&(j == 9)){
-                ElmtM(M4,i,j) = 2;
-            }
-        }
-    }
-    legenda(P1);
-}
-
-MATRIKS currMatriks (int currGraph){
-    MATRIKS M;
-    if(currGraph == 1){
-        M = M1;
-    }
-    if(currGraph == 2){
-        M = M2;
-    }
-    if(currGraph == 3){
-        M = M3;
-    }
-    if(currGraph == 4){
-        M = M4;
-    }
-    return M;
-}
 void legenda(Player P1){
-    system("@cls||clear");
+    /*system("@cls||clear");*/
     if (prepFase = true){
         printf("Preparation Phase Day ");printf("%d\n",currDay);
     }
     if (prepFase = false){
         printf("Main Phase Day ");printf("%d\n",currDay);
     }
+    /*Ini TEMPAT MAP
     for(int i = 0;i < 10; i++){
         for(int j = 0; j < 20; j++){
             if (ElmtM(currMatriks(currGraph),i,j)==9){
@@ -246,6 +105,7 @@ void legenda(Player P1){
         }
         printf("\n");
     }
+    */
     printf("Legend:\n");
     printf("P = Player\n");
     printf("W = Wahana\n");
@@ -277,23 +137,38 @@ void legenda(Player P1){
 }
 
 void game(Player P1){
-    if (strcmp(input,"s")){
-        Mundur(&P1);
-        AddWaktu(&P1, 1);
+    if(currGraph==1){
+        if (strcmp(input,"s")){
+            Mundur(&P1);
+            AddWaktu(&P1, 1);
+        }
+        if (strcmp(input,"a")){
+            Kanan(&P1);
+            AddWaktu(&P1, 1);
+        }
+        if (strcmp(input,"d")){
+            Kiri(&P1);
+            AddWaktu(&P1, 1);
+        }
+        if (strcmp(input,"w")){
+            Maju(&P1);
+            AddWaktu(&P1, 1);
+        }
+        if(Ordinat(P1.pos)==GetLastIdxBrs(M1)){
+            currGraph==4;
+            Ordinat(P1.pos) = (Ordinat(P1.pos)-8);
+        }else if(Absis(P1.pos)==GetLastIdxKol(M1)){
+            currGraph==2;
+            Absis(P1.pos) = Absis(P1.pos)-18;
+        }else{
+            printf("Ada Tembok!");
+            if(Ordinat(P1.pos)==GetFirstIdxBrs(M1)){
+                Ordinat(P1.pos) = Ordinat(P1.pos) + 1;
+            }else if(Absis(P1.pos)==GetFirstIdxKol(M1)){
+                Absis(P1.pos) = Absis(P1.pos) + 1;
+            }
+        }
     }
-    if (strcmp(input,"a")){
-        Kanan(&P1);
-        AddWaktu(&P1, 1);
-    }
-    if (strcmp(input,"d")){
-        Kiri(&P1);
-        AddWaktu(&P1, 1);
-    }
-    if (strcmp(input,"w")){
-        Maju(&P1);
-        AddWaktu(&P1, 1);
-    }
-    updateMap(P1);
 }
 
 int main(){

@@ -1,4 +1,5 @@
-/*gcc src/mesinkata/mesinkata.c src/mesinkata/mesinkar.c src/mesinkata/mesintoken.c src/matriks/matriks.c src/player/player.c -o main main.c*/
+/*gcc src/mesinkata/mesinkata.c src/mesinkata/mesinkar.c src/mesinkata/mesintoken.c src/matriks/matriks.c 
+src/player/player.c src/queue/prioqueuechar.c src/stack/stack.c src/linkedlist/listlinier.c -o main main.c*/
 #include "src/mesinkata/mesinkata.h"
 #include "src/mesinkata/mesinkar.h"
 #include "src/mesinkata/mesintoken.h"
@@ -16,7 +17,5 @@
 void quit();
 void main_menu();
 void init(Player P1);
-void updateMap(Player P1);
 MATRIKS currMatriks (int currGraph);
 void legenda(Player P1);
-void game(Player P1);
