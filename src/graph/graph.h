@@ -81,9 +81,6 @@ Graph initGraphMap(MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D);
 POINT lokasiPlayer(Graph *G, int A, int B);
 /* menunjukkan lokasi player setelah berpindah dari area ID A ke area ID B*/
 
-MATRIKS lokasiMatriks(Graph *G, addressNode P);
-/* mengeluarkan matriks terkait dari sebuah node graph */
-
 addressNode moveGraph(Graph *G, addressNode CurrNode, int Gerbang);
 /* Mengeluarkan address graph berikutnya setelah memasuki gerbang dengan nomor gerbang (di matriks) */
 /* CurrNode dibutuhkan agar mengetahui kemana player akan pergi setelah memasuki gerbang */
