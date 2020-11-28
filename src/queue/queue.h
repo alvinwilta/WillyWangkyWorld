@@ -7,28 +7,28 @@
 
 #include "../boolean.h"
 
-#define Nil NULL
+#define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
 typedef int infotype;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
-/* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
+/* Versi I : tabel dinamik, Head dan End eksplisit, ukuran disimpan */
 typedef struct { infotype * T;   /* tabel penyimpan elemen */
                  address HEAD;  /* alamat penghapusan */
-                 address TAIL;  /* alamat penambahan */
+                 address END;  /* alamat penambahan */
                  int MaxEl;     /* Max elemen queue */
                } Queue;
-/* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
+/* Definisi Queue kosong: HEAD=Nil; End=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika Q adalah Queue, maka akses elemen : */
 #define Head(Q) (Q).HEAD
-#define Tail(Q) (Q).TAIL
+#define End(Q) (Q).END
 #define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
+#define InfoEnd(Q) (Q).T[(Q).END]
 #define MaxEl(Q) (Q).MaxEl
 
 /* ********* Prototype ********* */
@@ -58,7 +58,7 @@ void DeAlokasiQueue(Queue * Q);
 void EnqueueQ (Queue * Q, infotype X);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
-/* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
+/* F.S. X menjadi End yang baru, End "maju" dengan mekanisme circular buffer */
 void DequeueQ (Queue * Q, infotype * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */

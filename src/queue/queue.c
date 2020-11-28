@@ -5,7 +5,7 @@
 
 /* ********* Prototype ********* */
 boolean IsEmptyQueue (Queue Q){
-    return ((Head(Q) == Nil) && (Tail(Q) == Nil)); 
+    return ((Head(Q) == Nil) && (End(Q) == Nil)); 
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 boolean IsFullQueue (Queue Q){
@@ -16,10 +16,10 @@ boolean IsFullQueue (Queue Q){
 int NBElmtQueue (Queue Q){
     if (IsEmptyQueue(Q)) {
         return 0;
-    } else if ((Tail(Q) >= Head(Q))) {
-        return (Tail(Q) - Head(Q) + 1);
+    } else if ((End(Q) >= Head(Q))) {
+        return (End(Q) - Head(Q) + 1);
     } else {
-        return (MaxEl(Q) - Head(Q) + 1 + Tail(Q));
+        return (MaxEl(Q) - Head(Q) + 1 + End(Q));
     }
 }
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
@@ -30,7 +30,7 @@ void MakeEmptyQueue (Queue * Q, int Max){
     if ((*Q).T != NULL) {
         MaxEl(*Q) = Max;
         Head(*Q) = Nil;
-        Tail(*Q) = Nil;
+        End(*Q) = Nil;
     }else{
         MaxEl(*Q) = 0;
     }
@@ -44,7 +44,7 @@ void MakeEmptyQueue (Queue * Q, int Max){
 /* *** Destruktor *** */
 void DeAlokasiQueue(Queue * Q){
     MaxEl(*Q) = 0;
-    Tail(*Q)=Nil;
+    End(*Q)=Nil;
     Head(*Q)=Nil;
     free((*Q).T); 
 }
@@ -56,22 +56,22 @@ void DeAlokasiQueue(Queue * Q){
 void EnqueueQ (Queue * Q, infotype X){
     if (IsEmptyQueue(*Q)) {
         Head(*Q) = 0;
-        Tail(*Q) = 0;
-    } else if (Tail(*Q) == MaxEl(*Q)-1) {
-        Tail(*Q) = 0;
+        End(*Q) = 0;
+    } else if (End(*Q) == MaxEl(*Q)-1) {
+        End(*Q) = 0;
     } else {
-        Tail(*Q) += 1;
+        End(*Q) += 1;
     }
-    InfoTail(*Q) = X;
+    InfoEnd(*Q) = X;
 }
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
-/* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
+/* F.S. X menjadi End yang baru, End "maju" dengan mekanisme circular buffer */
 void DequeueQ (Queue * Q, infotype * X){
    *X= InfoHead(*Q);
     if (NBElmtQueue(*Q) == 1) {
         Head(*Q) = Nil;
-        Tail(*Q) = Nil;
+        End(*Q) = Nil;
     }else if (Head(*Q) == MaxEl(*Q)) {
         Head(*Q) = 1;
     }else{

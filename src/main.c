@@ -3,14 +3,13 @@
 #include "mesinkata/mesinkata.h"
 #include "mesinkata/mesinkar.h"
 #include "wahana/wahana.h"
+#include "jam/jam.h"
 #include "matriks/matriks.h"
-#include "graph/graph.h"
 #include "player/player.h"
 #include "queue/queue.h"
 #include "stack/stack.h"
 #include "array/array.h"
 #include "point/point.h"
-#include "main/main_command.h"
 
 MATRIKS M;
 Player P1;

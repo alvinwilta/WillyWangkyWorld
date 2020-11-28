@@ -3,15 +3,15 @@
 #include "listrek.h"
 #include "../boolean.h"
 
-address Alokasi(infotypeString X) {
-	/* Mengirimkan address hasil alokasi sebuah elemen */
-	/* Jika alokasi berhasil, maka address tidak Nil, dan misalnya menghasilkan P,
+addressrek Alokasi(infotypeString X) {
+	/* Mengirimkan addressrek hasil alokasi sebuah elemen */
+	/* Jika alokasi berhasil, maka addressrek tidak Nil, dan misalnya menghasilkan P,
 	  maka Info(P) = X, Next(P) = Nil */
 	  /* Jika alokasi gagal, mengirimkan Nil */
 	// Kamus Lokal
-	address P;
+	addressrek P;
 	//Algoritma
-	P = (address)malloc(sizeof(address));
+	P = (addressrek)malloc(sizeof(addressrek));
 	if (P != Nil) {
 		Info(P) = X;
 		Next(P) = Nil;
@@ -19,10 +19,10 @@ address Alokasi(infotypeString X) {
 	return P;
 }
 
-void Dealokasi(address P) {
+void Dealokasi(addressrek P) {
 	/* I.S. P terdefinisi */
 	/* F.S. P dikembalikan ke sistem */
-	/* Melakukan dealokasi/pengembalian address P */
+	/* Melakukan dealokasi/pengembalian addressrek P */
 	// Algoritma
 	free(P);
 }
@@ -60,7 +60,7 @@ List Konso(infotypeString e, List L) {
 	/* Mengirimkan list L dengan tambahan e sebagai elemen pertamanya.
 	e dialokasi terlebih dahulu. Jika alokasi gagal, mengirimkan L. */
 	// Kamus Lokal
-	address P;
+	addressrek P;
 	// Algoritma
 	P = Alokasi(e);
 	if (P == Nil) {

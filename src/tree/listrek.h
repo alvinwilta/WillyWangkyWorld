@@ -13,19 +13,19 @@
 //typedef int infotypeString;
 typedef char *infotypeString;
 //typedef char aaa[20];
-typedef struct tElmtlist* address;
+typedef struct tElmtlist* addressrek;
 typedef struct tElmtlist {
 	infotypeString info;
-	address next;
+	addressrek next;
 } ElmtList;
 
 /* Definisi list : */
 /* List kosong : L = Nil */
-typedef address List;
+typedef addressrek List;
 
 /* Deklarasi  nama untuk variabel kerja */
 /*  	L : List */
-/*  	P : address 	*/
+/*  	P : addressrek 	*/
 /* Maka penulisan First(L) menjadi L */
 /*                P.info menjadi Info(P); P.next menjadi Next(P) */
 
@@ -34,15 +34,15 @@ typedef address List;
 #define Next(P) (P)->next
 
 /* *** Manajemen Memori *** */
-address Alokasi(infotypeString X);
-/* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address tidak Nil, dan misalnya menghasilkan P,
+addressrek Alokasi(infotypeString X);
+/* Mengirimkan addressrek hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka addressrek tidak Nil, dan misalnya menghasilkan P,
   maka Info(P) = X, Next(P) = Nil */
   /* Jika alokasi gagal, mengirimkan Nil */
-void Dealokasi(address P);
+void Dealokasi(addressrek P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
-/* Melakukan dealokasi/pengembalian address P */
+/* Melakukan dealokasi/pengembalian addressrek P */
 
 /* *** Primitif-primitif yang harus direalisasikan *** */
 
@@ -55,6 +55,7 @@ int IsOneElmt(List L);
 /* *** Selektor *** */
 infotypeString FirstElmt(List L);
 /* Mengirimkan elemen pertama sebuah list L yang tidak kosong */
+
 List Tail(List L);
 /* Mengirimkan list L tanpa elemen pertamanya, mungkin menjadi list kosong */
 

@@ -1,5 +1,5 @@
-#include "mesinkata.h"
-#include "mesinkar.h"
+#include "../mesinkata/mesinkata.h"
+#include "../mesinkata/mesinkata.h"
 #include "../wahana/wahana.h"
 #include "../matriks/matriks.h"
 #include "../graph/graph.h"
