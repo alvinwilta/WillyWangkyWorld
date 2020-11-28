@@ -3,7 +3,7 @@
 #include "listrek.h"
 #include "../boolean.h"
 
-addressrek Alokasi(infotypeString X) {
+addressrek AlokasiListrek(infotypeString X) {
 	/* Mengirimkan addressrek hasil alokasi sebuah elemen */
 	/* Jika alokasi berhasil, maka addressrek tidak Nil, dan misalnya menghasilkan P,
 	  maka Info(P) = X, Next(P) = Nil */
@@ -19,7 +19,7 @@ addressrek Alokasi(infotypeString X) {
 	return P;
 }
 
-void Dealokasi(addressrek P) {
+void DealokasiListrek(addressrek P) {
 	/* I.S. P terdefinisi */
 	/* F.S. P dikembalikan ke sistem */
 	/* Melakukan dealokasi/pengembalian addressrek P */
@@ -27,7 +27,7 @@ void Dealokasi(addressrek P) {
 	free(P);
 }
 
-int IsEmpty(List L) {
+int IsListrekEmpty(List L) {
 	/* Mengirimkan 1 jika L kosong dan 0 jika L tidak kosong */
 	return (L == Nil);
 }
@@ -37,7 +37,7 @@ int IsOneElmt(List L) {
 	int check;
 	// Algoritma
 	check = 0;
-	if (!(IsEmpty(L))) {
+	if (!(IsListrekEmpty(L))) {
 		if (Next(L) == Nil) {
 			check = 1;
 		}
@@ -62,7 +62,7 @@ List Konso(infotypeString e, List L) {
 	// Kamus Lokal
 	addressrek P;
 	// Algoritma
-	P = Alokasi(e);
+	P = AlokasiListrek(e);
 	if (P == Nil) {
 		return L;
 	}
@@ -78,8 +78,8 @@ List KonsB(List L, infotypeString e) {
 	// Kamus Lokal
 
 	//Algoritma
-	if (IsEmpty(L)) {
-		return (Alokasi(e));
+	if (IsListrekEmpty(L)) {
+		return (AlokasiListrek(e));
 	}
 	else {
 		Next(L) = KonsB(Tail(L), e);
@@ -93,7 +93,7 @@ List Copy(List L) {
 	// Kamus Lokal
 
 	// Algoritma
-	if (IsEmpty(L)) {
+	if (IsListrekEmpty(L)) {
 		return Nil;
 	}
 	else {
@@ -109,7 +109,7 @@ void MCopy(List Lin, List* Lout) {
 	/*
 	List LTemp;
 	// algoritma
-	if (IsEmpty(Lin)) {
+	if (IsListrekEmpty(Lin)) {
 		Lout = Nil;
 	}
 	else {
@@ -125,7 +125,7 @@ List Concat(List L1, List L2) {
 	/* Kamus Lokal */
 
 	/* Algoritma */
-	if (IsEmpty(L1)) { /* Basis - 0 */
+	if (IsListrekEmpty(L1)) { /* Basis - 0 */
 		return Copy(L2);	
 	}
 	else { /* Rekurens */
@@ -140,7 +140,7 @@ void MConcat(List L1, List L2, List* LHsl) {
 	/*
 	List LTemp;
 	// Algoritma
-	if (IsEmpty(L1)) {
+	if (IsListrekEmpty(L1)) {
 		*LHsl = Copy(L2);
 	}
 	else {
@@ -153,7 +153,7 @@ void MConcat(List L1, List L2, List* LHsl) {
 void PrintList(List L) {
 	/* I.S. L terdefinisi. */
 	/* F.S. Setiap elemen list dicetak. */
-	if (!(IsEmpty(L))) {
+	if (!(IsListrekEmpty(L))) {
 		printf("%s\n", FirstElmt(L));
 		PrintList(Tail(L));
 	}
@@ -166,7 +166,7 @@ int NbElmtList(List L) {
 	int count;
 	// Algoritma
 	count = 0;
-	if (IsEmpty(L)) {
+	if (IsListrekEmpty(L)) {
 		count = 0;
 	}
 	else {
@@ -180,7 +180,7 @@ boolean Search(List L, infotypeString X) {
 	// Kamus Lokal
 
 	// Algoritma
-	if (IsEmpty(L)) {
+	if (IsListrekEmpty(L)) {
 		return false;
 	}
 	else {
@@ -197,7 +197,7 @@ List InverseList(List L) {
 	/* Mengirimkan list baru, hasil invers dari L dengan menyalin semua elemen list.
 	Semua elemen list baru harus dialokasi */
 	/* Jika alokasi gagal, hasilnya list kosong */
-	if (IsEmpty(L))
+	if (IsListrekEmpty(L))
 		return Nil;
 	else
 	{
@@ -211,7 +211,7 @@ boolean IsAllExist(List L1, List L2) {
 	Kedua list mungkin kosong. Jika L1 kosong, maka hasilnya false. */
 	// Kamus Lokal
 	// Algortima
-	if (IsEmpty(L1))
+	if (IsListrekEmpty(L1))
 		return false;
 	else if (IsOneElmt(L1))
 		return Search(L2, FirstElmt(L1));

@@ -34,12 +34,12 @@ typedef addressrek List;
 #define Next(P) (P)->next
 
 /* *** Manajemen Memori *** */
-addressrek Alokasi(infotypeString X);
+addressrek AlokasiListrek(infotypeString X);
 /* Mengirimkan addressrek hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka addressrek tidak Nil, dan misalnya menghasilkan P,
   maka Info(P) = X, Next(P) = Nil */
   /* Jika alokasi gagal, mengirimkan Nil */
-void Dealokasi(addressrek P);
+void DealokasiListrek(addressrek P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian addressrek P */
@@ -47,7 +47,7 @@ void Dealokasi(addressrek P);
 /* *** Primitif-primitif yang harus direalisasikan *** */
 
 /* Pemeriksaan Kondisi List */
-int IsEmpty(List L);
+int IsListrekEmpty(List L);
 /* Mengirimkan 1 jika L kosong dan 0 jika L tidak kosong */
 int IsOneElmt(List L);
 /* Mengirimkan 1 jika L berisi 1 elemen dan 0 jika > 1 elemen atau kosong */
