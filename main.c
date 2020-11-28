@@ -5,6 +5,7 @@
 
 MATRIKS M1, M2, M3, M4;
 Player P1;
+Stack S1,S2,S3;
 int menu1;
 char name[20],input[20];
 POINT PosPlayer;
@@ -13,6 +14,7 @@ int Money;
 int currGraph;
 boolean prepFase;
 int currDay;
+int stacktotalAksi, stacktotalJam, stacktotalUang;
 
 void quit(){
     printf("Thanks for playing!!\n");
@@ -78,6 +80,11 @@ void init(Player P1){
         }
     }
     currDay = 1;
+    prepFase = true;
+    stacktotalAksi, stacktotalJam, stacktotalUang = 0;
+    CreateEmpty(&S1);
+    CreateEmpty(&S2);
+    CreateEmpty(&S3);
     legenda(P1);
 }
 
@@ -162,9 +169,14 @@ void legenda(Player P1){
     printf("Current Time: "); printf("%02d",Hour(Wkt(&P1)));printf(".%02d\n",Minute(Wkt(&P1)));
     printf("Opening Time: 09.00\n");
     printf("Time Remaining: "); printf("%d",(21 - Hour(Wkt(&P1)))); printf(" hour(s)\n");
-    /*Total aksi yang akan dilakukan: 0
-    Total waktu yang dibutuhkan: 0
-    Total uang yang dibutuhkan: 0*/
+    if (prepFase==true){
+        printf("Total aksi yang akan dilakukan: ");printf("%d\n",stacktotalAksi);
+        printf("Total waktu yang dibutuhkan: " );printf("%d\n",stacktotalJam);
+        printf("Total uang yang dibutuhkan: "),printf("%d\n",stacktotalUang);
+    }else{
+        printf("Antrian [");printf("%d",)
+    }
+    printf("Masukkan perintah : ");
     scanf("%s",input);
     game(P1);
 }
