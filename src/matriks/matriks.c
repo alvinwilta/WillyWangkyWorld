@@ -14,7 +14,7 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M){
     indeks i,j;
     for (i = BrsMin; i < NB; i++){
         for (j = KolMin; j < NK; j++){
-            ElmtM(*M, i, j) = 0;
+            ElmtM(*M, i, j) = 1;
         }
     }
 }
