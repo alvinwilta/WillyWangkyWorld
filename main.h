@@ -14,5 +14,6 @@
 
 void quit();
 void main_menu();
-void init();
+void init(Player P1);
 void awal(Player P1);
+void game(Player P1);

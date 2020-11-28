@@ -6,11 +6,13 @@
 MATRIKS M1, M2, M3, M4;
 Player P1;
 int menu1;
-char name[20];
+char name[20],input[20];
 POINT PosPlayer;
 JAM CurrTime;
 int Money;
 int currGraph;
+boolean prepFase;
+int currDay;
 
 void quit(){
     printf("Thanks for playing!!\n");
@@ -41,15 +43,14 @@ void main_menu(){
         printf("Masukkan nama:");
         scanf("%s",name);
         P1 = NewPlayer(PosPlayer, CurrTime, Money);
-        init();
-        awal(P1);
+        init(P1);
     }
     else{
         quit();
     }
 }
 
-void init(){
+void init(Player P1){
     MakeMATRIKS(10,20,&M1);
     MakeMATRIKS(10,20,&M2);
     MakeMATRIKS(10,20,&M3);
@@ -79,9 +80,16 @@ void init(){
     printf("\n");
     TulisMATRIKS(M1);
     printf("\n");
+    awal(P1);
 }
 void awal(Player P1){
     /*system("@cls||clear");*/
+    if (prepFase = true){
+        printf("Preparation Phase Day ");printf("%d\n",currDay);
+    }
+    if (prepFase = false){
+        printf("Main Phase Day ");printf("%d\n",currDay);
+    }
     for(int i = 0;i < 10; i++){
         for(int j = 0; j < 20; j++){
             if (ElmtM(M1,i,j)==9){
@@ -118,6 +126,33 @@ void awal(Player P1){
     printf("%s\n",name);
     printf("Money: ");
     printf("%d\n", Money(&P1));
+    printf("A : <%d,%d>\n", Absis(P1.pos), Ordinat(P1.pos));
+    printf("%s\n",input);
+    
+    printf("Current Time: "); printf("%02d",Hour(Wkt(&P1)));printf(".%02d\n",Minute(Wkt(&P1)));
+    printf("Opening Time: 09.00\n");
+    printf("Time Remaining: "); printf("%d",(21 - Hour(Wkt(&P1)))); printf(" hour(s)\n");
+    /*Total aksi yang akan dilakukan: 0
+    Total waktu yang dibutuhkan: 0
+    Total uang yang dibutuhkan: 0*/
+    scanf("%s",input);
+    game(P1);
+}
+
+void game(Player P1){
+    if (strcmp(input,"s")){
+        Maju(&P1);
+    }
+    if (strcmp(input,"a")){
+        Kiri(&P1);
+    }
+    if (strcmp(input,"d")){
+        Kanan(&P1);
+    }
+    if (strcmp(input,"w")){
+        Mundur(&P1);
+    }
+    init(P1);
 }
 
 int main(){
