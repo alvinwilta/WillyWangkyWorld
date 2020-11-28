@@ -7,12 +7,14 @@
 #include "../boolean.h"
 #include "../linkedlist/listlinier.h"
 #include "../matriks/matriks.h"
+#include "../point/point.h"
 
 #define Nil NULL
 
 typedef struct adrNode *addressNode;
 typedef struct succNode *addressSuccNode;
 typedef struct adrNode {
+	int id;
 	MATRIKS info;
 	addressNode next;
 	addressSuccNode trail;
@@ -28,6 +30,7 @@ typedef struct {
 // P adalah pointer node
 // Ps adalah pointer trail
 
+#define ID(P) (P)->id
 #define MatriksGraph(P) (P)->info
 #define NextNode(P) (P)->next
 #define Trail(P) 	 (P)->trail
@@ -42,36 +45,49 @@ void CreateEmptyGraph(Graph *G);
 boolean IsGraphEmpty(Graph G);
 /* Mengirimkan true jika graph kosong */
 
-addressNode AlokasiNode(MATRIKS X);
+addressNode AlokasiNode(MATRIKS X, int Id);
 /* Mengirimkan addressNode hasil alokasi sebuah matriks */
 /* Jika alokasi berhasil, maka addressNode tidak NULL, dan misalnya */
 /* menghasilkan P, maka MatriksGraph(P)=X, NextNode(P)=NULL, dan Trail(P)=NULL */
 /* Jika alokasi gagal, mengirimkan NULL */
 
-void DealokasiNode(addressNode P);
+void DealokasiGraph(addressNode *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
 
-addressSuccNode AlokasiSuccNode(ElmtGraph P);
+addressSuccNode AlokasiSuccNode(addressNode P);
 /* Mengirimkan addressNode hasil alokasi sebuah matriks */
 /* Jika alokasi berhasil, maka addressSuccNode tidak NULL, dan misalnya */
 /* menghasilkan Ps, maka Succ(Ps)=P, NextSucc(Ps)=NULL */
 /* Jika alokasi gagal, mengirimkan NULL */
 
-void DealokasiSuccNode(addressSuccNode Ps);
-/* I.S. Ps terdefinisi */
-/* F.S. Ps dikembalikan ke sistem */
-/* Melakukan dealokasi/pengembalian address Ps */
+addressNode SearchNodeId(Graph *G, int Id);
+/* I.S. Graf dan Id terdefinisi, Id pasti terdapat pada graf */
+/* F.S. Mengeluarkan addressNode yang mengandung Id terkait */
 
-void addElmtGraph(Graph *G, MATRIKS X);
+void addElmtGraph(Graph *G, MATRIKS X, int Id);
 /* I.S. Graph terdefinisi, ElmtGraph tidak mungkin kosong */
 /* F.S. Menambahkan elemen graph berisi matriks X */
 
-void addPanahGraph(Graph *G, ElmtGraph A, ElmtGraph B);
+void addPanahGraph(Graph *G, int A, int B);
 /* I.S. Graph A dan B mungkin sudah ada koneksi, ElmtGraph A dan B tidak mungkin kosong */
 /* F.S. Terbentuk panah dari node A ke B */
 
+Graph initGraphMap(MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D);
+/* I.S. semua matriks terdefinisi, matriks tidak mungkin kosong, digunakan untuk init graph */
+/* F.S. Terbentuk graf fungsional yang dapat dipakai dalam peta */
 
+POINT lokasiPlayer(Graph *G, int A, int B);
+/* menunjukkan lokasi player setelah berpindah dari area ID A ke area ID B*/
+
+MATRIKS lokasiMatriks(Graph *G, addressNode P);
+/* mengeluarkan matriks terkait dari sebuah node graph */
+
+addressNode moveGraph(Graph *G, addressNode CurrNode, int Gerbang);
+/* Mengeluarkan address graph berikutnya setelah memasuki gerbang dengan nomor gerbang (di matriks) */
+/* CurrNode dibutuhkan agar mengetahui kemana player akan pergi setelah memasuki gerbang */
+/* kalau ID(CurrNode)=1 dan Gerbang=3, maka akan mengeluarkan address graph dengan ID=2 */
+/* kalau ID(CurrNode)=4 dan Gerbang=3, maka akan mengeluarkan address graph dengan ID=3 */
 
 #endif
