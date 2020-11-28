@@ -387,7 +387,7 @@ List MakeListDaun(BinTree P) {
     if (IsTreeEmpty(P))
         return Nil;
     else if (IsTreeOneElmt(P))
-        return Alokasi(Akar(P));
+        return AlokasiListrek(Akar(P));
     else {
         List Left = MakeListDaun(Left(P));
         List Right = MakeListDaun(Right(P));
@@ -419,7 +419,7 @@ List MakeListLevel(BinTree P, int N) {
     if (IsTreeEmpty(P))
         return Nil;
     else if (N == 1)
-        return (Alokasi(Akar(P)));
+        return (AlokasiListrek(Akar(P)));
     else {
         List Left = MakeListLevel(Left(P), N - 1);
         List Right = MakeListLevel(Right(P), N - 1);

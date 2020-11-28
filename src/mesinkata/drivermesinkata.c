@@ -43,10 +43,7 @@ int main()
     /*Test Baca File I/O*/
     START("map.txt");
     while((CC!=BLANK)&&(CC!=MARK)){
-        if((int) (CC) == 13){
-            printf("\n");
-        }
-        printf("%d",CC);
+        printf("%c",CC);
         ADV();
     }
     // membuka file

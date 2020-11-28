@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "main.h"
+#include "src/boolean.h"
+
+MATRIKS M1, M2, M3, M4;
+Player P1;
+int menu1;
+char name[20];
+POINT PosPlayer;
+JAM CurrTime;
+int Money;
+int currGraph;
+
+void quit(){
+    printf("Thanks for playing!!\n");
+    exit(0);
+}
+
+void main_menu(){
+    system("@cls||clear");
+    printf(" __       __)              __       __)                       __       __)          \n");
+    printf("(, )  |  /  , /) /)       (, )  |  /          /)     /       (, )  |  /      /)  /) \n");
+    printf("   | /| /    // //           | /| / _ __  _  (/_      _         | /| / ____ // _(/  \n");
+    printf("   |/ |/  _((/_(/_(_/_       |/ |/ (_(/ ((_/_/(_(_/_ /_)_       |/ |/ (_) ((/_(_(_  \n");
+    printf("   /  |          .-/         /  |       .-/    .-/              /  |                \n");
+    printf("                (_/                    (_/    (_/                                   \n");
+    printf("Welcome to Willy wangky's fum factory!!\n");
+    printf("------------------------------\n");
+
+    printf("1. LOAD GAME\n");
+    printf("2. NEW GAME\n");
+    printf("3. EXIT\n");
+    printf("Masukkan pilihan menu di bawah ini:\n");
+    scanf("%d",&menu1);
+    if (menu1 == 1){
+        return;
+    }
+    else if (menu1 == 2){
+        printf("Memulai permainan baru...\n");
+        printf("Masukkan nama:");
+        scanf("%s",name);
+        P1 = NewPlayer(PosPlayer, CurrTime, Money);
+        init();
+        awal(P1);
+    }
+    else{
+        quit();
+    }
+}
+
+void init(){
+    MakeMATRIKS(10,20,&M1);
+    MakeMATRIKS(10,20,&M2);
+    MakeMATRIKS(10,20,&M3);
+    MakeMATRIKS(10,20,&M4);
+    for (int i=0;i<NBrsEff(M1);i++){
+        for (int j=0;j<NKolEff(M1);j++){
+            if ((i == Absis(P1.pos)) && (j == Ordinat(P1.pos))){
+                ElmtM(M1,i,j) = 9;
+            }
+            if ((i == GetFirstIdxBrs(M1))||(i == GetLastIdxBrs(M1))||(j == GetFirstIdxKol(M1))||(j == GetLastIdxKol(M1))){
+                ElmtM(M1,i,j) = 0;
+            }
+            if ((i == 2)&&(j == 4)){
+                ElmtM(M1,i,j) = 6;
+            }
+            if ((i == 2)&&(j == 7)){
+                ElmtM(M1,i,j) = 7;
+            }
+            if ((i == 4)&&(j == GetLastIdxKol(M1))){
+                ElmtM(M1,i,j) = 3;
+            }
+            if (i == (GetLastIdxBrs(M1))&&(j == 9)){
+                ElmtM(M1,i,j) = 4;
+            }
+        }
+    }
+    printf("\n");
+    TulisMATRIKS(M1);
+    printf("\n");
+}
+void awal(Player P1){
+    /*system("@cls||clear");*/
+    for(int i = 0;i < 10; i++){
+        for(int j = 0; j < 20; j++){
+            if (ElmtM(M1,i,j)==9){
+                printf("P");
+            }
+            else if (ElmtM(M1,i,j)==0){
+                printf("#");
+            }
+            else if (ElmtM(M1,i,j)==6){
+                printf("A");
+            }
+            else if (ElmtM(M1,i,j)==7){
+                printf("O");
+            }
+            else if (ElmtM(M1,i,j)==3){
+                printf(">");
+            }
+            else if (ElmtM(M1,i,j)==4){
+                printf("V");
+            }
+            else{
+                printf("-");
+            }
+        }
+        printf("\n");
+    }
+    printf("Legend:\n");
+    printf("P = Player\n");
+    printf("W = Wahana\n");
+    printf("O = Office\n");
+    printf("<, ^, >, V = Gerbang\n");
+    printf("\n");
+    printf("Nama: ");
+    printf("%s\n",name);
+    printf("Money: ");
+    printf("%d\n", Money(&P1));
+}
+
+int main(){
+    main_menu();
+    return 0;
+}

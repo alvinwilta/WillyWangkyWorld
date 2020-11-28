@@ -31,27 +31,27 @@ typedef struct {
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (List L);
+boolean IsListEmpty (List L);
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (List *L);
+void CreateEmptyList (List *L);
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-addressList Alokasi (infotypeList X);
+addressList AlokasiList (infotypeList X);
 /* Mengirimkan addressList hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka addressList tidak nil, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-void Dealokasi (addressList *P);
+void DealokasiList (addressList *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian addressList P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-addressList Search (List L, infotypeList X);
+addressList SearchList (List L, infotypeList X);
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan addressList elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
@@ -118,7 +118,7 @@ void DelAfter (List *L, addressList *Pdel, addressList Prec);
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 
-/* void PrintInfo (List L); */
+void PrintInfo (List L);
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
@@ -129,11 +129,11 @@ int NbElmt (List L);
 
 /*** Prekondisi untuk Min: List tidak kosong ***/
 
-/* infotypeList Min (List L); */
+infotypeList Min (List L);
 /* Mengirimkan nilai Info(P) yang minimum */
 
 /*** Prekondisi untuk Max: List tidak kosong ***/
-/* infotypeList Max (List L); */
+infotypeList Max (List L);
 /* Mengirimkan nilai Info(P) yang maksimum */
 
 /****************** PROSES TERHADAP LIST ******************/

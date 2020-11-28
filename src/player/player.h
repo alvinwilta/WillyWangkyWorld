@@ -21,7 +21,7 @@ typedef struct
 } Player;
 
 /* Default value dari data Player */
-#define DefPos 9     //untuk absis atau ordinat
+#define DefPos 3     //untuk absis atau ordinat
 #define DefJamHH 9   //jam awal main
 #define DefJamMM 00  //menit awal main
 #define DefMoney 100 //uang player baru
