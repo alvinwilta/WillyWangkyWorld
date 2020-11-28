@@ -167,6 +167,7 @@ void printKata(Kata K)
     printf("\n");
 }
 
+
 /*
 void readConfigFile(MATRIKS *M, Wahana *arr, Graph *G, int * wahanaCounter)
 {
