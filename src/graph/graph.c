@@ -108,13 +108,62 @@ Graph initGraphMap(MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D) {
 /* I.S. semua matriks terdefinisi, matriks tidak mungkin kosong, digunakan untuk init graph */
 /* F.S. Terbentuk graf fungsional yang dapat dipakai dalam peta */
 
-POINT lokasiPlayer(Graph *G, int A, int B);
+POINT lokasiPlayer(Graph *G, int A, int B) {
+    if (A==1) {
+        if (B==2) {
+            return MakePOINT(2,3);
+        } else if (B==4) {
+            return MakePOINT(10,2);
+        }
+    } else if (A==2) {
+        if (B==1) {
+            return MakePOINT(19,3);
+        } else if (B==3) {
+            return MakePOINT(13,2);
+        }
+    } else if (A==3) {
+        if (B==2) {
+            return MakePOINT(13,9);
+        } else if (B==4) {
+            return MakePOINT(19,6);
+        }
+    } else if (A==4) {
+        if (B==1) {
+            return MakePOINT(10,9);
+        } else if (B==3) {
+            return MakePOINT(2,6);
+        }
+    }
+}
 /* menunjukkan lokasi player setelah berpindah dari area ID A ke area ID B*/
 
-MATRIKS lokasiMatriks(Graph *G, addressNode P);
-/* mengeluarkan matriks terkait dari sebuah node graph */
-
-addressNode moveGraph(Graph *G, addressNode CurrNode, int Gerbang);
+addressNode moveGraph(Graph *G, addressNode CurrNode, int Gerbang) {
+    if (Gerbang==2) {
+        if (ID(CurrNode)==3) {
+            return SearchNodeId(G,2);
+        } else if (ID(CurrNode)==4) {
+            return SearchNodeId(G,1);
+        }
+    } else if (Gerbang==3) {
+        if (ID(CurrNode)==1) {
+            return SearchNodeId(G,2);
+        } else if (ID(CurrNode)==4) {
+            return SearchNodeId(G,3);
+        }
+    } else if (Gerbang==4) {
+        if (ID(CurrNode)==1) {
+            return SearchNodeId(G,4);
+        } else if (ID(CurrNode)==2) {
+            return SearchNodeId(G,3);
+        }
+    } else if (Gerbang==5) {
+        if (ID(CurrNode)==2) {
+            return SearchNodeId(G,1);
+        } else if (ID(CurrNode)==3) {
+            return SearchNodeId(G,4);
+        }
+    }
+}
 /* Mengeluarkan address graph berikutnya setelah memasuki gerbang dengan nomor gerbang (di matriks) */
 /* CurrNode dibutuhkan agar mengetahui kemana player akan pergi setelah memasuki gerbang */
 /* kalau ID(CurrNode)=1 dan Gerbang=3, maka akan mengeluarkan address graph dengan ID=2 */
