@@ -9,13 +9,13 @@
 #include "../boolean.h"
 #include "../linkedlist/listlinier.h"
 
-#define Nil NULL
+#define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
 typedef struct {
     int prio;  /* [1..100], prioritas/kesabaran dengan nilai 1..5 (1 adalah prioritas tertinggi) */
-    List info;  /* list wahana */
+    LinkedList info;  /* list wahana */
 } InfotypeQ;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */

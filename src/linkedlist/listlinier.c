@@ -25,7 +25,7 @@ void CreateEmptyList (LinkedList *L){
 
 /****************** Manajemen Memori ******************/
 addressList AlokasiList (infotypeList X){
-    ElmtList *P = (ElmtList *) malloc(sizeof(ElmtList));
+    linElmtList *P = (linElmtList *) malloc(sizeof(linElmtList));
     if (P != Nil){
         Info(P) = X;
         Next(P) = Nil;
@@ -226,7 +226,7 @@ void PrintInfo (LinkedList L){
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-int NbElmt (LinkedList L){
+int NbElmtLinkedList (LinkedList L){
     int Count = 0;
     addressList cpointer = First(L);
     while(cpointer != Nil){
@@ -272,7 +272,7 @@ void Konkat1 (LinkedList *L1, LinkedList *L2, LinkedList *L3){
     CreateEmptyList(L3);
     if (!(IsListEmpty(*L1))){
         First(*L3) = First(*L1);
-        addressLinkedList Last1 = First(*L1);
+        addressList last1 = First(*L1);
         while(Next(last1) != Nil) {
             last1 = Next(last1);
         }

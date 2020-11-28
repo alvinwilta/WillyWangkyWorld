@@ -86,6 +86,7 @@ void init(Player P1){
     CreateEmpty(&S1);
     CreateEmpty(&S2);
     CreateEmpty(&S3);
+    MakeEmptyPrio(&PQ1,5);
     legenda(P1);
 }
 
@@ -176,6 +177,8 @@ void legenda(Player P1){
         printf("Total uang yang dibutuhkan: "),printf("%d\n",stacktotalUang);
     }else{
         printf("Antrian [");printf("%d",NBElmtPrio(PQ1));printf("/5]\n");
+        PrintPrioQueue(PQ1);
+        printf("\n");
     }
     printf("Masukkan perintah : ");
     scanf("%s",input);

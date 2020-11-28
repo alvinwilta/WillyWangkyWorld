@@ -98,13 +98,12 @@ void PrintPrioQueue (PrioQ Q){ //PERLU DIUBAH
     InfotypeQ X;
     int i;
     for(i = Head(Q); i < Tail(Q); i++){
-		printf("(%c ), kesabaran: %d\n", InfoQ(ElmtPrio(Q, i)), PrioQ(ElmtPrio(Q, i)));
+		PrintInfo(InfoQ(ElmtPrio(Q, i)));printf(", kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
 	}
 	if(!IsEmptyPrio(Q)){
 		i = Tail(Q);
-		printf("(%c) ,kesabaran: %d\n", InfoQ(ElmtPrio(Q, i)), PrioQ(ElmtPrio(Q, i)));
+		PrintInfo(InfoQ(ElmtPrio(Q, i)));printf(" ,kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
     }
-    printf("#\n");
 }
 /* Mencetak isi queue Q ke layar */
 /* I.S. Q terdefinisi, mungkin kosong */
