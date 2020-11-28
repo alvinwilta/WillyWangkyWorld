@@ -17,5 +17,6 @@ void quit();
 void main_menu();
 void init(Player P1);
 void updateMap(Player P1);
+MATRIKS currMatriks (int currGraph);
 void legenda(Player P1);
 void game(Player P1);

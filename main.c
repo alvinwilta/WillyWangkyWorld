@@ -80,6 +80,44 @@ void init(Player P1){
             }
         }
     }
+    for (int i=0;i<NBrsEff(M3);i++){
+        for (int j=0;j<NKolEff(M3);j++){
+            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
+                ElmtM(M3,i,j) = 9;
+            }
+            if ((i == GetFirstIdxBrs(M3))||(i == GetLastIdxBrs(M3))||(j == GetFirstIdxKol(M3))||(j == GetLastIdxKol(M3))){
+                ElmtM(M3,i,j) = 0;
+            }
+            if ((i == 2)&&(j == 4)){
+                ElmtM(M3,i,j) = 6;
+            }
+            if ((i == 4)&&(j == GetFirstIdxKol(M3))){
+                ElmtM(M3,i,j) = 5;
+            }
+            if (i == (GetFirstIdxBrs(M3))&&(j == 9)){
+                ElmtM(M3,i,j) = 2;
+            }
+        }
+    }
+    for (int i=0;i<NBrsEff(M4);i++){
+        for (int j=0;j<NKolEff(M4);j++){
+            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
+                ElmtM(M4,i,j) = 9;
+            }
+            if ((i == GetFirstIdxBrs(M4))||(i == GetLastIdxBrs(M4))||(j == GetFirstIdxKol(M4))||(j == GetLastIdxKol(M4))){
+                ElmtM(M4,i,j) = 0;
+            }
+            if ((i == 2)&&(j == 4)){
+                ElmtM(M4,i,j) = 6;
+            }
+            if ((i == 4)&&(j == GetLastIdxKol(M4))){
+                ElmtM(M4,i,j) = 3;
+            }
+            if (i == (GetFirstIdxBrs(M2))&&(j == 9)){
+                ElmtM(M4,i,j) = 2;
+            }
+        }
+    }
     currDay = 1;
     prepFase = true;
     stacktotalAksi, stacktotalJam, stacktotalUang = 0;
@@ -117,10 +155,63 @@ void updateMap(Player P1){
             }
         }
     }
-    currDay = 1;
+    for (int i=0;i<NBrsEff(M3);i++){
+        for (int j=0;j<NKolEff(M3);j++){
+            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
+                ElmtM(M3,i,j) = 9;
+            }
+            if ((i == GetFirstIdxBrs(M3))||(i == GetLastIdxBrs(M3))||(j == GetFirstIdxKol(M3))||(j == GetLastIdxKol(M3))){
+                ElmtM(M3,i,j) = 0;
+            }
+            if ((i == 2)&&(j == 4)){
+                ElmtM(M3,i,j) = 6;
+            }
+            if ((i == 4)&&(j == GetFirstIdxKol(M3))){
+                ElmtM(M3,i,j) = 5;
+            }
+            if (i == (GetFirstIdxBrs(M3))&&(j == 9)){
+                ElmtM(M3,i,j) = 2;
+            }
+        }
+    }
+    for (int i=0;i<NBrsEff(M4);i++){
+        for (int j=0;j<NKolEff(M4);j++){
+            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
+                ElmtM(M4,i,j) = 9;
+            }
+            if ((i == GetFirstIdxBrs(M4))||(i == GetLastIdxBrs(M4))||(j == GetFirstIdxKol(M4))||(j == GetLastIdxKol(M4))){
+                ElmtM(M4,i,j) = 0;
+            }
+            if ((i == 2)&&(j == 4)){
+                ElmtM(M4,i,j) = 6;
+            }
+            if ((i == 4)&&(j == GetLastIdxKol(M4))){
+                ElmtM(M4,i,j) = 3;
+            }
+            if (i == (GetFirstIdxBrs(M2))&&(j == 9)){
+                ElmtM(M4,i,j) = 2;
+            }
+        }
+    }
     legenda(P1);
 }
 
+MATRIKS currMatriks (int currGraph){
+    MATRIKS M;
+    if(currGraph == 1){
+        M = M1;
+    }
+    if(currGraph == 2){
+        M = M2;
+    }
+    if(currGraph == 3){
+        M = M3;
+    }
+    if(currGraph == 4){
+        M = M4;
+    }
+    return M;
+}
 void legenda(Player P1){
     system("@cls||clear");
     if (prepFase = true){
@@ -131,22 +222,22 @@ void legenda(Player P1){
     }
     for(int i = 0;i < 10; i++){
         for(int j = 0; j < 20; j++){
-            if (ElmtM(M1,i,j)==9){
+            if (ElmtM(currMatriks(currGraph),i,j)==9){
                 printf("P");
             }
-            else if (ElmtM(M1,i,j)==0){
-                printf("#");
+            else if (ElmtM(currMatriks(currGraph),i,j)==0){
+                printf("*");
             }
-            else if (ElmtM(M1,i,j)==6){
+            else if (ElmtM(currMatriks(currGraph),i,j)==6){
                 printf("A");
             }
-            else if (ElmtM(M1,i,j)==7){
+            else if (ElmtM(currMatriks(currGraph),i,j)==7){
                 printf("O");
             }
-            else if (ElmtM(M1,i,j)==3){
+            else if (ElmtM(currMatriks(currGraph),i,j)==3){
                 printf(">");
             }
-            else if (ElmtM(M1,i,j)==4){
+            else if (ElmtM(currMatriks(currGraph),i,j)==4){
                 printf("V");
             }
             else{
