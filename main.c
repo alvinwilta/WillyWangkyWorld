@@ -9,6 +9,7 @@ Stack S1,S2,S3;
 int menu1;
 char name[20],input[20];
 POINT PosPlayer;
+PrioQ PQ1;
 JAM CurrTime;
 int Money;
 int currGraph;
@@ -174,7 +175,7 @@ void legenda(Player P1){
         printf("Total waktu yang dibutuhkan: " );printf("%d\n",stacktotalJam);
         printf("Total uang yang dibutuhkan: "),printf("%d\n",stacktotalUang);
     }else{
-        printf("Antrian [");printf("%d",)
+        printf("Antrian [");printf("%d",NBElmtPrio(PQ1));printf("/5]\n");
     }
     printf("Masukkan perintah : ");
     scanf("%s",input);

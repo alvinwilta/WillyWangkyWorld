@@ -38,7 +38,7 @@ Wahana NewWahana(char jenis[], int id, POINT pos)
     KapasitasW(&W) = DefKapasitas;
     TarifW(&W) = DefTarif;
     DurasiW(&W) = DefDurasi;
-    address P = Alokasi(jenis);
+    addressrek P = Alokasi(jenis);
     HistoryW(&W) = P;
     IsiW(&W) = 0;
     TotalPendapatan(&W) = 0;
@@ -81,7 +81,7 @@ void upgrade(Wahana *W, int pilihan, BinTree treeWahana)
         strcpy(JenisW(W), Akar(Right(N)));
         N = Right(N);
     }
-    address A = HistoryW(W);
+    addressrek A = HistoryW(W);
     while (Next(A) != Nil)
     {
         A = Next(A);

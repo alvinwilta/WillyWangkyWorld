@@ -7,6 +7,7 @@
 #include "src/matriks/matriks.h"
 #include "src/player/player.h"
 #include "src/queue/queue.h"
+#include "src/queue/prioqueuechar.h"
 #include "src/stack/stack.h"
 #include "src/array/array.h"
 #include "src/point/point.h"

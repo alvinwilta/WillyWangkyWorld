@@ -11,13 +11,13 @@ Deskripsi: linked list
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsListEmpty (List L){
+boolean IsListEmpty (LinkedList L){
     return(First(L) == Nil);
 }
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmptyList (List *L){
+void CreateEmptyList (LinkedList *L){
     First(*L) = Nil;
 }
 /* I.S. sembarang             */
@@ -47,7 +47,7 @@ void DealokasiList (addressList *P){
 /* Melakukan dealokasi/pengembalian addressList P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-addressList SearchList (List L, infotypeList X){
+addressList SearchList (LinkedList L, infotypeList X){
     boolean found = false;
     addressList cpointer = First(L); //current pointer
     addressList fpointer = Nil; //alokasi pointer untuk adress
@@ -69,7 +69,7 @@ addressList SearchList (List L, infotypeList X){
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (List *L, infotypeList X){
+void InsVFirst (LinkedList *L, infotypeList X){
     addressList P = AlokasiList(X);
     if (P != Nil){
         InsertFirst(L, P);
@@ -78,7 +78,7 @@ void InsVFirst (List *L, infotypeList X){
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLast (List *L, infotypeList X){
+void InsVLast (LinkedList *L, infotypeList X){
     addressList P = AlokasiList(X);
     if (P != Nil){
         InsertLast(L, P);
@@ -90,16 +90,16 @@ void InsVLast (List *L, infotypeList X){
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (List *L, infotypeList *X){
+void DelVFirst (LinkedList *L, infotypeList *X){
     addressList P;
     DelFirst(L, &P);
     *X = Info(P);
     DealokasiList(&P);
 }
-/* I.S. List L tidak kosong  */
+/* I.S. LinkedList L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
-void DelVLast (List *L, infotypeList *X){
+void DelVLast (LinkedList *L, infotypeList *X){
     addressList P;
     DelLast(L, &P);
     *X = Info(P);
@@ -111,20 +111,20 @@ void DelVLast (List *L, infotypeList *X){
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst (List *L, addressList P){
+void InsertFirst (LinkedList *L, addressList P){
     Next(P) = First(*L);
     First(*L) = P;
 }
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. Menambahkan elemen ber-addressList P sebagai elemen pertama */
-void InsertAfter (List *L, addressList P, addressList Prec){
+void InsertAfter (LinkedList *L, addressList P, addressList Prec){
     Next(P) = Next(Prec);
     Next(Prec) = P;
 }
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast (List *L, addressList P){
+void InsertLast (LinkedList *L, addressList P){
     if (IsListEmpty(*L)){
         Next(P) = Nil;
         First(*L) = P;
@@ -141,7 +141,7 @@ void InsertLast (List *L, addressList P){
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
-void DelFirst (List *L, addressList *P){
+void DelFirst (LinkedList *L, addressList *P){
     *P = First(*L);
     if (Next(First(*L)) == Nil){
         CreateEmptyList(L);
@@ -154,7 +154,7 @@ void DelFirst (List *L, addressList *P){
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (List *L, infotypeList X){
+void DelP (LinkedList *L, infotypeList X){
     addressList P = SearchList(*L, X);
     if (P != Nil){
         addressList prec = First(*L);
@@ -176,7 +176,7 @@ void DelP (List *L, infotypeList X){
 /* maka yang dihapus hanya elemen pertama dengan Info = X */
 /* Jika tidak ada elemen list dengan Info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
-void DelLast (List *L, addressList *P){
+void DelLast (LinkedList *L, addressList *P){
     if (Next(First(*L)) == Nil){
         *P = First(*L);
         CreateEmptyList(L);
@@ -194,7 +194,7 @@ void DelLast (List *L, addressList *P){
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
 /* jika ada */
-void DelAfter (List *L, addressList *Pdel, addressList Prec){
+void DelAfter (LinkedList *L, addressList *Pdel, addressList Prec){
     *Pdel = Next(Prec);
     if (*Pdel != Nil){
         Next(Prec) = Next(Next(Prec));
@@ -206,7 +206,7 @@ void DelAfter (List *L, addressList *Pdel, addressList Prec){
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 
-void PrintInfo (List L){
+void PrintInfo (LinkedList L){
     printf("[");
     if (!IsListEmpty(L)){
         addressList cpointer = First(L);
@@ -226,7 +226,7 @@ void PrintInfo (List L){
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-int NbElmt (List L){
+int NbElmt (LinkedList L){
     int Count = 0;
     addressList cpointer = First(L);
     while(cpointer != Nil){
@@ -239,7 +239,7 @@ int NbElmt (List L){
 
 /*** Prekondisi untuk Min: List tidak kosong ***/
 
-infotypeList Min (List L){
+infotypeList Min (LinkedList L){
     addressList Min = First(L);
     addressList cpointer = First(L);
     while(cpointer != Nil){
@@ -254,7 +254,7 @@ infotypeList Min (List L){
 
 /*** Prekondisi untuk Max: List tidak kosong ***/
 
-infotypeList Max (List L){
+infotypeList Max (LinkedList L){
     addressList Max = First(L);
     addressList cpointer = First(L);
     while(cpointer != Nil){
@@ -268,11 +268,11 @@ infotypeList Max (List L){
 /* Mengirimkan nilai Info(P) yang maksimum */
 
 /****************** PROSES TERHADAP LIST ******************/
-void Konkat1 (List *L1, List *L2, List *L3){
+void Konkat1 (LinkedList *L1, LinkedList *L2, LinkedList *L3){
     CreateEmptyList(L3);
     if (!(IsListEmpty(*L1))){
         First(*L3) = First(*L1);
-        addressList last1 = First(*L1);
+        addressLinkedList Last1 = First(*L1);
         while(Next(last1) != Nil) {
             last1 = Next(last1);
         }
@@ -287,6 +287,6 @@ void Konkat1 (List *L1, List *L2, List *L3){
 /* I.S. L1 dan L2 sembarang */
 /* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
 /* Konkatenasi dua buah list : L1 dan L2    */
-/* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
+/* menghasilkan L3 yang baru (dengan elemen LinkedList L1 dan L2) */
 /* dan L1 serta L2 menjadi list kosong.*/
 /* Tidak ada alokasi/dealokasi pada prosedur ini */

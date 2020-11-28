@@ -9,7 +9,7 @@
 #include "../boolean.h"
 #include "../linkedlist/listlinier.h"
 
-#define Nil -1
+#define Nil NULL
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
@@ -37,7 +37,7 @@ typedef struct {
 #define InfoHead(Q) (Q).T[(Q).HEAD]
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q)    (Q).MaxEl
-#define Elmt(Q,i)   (Q).T[(i)]
+#define ElmtPrio(Q,i)   (Q).T[(i)]
 
 /* 
 Untuk mengakses list pada Q urutan i:

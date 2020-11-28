@@ -60,15 +60,15 @@ void EnqueuePrio (PrioQ * Q, InfotypeQ X){
     }else{
         int i = NBElmtPrio(*Q);
         int tail = Tail(*Q);
-        while ((Prio(X) < Prio(Elmt(*Q, tail))) && (i > 0)){
-            Elmt(*Q,(tail % MaxEl(*Q)) + 1) = Elmt(*Q,tail);
+        while ((PrioQ(X) < PrioQ(ElmtPrio(*Q, tail))) && (i > 0)){
+            ElmtPrio(*Q,(tail % MaxEl(*Q)) + 1) = ElmtPrio(*Q,tail);
             tail--;
             i--;
             if (tail == NBElmtPrio(*Q)){
                 tail = MaxEl(*Q);
             }
         }
-        Elmt(*Q,((tail % MaxEl(*Q)) + 1)) = X;
+        ElmtPrio(*Q,((tail % MaxEl(*Q)) + 1)) = X;
         Tail(*Q) = (Tail(*Q) % MaxEl(*Q)) + 1;
     }
 }
@@ -98,11 +98,11 @@ void PrintPrioQueue (PrioQ Q){ //PERLU DIUBAH
     InfotypeQ X;
     int i;
     for(i = Head(Q); i < Tail(Q); i++){
-		printf("%d %c\n", Prio(Elmt(Q, i)), InfoQ(Elmt(Q, i)));
+		printf("(%c ), kesabaran: %d\n", InfoQ(ElmtPrio(Q, i)), PrioQ(ElmtPrio(Q, i)));
 	}
 	if(!IsEmptyPrio(Q)){
 		i = Tail(Q);
-		printf("%d %c\n", Prio(Elmt(Q, i)), InfoQ(Elmt(Q, i)));
+		printf("(%c) ,kesabaran: %d\n", InfoQ(ElmtPrio(Q, i)), PrioQ(ElmtPrio(Q, i)));
     }
     printf("#\n");
 }
