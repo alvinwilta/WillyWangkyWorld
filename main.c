@@ -57,7 +57,7 @@ void init(Player P1){
     MakeMATRIKS(10,20,&M4);
     for (int i=0;i<NBrsEff(M1);i++){
         for (int j=0;j<NKolEff(M1);j++){
-            if ((i == Absis(P1.pos)) && (j == Ordinat(P1.pos))){
+            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
                 ElmtM(M1,i,j) = 9;
             }
             if ((i == GetFirstIdxBrs(M1))||(i == GetLastIdxBrs(M1))||(j == GetFirstIdxKol(M1))||(j == GetLastIdxKol(M1))){
@@ -77,13 +77,43 @@ void init(Player P1){
             }
         }
     }
-    printf("\n");
-    TulisMATRIKS(M1);
-    printf("\n");
-    awal(P1);
+    currDay = 1;
+    legenda(P1);
 }
-void awal(Player P1){
-    /*system("@cls||clear");*/
+
+void updateMap(Player P1){
+    MakeMATRIKS(10,20,&M1);
+    MakeMATRIKS(10,20,&M2);
+    MakeMATRIKS(10,20,&M3);
+    MakeMATRIKS(10,20,&M4);
+    for (int i=0;i<NBrsEff(M1);i++){
+        for (int j=0;j<NKolEff(M1);j++){
+            if ((i == Ordinat(P1.pos)) && (j == Absis(P1.pos))){
+                ElmtM(M1,i,j) = 9;
+            }
+            if ((i == GetFirstIdxBrs(M1))||(i == GetLastIdxBrs(M1))||(j == GetFirstIdxKol(M1))||(j == GetLastIdxKol(M1))){
+                ElmtM(M1,i,j) = 0;
+            }
+            if ((i == 2)&&(j == 4)){
+                ElmtM(M1,i,j) = 6;
+            }
+            if ((i == 2)&&(j == 7)){
+                ElmtM(M1,i,j) = 7;
+            }
+            if ((i == 4)&&(j == GetLastIdxKol(M1))){
+                ElmtM(M1,i,j) = 3;
+            }
+            if (i == (GetLastIdxBrs(M1))&&(j == 9)){
+                ElmtM(M1,i,j) = 4;
+            }
+        }
+    }
+    currDay = 1;
+    legenda(P1);
+}
+
+void legenda(Player P1){
+    system("@cls||clear");
     if (prepFase = true){
         printf("Preparation Phase Day ");printf("%d\n",currDay);
     }
@@ -141,18 +171,22 @@ void awal(Player P1){
 
 void game(Player P1){
     if (strcmp(input,"s")){
-        Maju(&P1);
+        Mundur(&P1);
+        AddWaktu(&P1, 1);
     }
     if (strcmp(input,"a")){
-        Kiri(&P1);
+        Kanan(&P1);
+        AddWaktu(&P1, 1);
     }
     if (strcmp(input,"d")){
-        Kanan(&P1);
+        Kiri(&P1);
+        AddWaktu(&P1, 1);
     }
     if (strcmp(input,"w")){
-        Mundur(&P1);
+        Maju(&P1);
+        AddWaktu(&P1, 1);
     }
-    init(P1);
+    updateMap(P1);
 }
 
 int main(){

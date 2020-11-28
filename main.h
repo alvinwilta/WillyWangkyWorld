@@ -15,5 +15,6 @@
 void quit();
 void main_menu();
 void init(Player P1);
-void awal(Player P1);
+void updateMap(Player P1);
+void legenda(Player P1);
 void game(Player P1);
