@@ -63,7 +63,7 @@ void EnqueueQ (Queue * Q, infotype X){
 void DequeueQ(Queue * Q, infotype * X){
     addressQ P = Head(*Q);
     if (Next(Head(*Q))==Nil){
-        CreateEmpty(Q);
+        CreateEmptyQ(Q);
     }else{
         Head(*Q)=Next(Head(*Q));
     }

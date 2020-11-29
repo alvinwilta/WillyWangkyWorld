@@ -22,8 +22,8 @@ typedef int address;   /* indeks tabel */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct {
     InfotypeQ * T;   /* tabel penyimpan elemen */
-    address HEAD;  /* alamat penghapusan */
-    address TAIL;  /* alamat penambahan */
+    address HEADPrio;  /* alamat penghapusan */
+    address TAILPrio;  /* alamat penambahan */
     int MaxEl;     /* Max elemen queue */
 } PrioQ;
 /* Definisi PrioQ kosong: HEAD=Nil; TAIL=Nil. */
@@ -32,10 +32,10 @@ typedef struct {
 /* Jika e adalah InfotypeQ dan Q adalah PrioQ, maka akses elemen : */
 #define PrioQ(e)     (e).prio
 #define InfoQ(e)     (e).info
-#define Head(Q)     (Q).HEAD
-#define Tail(Q)     (Q).TAIL
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
+#define HeadPrio(Q)     (Q).HEADPrio
+#define TailPrio(Q)     (Q).TAILPrio
+#define InfoHead(Q) (Q).T[(Q).HEADPrio]
+#define InfoTail(Q) (Q).T[(Q).TAILPrio]
 #define MaxEl(Q)    (Q).MaxEl
 #define ElmtPrio(Q,i)   (Q).T[(i)]
 

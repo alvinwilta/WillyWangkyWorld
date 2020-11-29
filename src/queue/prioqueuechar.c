@@ -4,7 +4,7 @@
 
 /* ********* Prototype ********* */
 boolean IsEmptyPrio (PrioQ Q){
-    return ((Head(Q) == Nil) && (Tail(Q) == Nil));
+    return ((HeadPrio(Q) == Nil) && (TailPrio(Q) == Nil));
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 boolean IsFullPrio (PrioQ Q){
@@ -15,10 +15,10 @@ boolean IsFullPrio (PrioQ Q){
 int NBElmtPrio (PrioQ Q){
     if (IsEmptyPrio(Q))
         return 0;
-    else if (Head(Q) <= Tail(Q)){
-        return (Tail(Q) - Head(Q) + 1);
+    else if (HeadPrio(Q) <= TailPrio(Q)){
+        return (TailPrio(Q) - HeadPrio(Q) + 1);
     }else{
-        return (MaxEl(Q) - (Head(Q) - Tail(Q) - 1));
+        return (MaxEl(Q) - (HeadPrio(Q) - TailPrio(Q) - 1));
     }
 }
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
@@ -28,8 +28,8 @@ void MakeEmptyPrio (PrioQ * Q, int Max){
     (*Q).T = (InfotypeQ *) malloc ((Max + 1) * sizeof(InfotypeQ));
     if ((*Q).T != NULL) {
         MaxEl(*Q) = Max;
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
+        HeadPrio(*Q) = Nil;
+        TailPrio(*Q) = Nil;
     }else{
         MaxEl(*Q) = 0;
     }
@@ -43,8 +43,8 @@ void MakeEmptyPrio (PrioQ * Q, int Max){
 /* *** Destruktor *** */
 void DeAlokasiPrio(PrioQ * Q){
     MaxEl(*Q) = 0;
-    Tail(*Q)=Nil;
-    Head(*Q)=Nil;
+    TailPrio(*Q)=Nil;
+    HeadPrio(*Q)=Nil;
     free((*Q).T); 
 }
 /* Proses: Mengembalikan memori Q */
@@ -54,12 +54,12 @@ void DeAlokasiPrio(PrioQ * Q){
 /* *** Primitif Add/Delete *** */
 void EnqueuePrio (PrioQ * Q, InfotypeQ X){
     if (IsEmptyPrio(*Q)){
-        Head(*Q) = 0;
-        Tail(*Q) = 0;
+        HeadPrio(*Q) = 0;
+        TailPrio(*Q) = 0;
         InfoTail(*Q) = X;
     }else{
         int i = NBElmtPrio(*Q);
-        int tail = Tail(*Q);
+        int tail = TailPrio(*Q);
         while ((PrioQ(X) < PrioQ(ElmtPrio(*Q, tail))) && (i > 0)){
             ElmtPrio(*Q,(tail % MaxEl(*Q)) + 1) = ElmtPrio(*Q,tail);
             tail--;
@@ -69,7 +69,7 @@ void EnqueuePrio (PrioQ * Q, InfotypeQ X){
             }
         }
         ElmtPrio(*Q,((tail % MaxEl(*Q)) + 1)) = X;
-        Tail(*Q) = (Tail(*Q) % MaxEl(*Q)) + 1;
+        TailPrio(*Q) = (TailPrio(*Q) % MaxEl(*Q)) + 1;
     }
 }
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
@@ -80,12 +80,12 @@ void EnqueuePrio (PrioQ * Q, InfotypeQ X){
 void DequeuePrio (PrioQ * Q, InfotypeQ * X){
     *X= InfoHead(*Q);
     if (NBElmtPrio(*Q) == 1) {
-        Head(*Q) = Nil;
-        Tail(*Q) = Nil;
-    }else if (Head(*Q) == MaxEl(*Q)) {
-        Head(*Q) = 0;
+        HeadPrio(*Q) = Nil;
+        TailPrio(*Q) = Nil;
+    }else if (HeadPrio(*Q) == MaxEl(*Q)) {
+        HeadPrio(*Q) = 0;
     }else{
-        Head(*Q)++;
+        HeadPrio(*Q)++;
     }
 }
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
@@ -97,11 +97,11 @@ void DequeuePrio (PrioQ * Q, InfotypeQ * X){
 void PrintPrioQueue (PrioQ Q){ //PERLU DIUBAH
     InfotypeQ X;
     int i;
-    for(i = Head(Q); i < Tail(Q); i++){
+    for(i = HeadPrio(Q); i < TailPrio(Q); i++){
 		PrintInfo(InfoQ(ElmtPrio(Q, i)));printf(", kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
 	}
 	if(!IsEmptyPrio(Q)){
-		i = Tail(Q);
+		i = TailPrio(Q);
 		PrintInfo(InfoQ(ElmtPrio(Q, i)));printf(" ,kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
     }
 }
