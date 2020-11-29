@@ -4,7 +4,7 @@
 
 int main() {
 	printf("---Driver List Linier---\n");
-	Listrek L;
+	LinkedList L;
 
 	printf("Pembuatan List kosong\n");
 	CreateEmptyList(&L);
@@ -37,7 +37,7 @@ int main() {
 	printf("Elemen pertama : %d\nElemen terakhir : %d\n", x1, x2);
 
 	printf("Membuat sebuah List baru L1=[10,11,12]\n");
-	Listrek L1; CreateEmptyList(&L1);
+	LinkedList L1; CreateEmptyList(&L1);
 	InsVFirst(&L1, 10);
 	InsVLast(&L1, 11);
 	InsVLast(&L1, 12);
@@ -47,7 +47,7 @@ int main() {
 	printf("Konkat antara list L dengan L1\n");
 	printf("L = "); PrintInfo(L); printf("\n");
 	printf("L1 = "); PrintInfo(L1); printf("\n");
-	Listrek L2;
+	LinkedList L2;
 	Konkat1(&L, &L1, &L2);
 	printf("hasil konkat [1,10,11,12] = "); PrintInfo(L2); printf("\n");
 	printf("\n---Proses terhadap elemen dalam list---\n");
