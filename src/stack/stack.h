@@ -7,7 +7,7 @@
 
 #include "../boolean.h"
 
-#define Nil NULL
+#define NilS -1
 #define MaxElStack 10
 /* Nil adalah stack dengan elemen kosong . */
 

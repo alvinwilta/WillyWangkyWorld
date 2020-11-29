@@ -11,6 +11,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+
+
 /* Definisi Type */
 typedef struct twahana
 {
@@ -103,3 +105,5 @@ void emptyLaporanHariIni(Wahana *W);
 /* F.S laporan */
 
 #endif
+
+

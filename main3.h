@@ -25,3 +25,25 @@ MATRIKS currMatriks (int currGraph);
 void legenda(Player P1);
 void game(Player P1);
 void printPeta(Player P1, Graph G, int PosGraph, POINT PosAntrian, POINT PosOffice);
+Wahana Build(Player *P, POINT pos, Stack S);
+void UpgradeWahana(Player *P, Wahana *W, Stack S);
+void Buy(Player *P, Stack S);
+void deBuy(Player *P, int jenis, int N);
+void legendPrep(Player P1, char name[20]);
+
+void Undo(Player *P, Stack S);
+void Execute(Stack S);
+void KeMain(Player *P, Stack S);
+void printPetaPrep(Player P1, Graph G, int PosGraph, POINT PosAntrian, POINT PosOffice);
+void Preparation(Player P, char name[20], int currDay, Stack S);
+
+void Office(Player P1, Wahana W1);
+void legendMain(Player P1);
+void PrintDetail(Wahana W1);
+void Detail(Player P1, Wahana W1);
+void Serve(int *ID);
+void Prepare();
+void Repair(Wahana *W, PrioQ *PQ1);
+void GameOver();
+void Antrian(PrioQ PQ1);
+void kePrepare();

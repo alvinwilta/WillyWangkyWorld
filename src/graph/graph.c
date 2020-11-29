@@ -7,27 +7,27 @@
 
 
 void CreateEmptyGraph(Graph *G) {
-    FirstGraph(*G) = Nil;
+    FirstGraph(*G) = NULL;
 }
 /* I.S. sembarang */
 /* F.S. Terbentuk graph kosong */
 
 boolean IsGraphEmpty(Graph G) {
-    return (FirstGraph(G)==Nil);
+    return (FirstGraph(G)==NULL);
 }
 /* Mengirimkan true jika graph kosong */
 
 addressNode AlokasiNode(MATRIKS X, int Id) {
     ElmtGraph *P = (ElmtGraph *) malloc(sizeof(ElmtGraph));
-    if (P != Nil){
+    if (P != NULL){
         ID(P) = Id;
         MatriksGraph(P) = X;
-        NextNode(P) = Nil;
-        Trail(P) = Nil;
+        NextNode(P) = NULL;
+        Trail(P) = NULL;
         return P;
     }
     else {
-        return Nil;
+        return NULL;
     }
 }
 /* Mengirimkan addressNode hasil alokasi sebuah matriks */
@@ -44,13 +44,13 @@ void DealokasiGraph(addressNode *P) {
 
 addressSuccNode AlokasiSuccNode(addressNode P) {
     ElmtSucc *Ps = (ElmtSucc *) malloc(sizeof(ElmtSucc));
-    if (Ps != Nil) {
-        NextSucc(Ps) = Nil;
+    if (Ps != NULL) {
+        NextSucc(Ps) = NULL;
         Succ(Ps) = P;
         return Ps;
     }
     else {
-        return Nil;
+        return NULL;
     }
 }
 /* Mengirimkan addressNode hasil alokasi sebuah matriks */
@@ -60,11 +60,11 @@ addressSuccNode AlokasiSuccNode(addressNode P) {
 
 void addElmtGraph(Graph *G, MATRIKS X, int Id) {
     addressNode Pn = AlokasiNode(X, Id);
-    if (FirstGraph(*G) ==  Nil) {
+    if (FirstGraph(*G) ==  NULL) {
         FirstGraph(*G) = Pn;
     } else {
         addressNode P = FirstGraph(*G);
-        while (NextNode(P) != Nil) {
+        while (NextNode(P) != NULL) {
             P = NextNode(P);
         }
         NextNode(P) = Pn;
@@ -75,7 +75,7 @@ void addElmtGraph(Graph *G, MATRIKS X, int Id) {
 
 addressNode searchNodeId(Graph *G, int Id) {
     addressNode P = FirstGraph(*G);
-    while ((ID(P)!=Id) && (P!=Nil)) {
+    while ((ID(P)!=Id) && (P!=NULL)) {
         P = NextNode(P);
     }
     return P;
@@ -86,10 +86,10 @@ addressNode searchNodeId(Graph *G, int Id) {
 void addPanahGraph(Graph *G, int A, int B) {
     addressNode Pa = searchNodeId(G,A);
     addressNode Pb = searchNodeId(G,B);
-    if (Trail(Pa) != Nil) {
+    if (Trail(Pa) != NULL) {
         addressSuccNode Ps = Trail(Pa);
         boolean dupl = false;
-        while ((NextSucc(Ps)!=Nil) && (dupl==false)) {
+        while ((NextSucc(Ps)!=NULL) && (dupl==false)) {
             if (Succ(Ps)==Pb) {
                 dupl = true;
             }

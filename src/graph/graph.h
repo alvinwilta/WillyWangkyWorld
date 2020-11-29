@@ -5,11 +5,9 @@
 #define GRAPH_H
 
 #include "../boolean.h"
-#include "../linkedlist/listlinier.h"
 #include "../matriks/matriks.h"
 #include "../point/point.h"
 
-#define Nil NULL
 
 typedef struct adrNode *addressNode;
 typedef struct succNode *addressSuccNode;

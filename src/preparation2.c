@@ -659,22 +659,23 @@ void Preparation(Player P, char name[20], int currDay, Stack S)
         } 
         else if (!strcmp(perintah, "s"))
         {
-            Mundur(&P);
+            CekMundur(&P, &G, PosGraph, PosAntrian, PosOffice);
             AddWaktu(&P, 1);
         }
         else if (!strcmp(perintah, "d"))
         {
-            Kanan(&P);
+            printf("WOIIII\n");
+            CekKanan(&P, &G, PosGraph, PosAntrian, PosOffice);
             AddWaktu(&P, 1);
         }
         else if (!strcmp(perintah, "a"))
         {
-            Kiri(&P);
+            CekKiri(&P, &G, PosGraph, PosAntrian, PosOffice);
             AddWaktu(&P, 1);
         }
         else if (!strcmp(perintah, "w"))
         {
-            Maju(&P);
+            CekMaju(&P, &G, PosGraph, PosAntrian, PosOffice);
             AddWaktu(&P, 1);
         }
         

@@ -9,6 +9,7 @@
 #include "../point/point.h"
 #include "../jam/jam.h"
 #include "../array/array.h"
+#include "../graph/graph.h"
 
 /* Definisi Type */
 typedef int ElType;
@@ -111,13 +112,5 @@ void SubPaku(Player *P, ElType X);
 /* I.S. P, X terdefinisi */
 /* F.S. Jumlah paku berkurang sebanyak X (elemen indeks 2 tambah X) */
 /* Proses: mengecek material cukup, jika cukup maka Elmt(P,2) dikurang X, uang ditambah */
-
-void CekKanan(Player *P, Graph *G, int PosGraph);
-
-void CekKiri(Player *P, Graph *G, int PosGraph);
-
-void CekMaju(Player *P, Graph *G, int PosGraph);
-
-void CekMundur(Player *P, Graph *G, int PosGraph);
 
 #endif

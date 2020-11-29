@@ -22,7 +22,7 @@ int main()
     Absis(A) = 1;
     Ordinat(A) = 3;
     Player P = NewPlayer(A, J, 400);
-    Kata name;
+    char name[20];
     int currDay = 1;
     Stack S;
     CreateEmpty(&S);

@@ -6,29 +6,29 @@
 /* Prototype manajemen memori */
 void AlokasiQ (addressQ *P, infotype X){
     *P =  (addressQ)malloc(sizeof(ElmtQueue));
-    if (*P != Nil){
-        Info(*P)=X;
-        Next(*P)=Nil;
+    if (*P != NilQ){
+        InfoQ(*P)=X;
+        NextQ(*P)=NilQ;
     }
 }
 /* I.S. Sembarang */
 /* F.S. Alamat P dialokasi, jika berhasil maka Info(P)=X dan 
-        Next(P)=Nil */
-/*      P=Nil jika alokasi gagal */
+        NextQ(P)=NilQ */
+/*      P=NilQ jika alokasi gagal */
 void DealokasiQ (addressQ  P){
     free(P);
 }
-/* I.S. P adalah hasil alokasi, P != Nil */
+/* I.S. P adalah hasil alokasi, P != NilQ */
 /* F.S. Alamat P didealokasi, dikembalikan ke sistem */
 boolean IsEmptyQ (Queue Q){
-    return ((Head(Q)==Nil) && (Tail(Q)==Nil));
+    return ((HeadQ(Q)==NilQ) && (TailQ(Q)==NilQ));
 }
-/* Mengirim true jika Q kosong: HEAD(Q)=Nil and TAIL(Q)=Nil */
+/* Mengirim true jika Q kosong: HEAD(Q)=NilQ and TAIL(Q)=NilQ */
 int NbElmtQ(Queue Q){
-    addressQ cpointer=Head(Q);
+    addressQ cpointer=HeadQ(Q);
     int cnt = 0;
-    while(cpointer!=Nil){
-        cpointer=Next(cpointer);
+    while(cpointer!=NilQ){
+        cpointer=NextQ(cpointer);
         cnt++;
     }
     return cnt;
@@ -36,8 +36,8 @@ int NbElmtQ(Queue Q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong */
 /*** Kreator ***/
 void CreateEmptyQ(Queue * Q){
-    Head(*Q)=Nil;
-    Tail(*Q)=Nil;
+    HeadQ(*Q)=NilQ;
+    TailQ(*Q)=NilQ;
 }
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk */
@@ -45,13 +45,13 @@ void CreateEmptyQ(Queue * Q){
 void EnqueueQ (Queue * Q, infotype X){
     addressQ P;
     AlokasiQ (&P,X);
-    if (P!=Nil){
+    if (P!=NilQ){
         if (IsEmptyQ(*Q)){
-            Head(*Q)=P;
-            Tail(*Q)=P;
+            HeadQ(*Q)=P;
+            TailQ(*Q)=P;
         }else{
-            Next(Tail(*Q))=P;
-            Tail(*Q)=P;
+            NextQ(TailQ(*Q))=P;
+            TailQ(*Q)=P;
         }
     }
 }
@@ -61,17 +61,17 @@ void EnqueueQ (Queue * Q, infotype X){
 /* I.S. Q mungkin kosong */
 /* F.S. X menjadi TAIL, TAIL "maju" */
 void DequeueQ(Queue * Q, infotype * X){
-    addressQ P = Head(*Q);
-    if (Next(Head(*Q))==Nil){
+    addressQ P = HeadQ(*Q);
+    if (NextQ(HeadQ(*Q))==NilQ){
         CreateEmptyQ(Q);
     }else{
-        Head(*Q)=Next(Head(*Q));
+        HeadQ(*Q)=NextQ(HeadQ(*Q));
     }
-    *X = Info(P);
+    *X = InfoQ(P);
     DealokasiQ(P);
 }
 /* Proses: Menghapus X pada bagian HEAD dari Q dan mendealokasi
    elemen HEAD */
 /* Pada dasarnya operasi delete first */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "mundur" */
+/* F.S. X = NilQai elemen HEAD pd I.S., HEAD "mundur" */

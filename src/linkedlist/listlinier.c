@@ -12,13 +12,13 @@ Deskripsi: linked list
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
 boolean IsListEmpty (LinkedList L){
-    return(First(L) == Nil);
+    return(First(L) == NilLin);
 }
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
 void CreateEmptyList (LinkedList *L){
-    First(*L) = Nil;
+    First(*L) = NilLin;
 }
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
@@ -26,19 +26,19 @@ void CreateEmptyList (LinkedList *L){
 /****************** Manajemen Memori ******************/
 addressList AlokasiList (infotypeList X){
     linElmtList *P = (linElmtList *) malloc(sizeof(linElmtList));
-    if (P != Nil){
+    if (P != NilLin){
         Info(P) = X;
-        Next(P) = Nil;
+        Next(P) = NilLin;
         return P;
     }
     else {
-        return Nil;
+        return NilLin;
     }
 }
 /* Mengirimkan addressList hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka addressList tidak nil, dan misalnya */
-/* menghasilkan P, maka Info(P)=X, Next(P)=Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
+/* Jika alokasi berhasil, maka addressList tidak NilLin, dan misalnya */
+/* menghasilkan P, maka Info(P)=X, Next(P)=NilLin */
+/* Jika alokasi gagal, mengirimkan NilLin */
 void DealokasiList (addressList *P){
     free(*P);
 }
@@ -50,9 +50,9 @@ void DealokasiList (addressList *P){
 addressList SearchList (LinkedList L, infotypeList X){
     boolean found = false;
     addressList cpointer = First(L); //current pointer
-    addressList fpointer = Nil; //alokasi pointer untuk adress
+    addressList fpointer = NilLin; //alokasi pointer untuk adress
     if(!IsListEmpty(L)){
-        while ((cpointer != Nil) && (!found)){
+        while ((cpointer != NilLin) && (!found)){
             if (Info(cpointer) == X){
                 fpointer = cpointer;
                 found = true;
@@ -65,29 +65,29 @@ addressList SearchList (LinkedList L, infotypeList X){
 }
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan addressList elemen tersebut. */
-/* Jika tidak ada, mengirimkan Nil */
+/* Jika tidak ada, mengirimkan NilLin */
 
-/****************** PRIMITIF BERDASARKAN NILAI ******************/
+/****************** PRIMITIF BERDASARKAN NilLinAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
 void InsVFirst (LinkedList *L, infotypeList X){
     addressList P = AlokasiList(X);
-    if (P != Nil){
+    if (P != NilLin){
         InsertFirst(L, P);
     }
 }
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
-/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+/* menambahkan elemen pertama dengan NilLinai X jika alokasi berhasil */
 void InsVLast (LinkedList *L, infotypeList X){
     addressList P = AlokasiList(X);
-    if (P != Nil){
+    if (P != NilLin){
         InsertLast(L, P);
     }
 }
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
-/* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
+/* berNilLinai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
 void DelVFirst (LinkedList *L, infotypeList *X){
@@ -97,7 +97,7 @@ void DelVFirst (LinkedList *L, infotypeList *X){
     DealokasiList(&P);
 }
 /* I.S. LinkedList L tidak kosong  */
-/* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
+/* F.S. Elemen pertama list dihapus: NilLinai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
 void DelVLast (LinkedList *L, infotypeList *X){
     addressList P;
@@ -106,7 +106,7 @@ void DelVLast (LinkedList *L, infotypeList *X){
     DealokasiList(&P);
 }
 /* I.S. list tidak kosong */
-/* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
+/* F.S. Elemen terakhir list dihapus: NilLinai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
@@ -126,12 +126,12 @@ void InsertAfter (LinkedList *L, addressList P, addressList Prec){
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
 void InsertLast (LinkedList *L, addressList P){
     if (IsListEmpty(*L)){
-        Next(P) = Nil;
+        Next(P) = NilLin;
         First(*L) = P;
     }
     else{
         addressList last = First(*L);
-        while(Next(last) != Nil) {
+        while(Next(last) != NilLin) {
             last = Next(last);
         }
         InsertAfter(L, P, last);
@@ -143,7 +143,7 @@ void InsertLast (LinkedList *L, addressList P){
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
 void DelFirst (LinkedList *L, addressList *P){
     *P = First(*L);
-    if (Next(First(*L)) == Nil){
+    if (Next(First(*L)) == NilLin){
         CreateEmptyList(L);
     }
     else{
@@ -156,7 +156,7 @@ void DelFirst (LinkedList *L, addressList *P){
 /* First element yg baru adalah suksesor elemen pertama yang lama */
 void DelP (LinkedList *L, infotypeList X){
     addressList P = SearchList(*L, X);
-    if (P != Nil){
+    if (P != NilLin){
         addressList prec = First(*L);
         if (prec == P){
             DelFirst(L, &P);
@@ -172,18 +172,18 @@ void DelP (LinkedList *L, infotypeList X){
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
-/* Jika ada lebih dari satu elemen list dengan Info bernilai X */
+/* Jika ada lebih dari satu elemen list dengan Info berNilLinai X */
 /* maka yang dihapus hanya elemen pertama dengan Info = X */
 /* Jika tidak ada elemen list dengan Info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 void DelLast (LinkedList *L, addressList *P){
-    if (Next(First(*L)) == Nil){
+    if (Next(First(*L)) == NilLin){
         *P = First(*L);
         CreateEmptyList(L);
     }
     else {
         addressList prec = First(*L);
-        while(Next(Next(prec)) != Nil){
+        while(Next(Next(prec)) != NilLin){
             prec = Next(prec);
         }
         DelAfter(L, P, prec);
@@ -196,7 +196,7 @@ void DelLast (LinkedList *L, addressList *P){
 /* jika ada */
 void DelAfter (LinkedList *L, addressList *Pdel, addressList Prec){
     *Pdel = Next(Prec);
-    if (*Pdel != Nil){
+    if (*Pdel != NilLin){
         Next(Prec) = Next(Next(Prec));
     }
 }
@@ -210,10 +210,10 @@ void PrintInfo (LinkedList L){
     printf("[");
     if (!IsListEmpty(L)){
         addressList cpointer = First(L);
-        while (cpointer != Nil){
+        while (cpointer != NilLin){
             printf("%d",Info(cpointer));
             cpointer = Next(cpointer);
-            if (cpointer != Nil){
+            if (cpointer != NilLin){
                 printf(",");
             }
         }
@@ -223,13 +223,13 @@ void PrintInfo (LinkedList L){
 
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+/* Contoh : jika ada tiga elemen berNilLinai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
 int NbElmtLinkedList (LinkedList L){
     int Count = 0;
     addressList cpointer = First(L);
-    while(cpointer != Nil){
+    while(cpointer != NilLin){
         cpointer = Next(cpointer);
         Count++;
     }
@@ -242,7 +242,7 @@ int NbElmtLinkedList (LinkedList L){
 infotypeList Min (LinkedList L){
     addressList Min = First(L);
     addressList cpointer = First(L);
-    while(cpointer != Nil){
+    while(cpointer != NilLin){
         if (Info(cpointer) < Info(Min)){
             Min = cpointer;
         }
@@ -250,14 +250,14 @@ infotypeList Min (LinkedList L){
     }
     return Info(Min);
 }
-/* Mengirimkan nilai Info(P) yang minimum */
+/* Mengirimkan NilLinai Info(P) yang minimum */
 
 /*** Prekondisi untuk Max: List tidak kosong ***/
 
 infotypeList Max (LinkedList L){
     addressList Max = First(L);
     addressList cpointer = First(L);
-    while(cpointer != Nil){
+    while(cpointer != NilLin){
         if (Info(cpointer) > Info(Max)){
             Max = cpointer;
         }
@@ -265,7 +265,7 @@ infotypeList Max (LinkedList L){
     }
     return Info(Max);
 }
-/* Mengirimkan nilai Info(P) yang maksimum */
+/* Mengirimkan NilLinai Info(P) yang maksimum */
 
 /****************** PROSES TERHADAP LIST ******************/
 void Konkat1 (LinkedList *L1, LinkedList *L2, LinkedList *L3){
@@ -273,7 +273,7 @@ void Konkat1 (LinkedList *L1, LinkedList *L2, LinkedList *L3){
     if (!(IsListEmpty(*L1))){
         First(*L3) = First(*L1);
         addressList last1 = First(*L1);
-        while(Next(last1) != Nil) {
+        while(Next(last1) != NilLin) {
             last1 = Next(last1);
         }
         Next(last1) = First(*L2);

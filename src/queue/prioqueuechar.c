@@ -4,7 +4,7 @@
 
 /* ********* Prototype ********* */
 boolean IsEmptyPrio (PrioQ Q){
-    return ((HeadPrio(Q) == Nil) && (TailPrio(Q) == Nil));
+    return ((HeadPrio(Q) == Nill) && (TailPrio(Q) == Nill));
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 boolean IsFullPrio (PrioQ Q){
@@ -28,8 +28,8 @@ void MakeEmptyPrio (PrioQ * Q, int Max){
     (*Q).T = (InfotypeQ *) malloc ((Max + 1) * sizeof(InfotypeQ));
     if ((*Q).T != NULL) {
         MaxEl(*Q) = Max;
-        HeadPrio(*Q) = Nil;
-        TailPrio(*Q) = Nil;
+        HeadPrio(*Q) = Nill;
+        TailPrio(*Q) = Nill;
     }else{
         MaxEl(*Q) = 0;
     }
@@ -43,8 +43,8 @@ void MakeEmptyPrio (PrioQ * Q, int Max){
 /* *** Destruktor *** */
 void DeAlokasiPrio(PrioQ * Q){
     MaxEl(*Q) = 0;
-    TailPrio(*Q)=Nil;
-    HeadPrio(*Q)=Nil;
+    TailPrio(*Q)=Nill;
+    HeadPrio(*Q)=Nill;
     free((*Q).T); 
 }
 /* Proses: Mengembalikan memori Q */
@@ -80,8 +80,8 @@ void EnqueuePrio (PrioQ * Q, InfotypeQ X){
 void DequeuePrio (PrioQ * Q, InfotypeQ * X){
     *X= InfoHead(*Q);
     if (NBElmtPrio(*Q) == 1) {
-        HeadPrio(*Q) = Nil;
-        TailPrio(*Q) = Nil;
+        HeadPrio(*Q) = Nill;
+        TailPrio(*Q) = Nill;
     }else if (HeadPrio(*Q) == MaxEl(*Q)) {
         HeadPrio(*Q) = 0;
     }else{
@@ -90,7 +90,7 @@ void DequeuePrio (PrioQ * Q, InfotypeQ * X){
 }
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
+/* F.S. X = Nillai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
         Q mungkin kosong */
 
 /* Operasi Tambahan */
@@ -98,11 +98,11 @@ void PrintPrioQueue (PrioQ Q){ //PERLU DIUBAH
     InfotypeQ X;
     int i;
     for(i = HeadPrio(Q); i < TailPrio(Q); i++){
-		PrintInfo(InfoQ(ElmtPrio(Q, i)));printf(", kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
+		PrintInfo(InfoPrio(ElmtPrio(Q, i)));printf(", kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
 	}
 	if(!IsEmptyPrio(Q)){
 		i = TailPrio(Q);
-		PrintInfo(InfoQ(ElmtPrio(Q, i)));printf(" ,kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
+		PrintInfo(InfoPrio(ElmtPrio(Q, i)));printf(" ,kesabaran: %d\n", PrioQ(ElmtPrio(Q, i)));
     }
 }
 /* Mencetak isi queue Q ke layar */

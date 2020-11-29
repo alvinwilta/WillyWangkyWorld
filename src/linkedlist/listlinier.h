@@ -8,7 +8,7 @@
 
 #include "../boolean.h"
 
-#define Nil NULL
+#define NilLin NULL
 
 typedef int infotypeList;
 typedef struct linElmtlist *addressList;

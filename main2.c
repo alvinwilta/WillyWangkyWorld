@@ -30,7 +30,7 @@ void main_menu(){
     printf("   |/ |/  _((/_(/_(_/_       |/ |/ (_(/ ((_/_/(_(_/_ /_)_       |/ |/ (_) ((/_(_(_  \n");
     printf("   /  |          .-/         /  |       .-/    .-/              /  |                \n");
     printf("                (_/                    (_/    (_/                                   \n");
-    printf("Welcome to Willy wangky's fum factory!!\n");
+    printf("Welcome to Willy wangky's fun factory!!\n");
     printf("------------------------------\n");
 
     printf("1. LOAD GAME\n");
@@ -300,7 +300,7 @@ void legenda(Player P1){
     printf("%d\n", Money(&P1));
     printf("A : <%d,%d>\n", Absis(P1.pos), Ordinat(P1.pos));
     printf("%s\n",input);
-    
+
     printf("Current Time: "); printf("%02d",Hour(Wkt(&P1)));printf(".%02d\n",Minute(Wkt(&P1)));
     printf("Opening Time: 09.00\n");
     printf("Time Remaining: "); printf("%d",(21 - Hour(Wkt(&P1)))); printf(" hour(s)\n");
@@ -357,4 +357,3 @@ void game(Player P1){
 int main(){
     main_menu();
     return 0;
-}

@@ -9,13 +9,13 @@
 #include "../boolean.h"
 #include "../linkedlist/listlinier.h"
 
-#define Nil -1
+#define Nill -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
 typedef struct {
     int prio;  /* [1..100], prioritas/kesabaran dengan nilai 1..5 (1 adalah prioritas tertinggi) */
-    LinkedList info;  /* list wahana */
+    LinkedList infoPrio;  /* list wahana */
 } InfotypeQ;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueueChar : */
@@ -31,7 +31,7 @@ typedef struct {
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah InfotypeQ dan Q adalah PrioQ, maka akses elemen : */
 #define PrioQ(e)     (e).prio
-#define InfoQ(e)     (e).info
+#define InfoPrio(e)     (e).infoPrio
 #define HeadPrio(Q)     (Q).HEADPrio
 #define TailPrio(Q)     (Q).TAILPrio
 #define InfoHead(Q) (Q).T[(Q).HEADPrio]

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 /* Konstanta */
-#define Nil NULL
+#define NilQ NULL
 
 /* Deklarasi infotype */
 typedef int infotype;
@@ -14,23 +14,23 @@ typedef int infotype;
 /* Queue dengan representasi berkait dengan pointer */
 typedef struct tElmtQueue * addressQ;
 typedef struct tElmtQueue { 
-	infotype Info;
-	addressQ Next; 
+	infotype InfoQ;
+	addressQ NextQ; 
 } ElmtQueue; 
 
 /* Type queue dengan ciri HEAD dan TAIL : */
 typedef struct { 
-	addressQ HEAD;  /* alamat penghapusan */
-	addressQ TAIL;  /* alamat penambahan */
+	addressQ HEADQ;  /* alamat penghapusan */
+	addressQ TAILQ;  /* alamat penambahan */
 } Queue;
 
 /* Selektor */
-#define Head(Q) (Q).HEAD
-#define Tail(Q) (Q).TAIL
-#define InfoHead(Q) (Q).HEAD->Info
-#define InfoTail(Q) (Q).TAIL->Info
-#define Next(P) (P)->Next
-#define Info(P) (P)->Info
+#define HeadQ(Q) (Q).HEADQ
+#define TailQ(Q) (Q).TAILQ
+#define InfoHeadQ(Q) (Q).HEAD->InfoQ
+#define InfoTailQ(Q) (Q).TAIL->InfoQ
+#define NextQ(P) (P)->NextQ
+#define InfoQ(P) (P)->InfoQ
 
 /* Prototype manajemen memori */
 void AlokasiQ (addressQ *P, infotype X);

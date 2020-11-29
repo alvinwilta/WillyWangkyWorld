@@ -5,15 +5,18 @@
 
 extern MATRIKS M;
 extern Player P1;
+extern Stack S1;
 extern int menu1;
-extern Kata name;
+extern char name[20];
 extern POINT PosPlayer;
 extern int Money;
 extern int currDay;
 extern int X;
 extern Queue Q1;
 extern PrioQ PQ1;
-Wahana W1;
+extern Wahana ListWahana[20];
+//Wahana W1;
+POINT PosOffice;
 
 void legendMain(Player P1)
 {
@@ -25,7 +28,7 @@ void legendMain(Player P1)
     printf("<, ^, >, V = Gerbang\n");
     printf("\n");
     printf("Nama: ");
-    printKata(name);
+    printf("%s",name);
     printf("Money: ");
     printf("%d\n", Money(&P1));
     printf("Current Time: ");
@@ -40,48 +43,73 @@ void legendMain(Player P1)
     printf("\n");
 }
 
-void PrintDetail(Wahana W1)
+void PrintDetail(Wahana ListWahana[], int i)
 {
-    printf("Nama : %s\n", JenisW(&W1));
-    printf("Lokasi : (%d,%d)\n", Absis(PosW(&W1)), Ordinat(PosW(&W1)));
-    printf("Deskripsi : %s\n", DeskripsiW(&W1));
-    printf("Harga : %d\n", TarifW(&W1));
-    printf("Kapasitas : %d \n", KapasitasW(&W1));
-    printf("Upgrade(s) : \n");
-    printf("Durasi : %d\n", DurasiW(&W1));
-    if (Rusak(&W1))
-        printf("Status : Rusak\n");
+    printf("Nama : %s \n", JenisW(&ListWahana[i]));
+    printf("Lokasi : (%d,%d) \n", Absis(PosW(&ListWahana[i])), Ordinat(PosW(&ListWahana[i])));
+    printf("Deskripsi : %s \n", DeskripsiW(&ListWahana[i]));
+    printf("Harga : %d \n", TarifW(&ListWahana[i]));
+    printf("Kapasitas : %d \n", KapasitasW(&ListWahana[i]));
+    printf("Upgrade(s) : "); PrintList(HistoryW(&ListWahana[i])); printf("\n");
+    printf("Durasi : %d \n", DurasiW(&ListWahana[i]));
+    if (Rusak(&ListWahana[i]))
+        printf("Status : Rusak \n");
     else
-        printf("Status : Berfungsi\n");
+        printf("Status : Berfungsi \n");
 }
 
-void Detail(Player P1, Wahana W1)
+void PrintOffice(Wahana ListWahana[], int i)
 {
-    if (Absis(Pos(&P1)) == Absis(PosW(&W1)) && Ordinat(Pos(&P1)) == Ordinat(PosW(&W1)) + 1)
-    {
-        // Wahana berada di atas player
-        PrintDetail(W1);
+    printf("Nama : %s \n", JenisW(&ListWahana[i]));
+    printf("Lokasi : (%d,%d) \n", Absis(PosW(&ListWahana[i])), Ordinat(PosW(&ListWahana[i])));
+    printf("Deskripsi : %s \n", DeskripsiW(&ListWahana[i]));
+    printf("Harga : %d \n", TarifW(&ListWahana[i]));
+    printf("Kapasitas : %d \n", KapasitasW(&ListWahana[i]));
+    printf("Upgrade(s) : "); PrintList(HistoryW(&ListWahana[i])); printf("\n");
+    printf("Durasi : %d \n", DurasiW(&ListWahana[i]));
+    if (Rusak(&ListWahana[i]))
+        printf("Status : Rusak \n");
+    else
+        printf("Status : Berfungsi \n");
+    
+    printf("Berapa kali wahana dinaiki : %d \n", TotalPenggunaan(&ListWahana[i]));
+    printf("Total penghasilan wahana : %d \n", TotalPendapatan(&ListWahana[i]));
+    printf("Berapa kali wahana dinaiki hari ini : %d \n", CurrentPenggunaan(&ListWahana[i]));
+    printf("Total penghasilan wahana dinaiki hari ini : %d \n", CurrentPendapatan(&ListWahana[i]));
+}
+
+void Detail(Player P1, Wahana W[])
+{
+    int i=0;
+    while (i<sizeof (W)/sizeof (W[0])){
+        if (Absis(Pos(&P1)) == Absis(PosW(&W[i])) && Ordinat(Pos(&P1)) == Ordinat(PosW(&W[i])) + 1)
+        {
+            // Wahana berada di atas player
+            PrintDetail(W, i);
+        }
+        else if (Absis(Pos(&P1)) == Absis(PosW(&W[i])) && Ordinat(Pos(&P1)) == Ordinat(PosW(&W[i])) - 1)
+        {
+            // Wahana berada di bawah player
+            PrintDetail(W, i);
+        }
+        else if (Absis(Pos(&P1)) == Absis(PosW(&W[i])) - 1 && Ordinat(Pos(&P1)) == Ordinat(PosW(&W[i])))
+        {
+            // Wahana berada di kanan player
+            PrintDetail(W, i);
+        }
+        else if (Absis(Pos(&P1)) == Absis(PosW(&W[i])) + 1 && Ordinat(Pos(&P1)) == Ordinat(PosW(&W[i])))
+        {
+            // Wahana berada di kiri player
+            PrintDetail(W, i);
+        }
+        i++;
     }
-    else if (Absis(Pos(&P1)) == Absis(PosW(&W1)) && Ordinat(Pos(&P1)) == Ordinat(PosW(&W1)) - 1)
-    {
-        // Wahana berada di bawah player
-        PrintDetail(W1);
-    }
-    else if (Absis(Pos(&P1)) == Absis(PosW(&W1)) - 1 && Ordinat(Pos(&P1)) == Ordinat(PosW(&W1)))
-    {
-        // Wahana berada di kanan player
-        PrintDetail(W1);
-    }
-    else if (Absis(Pos(&P1)) == Absis(PosW(&W1)) + 1 && Ordinat(Pos(&P1)) == Ordinat(PosW(&W1)))
-    {
-        // Wahana berada di kiri player
-        PrintDetail(W1);
-    }
+    
 }
 
 void Serve(int *ID)
 {
-    /*Serve sehingga dequeue*/
+    /*Serve sehingga dequeue
     Wahana W;
     IDW(&W) = ID;
     DequeueQ(&Q1, X);
@@ -89,36 +117,68 @@ void Serve(int *ID)
     {
         DequeuePrio(&PQ1, X);
     }
-    AddWaktu(&P1, 10);
+    AddWaktu(&P1, 10);*/
+    return;
 }
 
 void Prepare()
-{
+{/*
     Hour(P1.wkt) = 21;
     Minute(P1.wkt) = 0;
     MakeEmptyPrio(&PQ1, 5);
-    Preparation(P1);
+    Preparation(P1, name, currDay, S1);*/
 }
 
 void Repair(Wahana *W, PrioQ *PQ1)
-{
+{/*
     Rusak(W) = false;
-    PrioQ(HeadPrio(*PQ1)) -= 1;
+    PrioQ(HeadPrio(*PQ1)) -= 1;*/
 }
 
-void Office()
+void GameOver(){
+    /*
+    if(PrioQ(HeadPrio(*PQ1))==0){ 
+        quit();
+    }*/
+}
+
+void Office(Player P, Wahana ListWahana[])
 {
+    if (Ordinat(Pos(&P)) == Ordinat(PosOffice)){
+        if (Absis(Pos(&P)) == Absis(PosOffice)) {
+            int i=0;
+            while (i<sizeof (ListWahana)/sizeof (ListWahana[0])){
+                PrintOffice(ListWahana, i);
+                i++;
+            }
+        //PosW(ListWahana[i])
+        //JenisW(ListWahana[i])
+        }
+    }
+    
 }
 
 void Antrian(PrioQ PQ1)
 {
+    /*
     Queue QAntrian;
     int panjang_antrian = (rand() % 5);
     CreateEmptyQ(&QAntrian);
     for (int i = 0; i < panjang_antrian; i++)
     {
-        /*Inisialisasi ID Wahana kita*/
+        Inisialisasi ID Wahana kita
         EnqueueQ(&QAntrian, (rand() % 10));
     }
-    EnqueuePrio(&PQ1, QAntrian);
+    EnqueuePrio(&PQ1, QAntrian);*/
+    return;
 }
+
+void kePrepare(){
+    if (Hour(P1.wkt)>21){
+        Preparation(P1, name, currDay, S1);
+    }
+}
+
+
+
+
