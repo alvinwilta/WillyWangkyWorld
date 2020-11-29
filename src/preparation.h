@@ -11,9 +11,10 @@
 #include "./matriks/matriks.h"
 #include "./tree/listrek.h"
 #include "./point/point.h"
-#include "./stack/stack.h"
 #include "./player/player.h"
-#include "boolean.h"
+#include "./stack/stack.h"
+#include "./mesinkata/mesinkata.h"
+#include "./mesinkata/mesinkar.h"
 
 extern MATRIKS M;
 extern Player P1;
@@ -23,15 +24,12 @@ extern POINT PosPlayer;
 extern int Money;
 extern int currDay;
 
-Wahana Build(Player *P, POINT pos);
-
-void Buy(Player *P);
-
+Wahana Build(Player *P, POINT pos, Stack S);
+void UpgradeWahana(Player *P, Wahana *W, Stack S);
+void Buy(Player *P, Stack S);
 void deBuy(Player *P, int jenis, int N);
-void UpgradeWahana(Player *P, Wahana *W);
+void legendPrep(Player P1, Kata name);
+void Preparation(Player P, Kata name, int currDay, Stack S);
 
-void legendPrep(Player P1, int TotalAksi, int TotalDetikJam, int TotalUangPreparation);
-void Preparation(Player P);
-
-void Undo(Wahana W);
+void Undo(Player P, Kata name, int currDay, Stack S);
 #endif
