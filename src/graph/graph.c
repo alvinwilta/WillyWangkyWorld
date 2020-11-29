@@ -127,55 +127,55 @@ Graph initGraphMap(Graph *G, MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D) {
 POINT lokasiPlayer(Graph *G, int A, int B) {
     if (A==1) {
         if (B==2) {
-            return MakePOINT(2,3);
+            return MakePOINT(1,2);
         } else if (B==4) {
-            return MakePOINT(10,2);
+            return MakePOINT(9,1);
         }
     } else if (A==2) {
         if (B==1) {
-            return MakePOINT(19,3);
+            return MakePOINT(18,2);
         } else if (B==3) {
-            return MakePOINT(13,2);
+            return MakePOINT(12,1);
         }
     } else if (A==3) {
         if (B==2) {
-            return MakePOINT(13,9);
+            return MakePOINT(12,8);
         } else if (B==4) {
-            return MakePOINT(19,6);
+            return MakePOINT(18,5);
         }
     } else if (A==4) {
         if (B==1) {
-            return MakePOINT(10,9);
+            return MakePOINT(9,8);
         } else if (B==3) {
-            return MakePOINT(2,6);
+            return MakePOINT(1,5);
         }
     }
 }
 /* menunjukkan lokasi player setelah berpindah dari area ID A ke area ID B*/
 
-addressNode moveGraph(Graph *G, addressNode CurrNode, int Gerbang) {
+addressNode moveGraph(Graph *G, int IdGraph, int Gerbang) {
     if (Gerbang==2) {
-        if (ID(CurrNode)==3) {
+        if (IdGraph==3) {
             return searchNodeId(G,2);
-        } else if (ID(CurrNode)==4) {
+        } else if (IdGraph==4) {
             return searchNodeId(G,1);
         }
     } else if (Gerbang==3) {
-        if (ID(CurrNode)==1) {
+        if (IdGraph==1) {
             return searchNodeId(G,2);
-        } else if (ID(CurrNode)==4) {
+        } else if (IdGraph==4) {
             return searchNodeId(G,3);
         }
     } else if (Gerbang==4) {
-        if (ID(CurrNode)==1) {
+        if (IdGraph==1) {
             return searchNodeId(G,4);
-        } else if (ID(CurrNode)==2) {
+        } else if (IdGraph==2) {
             return searchNodeId(G,3);
         }
     } else if (Gerbang==5) {
-        if (ID(CurrNode)==2) {
+        if (IdGraph==2) {
             return searchNodeId(G,1);
-        } else if (ID(CurrNode)==3) {
+        } else if (IdGraph==3) {
             return searchNodeId(G,4);
         }
     }

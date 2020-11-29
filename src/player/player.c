@@ -4,6 +4,7 @@
 #include "../point/point.h"
 #include "../jam/jam.h"
 #include "../array/array.h"
+#include "../graph/graph.h"
 #include "player.h"
 
 /* *** Primitif-primitif yang harus direalisasikan *** */
@@ -198,5 +199,109 @@ void SubPaku(Player *P, ElType X)
     {
         int total = X * 30;
         Elmt(Mat(P), 2) -= X;
+    }
+}
+
+void CekKanan(Player *P, Graph *G, int PosGraph) {
+    MATRIKS Peta = MatriksGraph(searchNodeId(G,PosGraph));
+    int PosPeta = ElmtM(Peta,Ordinat(Pos(P))+1,Absis(Pos(P)));
+    if (PosPeta==1) {
+        // Kalau ketemu tempat kosong
+        Kanan(P);
+    } else if (PosPeta==7) {
+        // Masuk office
+        office();
+        Kanan(P);
+    } else if (PosPeta==0) {
+        printf("Ada dinding!\n");
+    } else if (PosPeta==6) {
+        printf("Ada gedung antrian!\n");
+    } else if (PosPeta==8) {
+        printf("Ada wahana!\n");
+    } else if (PosPeta==3) {
+        addressNode Q = moveGraph(G,PosGraph,3);
+        Pos(P) = lokasiPlayer(G,PosGraph,ID(Q));
+        PosGraph = ID(Q);
+    } else {
+        Kanan(P);
+        printf("Error matrix\n");
+    }
+}
+
+void CekKiri(Player *P, Graph *G, int PosGraph) {
+    MATRIKS Peta = MatriksGraph(searchNodeId(G,PosGraph));
+    int PosPeta = ElmtM(Peta,Ordinat(Pos(P))-1,Absis(Pos(P)));
+    if (PosPeta==1) {
+        // Kalau ketemu tempat kosong
+        Kiri(P);
+    } else if (PosPeta==7) {
+        // Masuk office
+        office();
+        Kiri(P);
+    } else if (PosPeta==0) {
+        printf("Ada dinding!\n");
+    } else if (PosPeta==6) {
+        printf("Ada gedung antrian!\n");
+    } else if (PosPeta==8) {
+        printf("Ada wahana!\n");
+    } else if (PosPeta==5) {
+        addressNode Q = moveGraph(G,PosGraph,5);
+        Pos(P) = lokasiPlayer(G,PosGraph,ID(Q));
+        PosGraph = ID(Q);
+    } else {
+        Kiri(P);
+        printf("Error matrix\n");
+    }
+}
+
+void CekMaju(Player *P, Graph *G, int PosGraph) {
+    MATRIKS Peta = MatriksGraph(searchNodeId(G,PosGraph));
+    int PosPeta = ElmtM(Peta,Ordinat(Pos(P)),Absis(Pos(P))+1);
+    if (PosPeta==1) {
+        // Kalau ketemu tempat kosong
+        Maju(P);
+    } else if (PosPeta==7) {
+        // Masuk office
+        office();
+        Maju(P);
+    } else if (PosPeta==0) {
+        printf("Ada dinding!\n");
+    } else if (PosPeta==6) {
+        printf("Ada gedung antrian!\n");
+    } else if (PosPeta==8) {
+        printf("Ada wahana!\n");
+    } else if (PosPeta==2) {
+        addressNode Q = moveGraph(G,PosGraph,2);
+        Pos(P) = lokasiPlayer(G,PosGraph,ID(Q));
+        PosGraph = ID(Q);
+    } else {
+        Maju(P);
+        printf("Error matrix\n");
+    }
+}
+
+void CekMundur(Player *P, Graph *G, int PosGraph) {
+    MATRIKS Peta = MatriksGraph(searchNodeId(G,PosGraph));
+    int PosPeta = ElmtM(Peta,Ordinat(Pos(P)),Absis(Pos(P))+1);
+    if (PosPeta==1) {
+        // Kalau ketemu tempat kosong
+        Maju(P);
+    } else if (PosPeta==7) {
+        // Masuk office
+        office();
+        Maju(P);
+    } else if (PosPeta==0) {
+        printf("Ada dinding!\n");
+    } else if (PosPeta==6) {
+        printf("Ada gedung antrian!\n");
+    } else if (PosPeta==8) {
+        printf("Ada wahana!\n");
+    } else if (PosPeta==4) {
+        addressNode Q = moveGraph(G,PosGraph,4);
+        Pos(P) = lokasiPlayer(G,PosGraph,ID(Q));
+        PosGraph = ID(Q);
+    } else {
+        Maju(P);
+        printf("Error matrix\n");
     }
 }

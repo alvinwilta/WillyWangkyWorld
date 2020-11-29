@@ -12,10 +12,12 @@ POINT PosPlayer;
 PrioQ PQ1;
 JAM CurrTime;
 int Money;
-int currGraph;
+int PosGraph;
 boolean prepFase;
 int currDay;
 int stacktotalAksi, stacktotalJam, stacktotalUang;
+Graph G;
+POINT PosOffice, PosAntrian;
 
 void quit(){
     printf("Thanks for playing!!\n");
@@ -60,8 +62,10 @@ void init(Player P1){
     MakeMATRIKS(10,20,&M4);
     currDay = 1;
     prepFase = true;
-    currGraph = 1;
+    PosGraph = 1;
     stacktotalAksi, stacktotalJam, stacktotalUang = 0;
+    PosOffice = MakePOINT(7,1);
+    PosAntrian = MakePOINT(4,1);
     CreateEmpty(&S1);
     CreateEmpty(&S2);
     CreateEmpty(&S3);
@@ -77,34 +81,9 @@ void legenda(Player P1){
     if (prepFase = false){
         printf("Main Phase Day ");printf("%d\n",currDay);
     }
-    /*Ini TEMPAT MAP
-    for(int i = 0;i < 10; i++){
-        for(int j = 0; j < 20; j++){
-            if (ElmtM(currMatriks(currGraph),i,j)==9){
-                printf("P");
-            }
-            else if (ElmtM(currMatriks(currGraph),i,j)==0){
-                printf("*");
-            }
-            else if (ElmtM(currMatriks(currGraph),i,j)==6){
-                printf("A");
-            }
-            else if (ElmtM(currMatriks(currGraph),i,j)==7){
-                printf("O");
-            }
-            else if (ElmtM(currMatriks(currGraph),i,j)==3){
-                printf(">");
-            }
-            else if (ElmtM(currMatriks(currGraph),i,j)==4){
-                printf("V");
-            }
-            else{
-                printf("-");
-            }
-        }
-        printf("\n");
-    }
-    */
+    printPeta(P1,G,PosGraph,PosAntrian,PosOffice);
+    // PRINT PETA
+    printf(" \n");
     printf("Legend:\n");
     printf("P = Player\n");
     printf("W = Wahana\n");
@@ -136,41 +115,33 @@ void legenda(Player P1){
 }
 
 void game(Player P1){
-    if(currGraph==1){
-        if (strcmp(input,"s")){
-            Mundur(&P1);
-            AddWaktu(&P1, 1);
-        }
-        if (strcmp(input,"a")){
-            Kanan(&P1);
-            AddWaktu(&P1, 1);
-        }
-        if (strcmp(input,"d")){
-            Kiri(&P1);
-            AddWaktu(&P1, 1);
-        }
-        if (strcmp(input,"w")){
-            Maju(&P1);
-            AddWaktu(&P1, 1);
-        }
-        if(Ordinat(P1.pos)==GetLastIdxBrs(M1)){
-            currGraph==4;
-            Ordinat(P1.pos) = (Ordinat(P1.pos)-8);
-        }else if(Absis(P1.pos)==GetLastIdxKol(M1)){
-            currGraph==2;
-            Absis(P1.pos) = Absis(P1.pos)-18;
-        }else{
-            printf("Ada Tembok!");
-            if(Ordinat(P1.pos)==GetFirstIdxBrs(M1)){
-                Ordinat(P1.pos) = Ordinat(P1.pos) + 1;
-            }else if(Absis(P1.pos)==GetFirstIdxKol(M1)){
-                Absis(P1.pos) = Absis(P1.pos) + 1;
-            }
-        }
+    if (strcmp(input,"s")){
+        CekMundur(&P1,&G,&PosGraph);
+        AddWaktu(&P1, 1);
+    }
+    if (strcmp(input,"a")){
+        CekKanan(&P1,&G,&PosGraph);
+        AddWaktu(&P1, 1);
+    }
+    if (strcmp(input,"d")){
+        CekKiri(&P1,&G,&PosGraph);
+        AddWaktu(&P1, 1);
+    }
+    if (strcmp(input,"w")){
+        CekMaju(&P1,&G,&PosGraph);
+        AddWaktu(&P1, 1);
     }
 }
 
 int main(){
     main_menu();
     return 0;
+}
+
+void printPeta(Player P1, Graph G, int PosGraph, POINT PosAntrian, POINT PosOffice) {
+    MATRIKS iniPeta = MatriksGraph(searchNodeId(&G,PosGraph));
+    ElmtM(iniPeta,Ordinat(PosAntrian),Absis(PosAntrian)) = 6;
+    ElmtM(iniPeta,Ordinat(Pos(&P1)),Absis(Pos(&P1)))=9;
+    ElmtM(iniPeta,Ordinat(PosOffice),Absis(PosOffice)) = 7;
+    TulisMATRIKS(iniPeta);
 }
