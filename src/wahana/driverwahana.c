@@ -10,7 +10,7 @@ int main()
     POINT P;
     Absis(P) = 2;
     Ordinat(P) = 3;
-    char s[] = "Pokpok";
+    char s[30] = "Pokpok";
     Wahana W = NewWahana(s, 0001, P);
     printf("%s\n", JenisW(&W));
     printf("id: %d\n", IDW(&W));

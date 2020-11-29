@@ -22,7 +22,7 @@ typedef struct twahana
     int kapasitas;        // kapasitas wahana per permainan
     int tarif;            // tarif per permainan
     int durasi;           // durasi dalam menit
-    BinTree history_upgrade; // history upgrade berdasarkan tree wahana dan upgrade yang dipilih, implementasi list berkait
+    List history_upgrade; // history upgrade berdasarkan tree wahana dan upgrade yang dipilih, implementasi list berkait
     int isi_pengunjung;   // kapasitas wahana yang sudah terisi
     // Laporan Wahana
     int pendapatan_total;        // total pendapatan wahana selama game berjalan
@@ -54,7 +54,7 @@ typedef struct twahana
 #define Rusak(W) (W)->rusak
 
 /* *** Konstruktor Wahana **** */
-Wahana NewWahana(char jenis[], int id, POINT pos);
+Wahana NewWahana(char jenis[30], int id, POINT pos);
 /* I.S jenis, id, dan pos terdefinisi. ID bersifat unik yang diatur dalam fungsi Build. jenis sudah harus terdaftar di dalam wahana.txt */
 /* F.S Wahana baru terbentuk dengan pos di tempat player membuat wahana. pendapatan dan penggunaan diset default 0 */
 /* deskripsi diset sesuai dengan deskripsi di wahana.txt */
