@@ -4,5 +4,5 @@ kayu
 batu
 20
 
-kaca
+paku
 30
