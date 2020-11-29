@@ -7,37 +7,85 @@
 #include "wahana.h"
 
 /* *** Konstruktor Wahana **** */
-Wahana NewWahana(char jenis[], int id, POINT pos)
+Wahana NewWahana(char *jenis, int id, POINT pos)
 {
     /* I.S jenis, id, dan pos terdefinisi. ID bersifat unik yang diatur dalam fungsi Build. jenis sudah harus terdaftar di dalam wahana.txt */
     /* F.S Wahana baru terbentuk dengan pos di tempat player membuat wahana. pendapatan dan penggunaan diset default 0 */
     /* deskripsi diset sesuai dengan deskripsi di wahana.txt */
     Wahana W;
-    if (!strcmp(jenis, "BigWheel"))
+    strcpy(JenisW(&W), jenis);
+    if (!strcmp(jenis, "halilintar"))
     {
-        strcpy(JenisW(&W), jenis);
-        strcpy(DeskripsiW(&W), "This classic Ferris Wheel is a firm family favorite");
+        strcpy(DeskripsiW(&W), "roller coaster terseru");
+        KapasitasW(&W) = 10;
+        TarifW(&W) = 200;
+        DurasiW(&W) = 5;
     }
-    else if (!strcmp(jenis, "Teacups"))
+    else if (!strcmp(jenis, "bianglala"))
     {
-        strcpy(JenisW(&W), jenis);
-        strcpy(DeskripsiW(&W), "A teacup party. Fits in a small area.");
+        strcpy(DeskripsiW(&W), "gondola terbesar dan paling menegangkan di dunia");
+        KapasitasW(&W) = 15;
+        TarifW(&W) = 100;
+        DurasiW(&W) = 5;
     }
-    else if (!strcmp(jenis, "VenetianCarousel"))
+    else if (!strcmp(jenis, "niagara"))
     {
-        strcpy(JenisW(&W), jenis);
-        strcpy(DeskripsiW(&W), "A traditional Victorian carousel brought back to life.");
+        strcpy(DeskripsiW(&W), "wahana arum jeram yang mendebarkan");
+        KapasitasW(&W) = 15;
+        TarifW(&W) = 100;
+        DurasiW(&W) = 10;
     }
-    else if (!strcmp(jenis, "SmollCoaster"))
+    else if (!strcmp(jenis, "korakora"))
     {
-        strcpy(JenisW(&W), jenis);
-        strcpy(DeskripsiW(&W), "Standard coaster for everybody-almost everybody.");
+        strcpy(DeskripsiW(&W), "wahana yang menantang dan dapat menguji nyali anda");
+        KapasitasW(&W) = 20;
+        TarifW(&W) = 200;
+        DurasiW(&W) = 10;
+    }
+    else if (!strcmp(jenis, "tornado"))
+    {
+        strcpy(DeskripsiW(&W), "wahana yang dijamin membuat kamu pusing 7 keliling");
+        KapasitasW(&W) = 10;
+        TarifW(&W) = 250;
+        DurasiW(&W) = 5;
+    }
+    else if (!strcmp(jenis, "kicirkicir"))
+    {
+        strcpy(DeskripsiW(&W), "membuat kamu berputar seperti sebuah kipas");
+        KapasitasW(&W) = 15;
+        TarifW(&W) = 100;
+        DurasiW(&W) = 10;
+    }
+    else if (!strcmp(jenis, "skydiver"))
+    {
+        strcpy(DeskripsiW(&W), "wahana ini menyajikan sensasi diayun sampai ke luar angkasa");
+        KapasitasW(&W) = 20;
+        TarifW(&W) = 150;
+        DurasiW(&W) = 10;
+    }
+    else if (!strcmp(jenis, "balloon"))
+    {
+        strcpy(DeskripsiW(&W), "wahana balon udara");
+        KapasitasW(&W) = 15;
+        TarifW(&W) = 200;
+        DurasiW(&W) = 15;
+    }
+    else if (!strcmp(jenis, "freefall"))
+    {
+        strcpy(DeskripsiW(&W), "wahana yang menyajikan sensasi dijatuhkan dari ketinggian 10.000 kaki");
+        KapasitasW(&W) = 10;
+        TarifW(&W) = 250;
+        DurasiW(&W) = 5;
+    }
+    else if (!strcmp(jenis, "madhouse"))
+    {
+        strcpy(DeskripsiW(&W), "wahana rumah hantu yang menyajikan pengalaman seram yang berlum pernah anda rasakan");
+        KapasitasW(&W) = 20;
+        TarifW(&W) = 200;
+        DurasiW(&W) = 10;
     }
     IDW(&W) = id;
     PosW(&W) = pos;
-    KapasitasW(&W) = DefKapasitas;
-    TarifW(&W) = DefTarif;
-    DurasiW(&W) = DefDurasi;
     addressrek P = Alokasi(jenis);
     HistoryW(&W) = P;
     IsiW(&W) = 0;
