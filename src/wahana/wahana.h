@@ -54,7 +54,7 @@ typedef struct twahana
 #define Rusak(W) (W)->rusak
 
 /* *** Konstruktor Wahana **** */
-Wahana NewWahana(char jenis[], int id, POINT pos);
+Wahana NewWahana(char jenis[30], int id, POINT pos);
 /* I.S jenis, id, dan pos terdefinisi. ID bersifat unik yang diatur dalam fungsi Build. jenis sudah harus terdaftar di dalam wahana.txt */
 /* F.S Wahana baru terbentuk dengan pos di tempat player membuat wahana. pendapatan dan penggunaan diset default 0 */
 /* deskripsi diset sesuai dengan deskripsi di wahana.txt */

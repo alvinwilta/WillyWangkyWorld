@@ -1,68 +1,66 @@
-/* File : queue.h */
-/* Definisi ADT Queue dengan representasi array secara eksplisit dan alokasi dinamik */
-/* Model Implementasi Versi III dengan circular buffer */
-
-#ifndef queue_H
-#define queue_H
-
+/* File : queuelist.h */
+/* Representasi queue dengan list berkait dengan first (HEAD) dan last (TAIL) */
+#ifndef _QUEUE_H
+#define _QUEUE_H
 #include "../boolean.h"
+#include <stdlib.h>
 
+/* Konstanta */
 #define Nil NULL
-/* Konstanta untuk mendefinisikan address tak terdefinisi */
 
-/* Definisi elemen dan address */
+/* Deklarasi infotype */
 typedef int infotype;
-typedef int address;   /* indeks tabel */
-/* Contoh deklarasi variabel bertype Queue : */
-/* Versi I : tabel dinamik, Head dan End eksplisit, ukuran disimpan */
-typedef struct { infotype * T;   /* tabel penyimpan elemen */
-                 address HEAD;  /* alamat penghapusan */
-                 address END;  /* alamat penambahan */
-                 int MaxEl;     /* Max elemen queue */
-               } Queue;
-/* Definisi Queue kosong: HEAD=Nil; End=Nil. */
-/* Catatan implementasi: T[0] tidak pernah dipakai */
 
-/* ********* AKSES (Selektor) ********* */
-/* Jika Q adalah Queue, maka akses elemen : */
+/* Queue dengan representasi berkait dengan pointer */
+typedef struct tElmtQueue * addressQ;
+typedef struct tElmtQueue { 
+	infotype Info;
+	addressQ Next; 
+} ElmtQueue; 
+
+/* Type queue dengan ciri HEAD dan TAIL : */
+typedef struct { 
+	addressQ HEAD;  /* alamat penghapusan */
+	addressQ TAIL;  /* alamat penambahan */
+} Queue;
+
+/* Selektor */
 #define Head(Q) (Q).HEAD
-#define End(Q) (Q).END
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoEnd(Q) (Q).T[(Q).END]
-#define MaxEl(Q) (Q).MaxEl
+#define Tail(Q) (Q).TAIL
+#define InfoHead(Q) (Q).HEAD->Info
+#define InfoTail(Q) (Q).TAIL->Info
+#define Next(P) (P)->Next
+#define Info(P) (P)->Info
 
-/* ********* Prototype ********* */
-boolean IsEmptyQueue (Queue Q);
-/* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFullQueue (Queue Q);
-/* Mengirim true jika tabel penampung elemen Q sudah penuh */
-/* yaitu mengandung elemen sebanyak MaxEl */
-int NBElmtQueue (Queue Q);
-/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
-
-/* *** Kreator *** */
-void MakeEmptyQueue (Queue * Q, int Max);
+/* Prototype manajemen memori */
+void AlokasiQ (addressQ *P, infotype X);
+/* I.S. Sembarang */
+/* F.S. Alamat P dialokasi, jika berhasil maka Info(P)=X dan 
+        Next(P)=Nil */
+/*      P=Nil jika alokasi gagal */
+void DealokasiQ (addressQ  P);
+/* I.S. P adalah hasil alokasi, P != Nil */
+/* F.S. Alamat P didealokasi, dikembalikan ke sistem */
+boolean IsEmptyQ (Queue Q);
+/* Mengirim true jika Q kosong: HEAD(Q)=Nil and TAIL(Q)=Nil */
+int NbElmtQ(Queue Q);
+/* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong */
+/*** Kreator ***/
+void CreateEmptyQ(Queue * Q);
 /* I.S. sembarang */
-/* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
-/* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
-/* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
-/* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-
-/* *** Destruktor *** */
-void DeAlokasiQueue(Queue * Q);
-/* Proses: Mengembalikan memori Q */
-/* I.S. Q pernah dialokasi */
-/* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
-
-/* *** Primitif Add/Delete *** */
+/* F.S. Sebuah Q kosong terbentuk */
+/*** Primitif Enqueue/Dequeue ***/
 void EnqueueQ (Queue * Q, infotype X);
-/* Proses: Menambahkan X pada Q dengan aturan FIFO */
-/* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
-/* F.S. X menjadi End yang baru, End "maju" dengan mekanisme circular buffer */
-void DequeueQ (Queue * Q, infotype * X);
-/* Proses: Menghapus X pada Q dengan aturan FIFO */
+/* Proses: Mengalokasi X dan menambahkan X pada bagian TAIL dari Q
+   jika alokasi berhasil; jika alokasi gagal Q tetap */
+/* Pada dasarnya adalah proses insert last */
+/* I.S. Q mungkin kosong */
+/* F.S. X menjadi TAIL, TAIL "maju" */
+void DequeueQ(Queue * Q, infotype * X);
+/* Proses: Menghapus X pada bagian HEAD dari Q dan mendealokasi
+   elemen HEAD */
+/* Pada dasarnya operasi delete first */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
-        Q mungkin kosong */
+/* F.S. X = nilai elemen HEAD pd I.S., HEAD "mundur" */
 
 #endif
