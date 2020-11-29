@@ -22,4 +22,4 @@ void main_menu();
 void init(Player P1);
 MATRIKS currMatriks (int currGraph);
 void legenda(Player P1);
-void printPeta(Player P1, Graph G, int PosGraph);
+void printPeta(Player P1, Graph G, int PosGraph, POINT PosAntrian, POINT PosOffice);
