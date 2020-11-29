@@ -62,7 +62,7 @@ addressSuccNode AlokasiSuccNode(addressNode P);
 /* menghasilkan Ps, maka Succ(Ps)=P, NextSucc(Ps)=NULL */
 /* Jika alokasi gagal, mengirimkan NULL */
 
-addressNode SearchNodeId(Graph *G, int Id);
+addressNode searchNodeId(Graph *G, int Id);
 /* I.S. Graf dan Id terdefinisi, Id pasti terdapat pada graf */
 /* F.S. Mengeluarkan addressNode yang mengandung Id terkait */
 
@@ -74,7 +74,7 @@ void addPanahGraph(Graph *G, int A, int B);
 /* I.S. Graph A dan B mungkin sudah ada koneksi, ElmtGraph A dan B tidak mungkin kosong */
 /* F.S. Terbentuk panah dari node A ke B */
 
-Graph initGraphMap(MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D);
+Graph initGraphMap(Graph *G, MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D);
 /* I.S. semua matriks terdefinisi, matriks tidak mungkin kosong, digunakan untuk init graph */
 /* F.S. Terbentuk graf fungsional yang dapat dipakai dalam peta */
 

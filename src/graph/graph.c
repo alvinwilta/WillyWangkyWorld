@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "../boolean.h"
 #include "graph.h"
+#include "../matriks/matriks.h"
+#include "../point/point.h"
 
 
 void CreateEmptyGraph(Graph *G) {
@@ -58,7 +60,7 @@ addressSuccNode AlokasiSuccNode(addressNode P) {
 
 void addElmtGraph(Graph *G, MATRIKS X, int Id) {
     addressNode Pn = AlokasiNode(X, Id);
-    if (FirstGraph(*G) = Nil) {
+    if (FirstGraph(*G) ==  Nil) {
         FirstGraph(*G) = Pn;
     } else {
         addressNode P = FirstGraph(*G);
@@ -71,8 +73,8 @@ void addElmtGraph(Graph *G, MATRIKS X, int Id) {
 /* I.S. Graph terdefinisi, ElmtGraph tidak mungkin kosong */
 /* F.S. Menambahkan elemen graph berisi matriks X */
 
-addressNode SearchNodeId(Graph *G, int Id) {
-    addressNode P = First(*G);
+addressNode searchNodeId(Graph *G, int Id) {
+    addressNode P = FirstGraph(*G);
     while ((ID(P)!=Id) && (P!=Nil)) {
         P = NextNode(P);
     }
@@ -82,28 +84,42 @@ addressNode SearchNodeId(Graph *G, int Id) {
 /* F.S. Mengeluarkan addressNode yang mengandung Id terkait */
 
 void addPanahGraph(Graph *G, int A, int B) {
-    addressNode Pa = SearchNodeId(G,A);
-    addressNode Pb = SearchNodeId(G,B);
-    addressSuccNode Ps = Trail(Pa);
-    boolean dupl = false;
-    while ((NextSucc(Ps)!=Nil) && (dupl==false)) {
-        if (Succ(Ps)==Pb) {
-            dupl = true;
+    addressNode Pa = searchNodeId(G,A);
+    addressNode Pb = searchNodeId(G,B);
+    if (Trail(Pa) != Nil) {
+        addressSuccNode Ps = Trail(Pa);
+        boolean dupl = false;
+        while ((NextSucc(Ps)!=Nil) && (dupl==false)) {
+            if (Succ(Ps)==Pb) {
+                dupl = true;
+            }
+            Ps = NextSucc(Ps);
         }
-        Ps = NextSucc(Ps);
-    }
-    if (dupl==false) {
-        Succ(Ps) = Pb;
+        if (dupl==false) {
+            addressSuccNode Px = AlokasiSuccNode(Pb);
+            NextSucc(Ps) = Px;
+        }
+    } else {
+        addressSuccNode Px = AlokasiSuccNode(Pb);
+        Trail(Pa) = Px;
     }
 }
 /* I.S. Graph A dan B mungkin sudah ada koneksi, ElmtGraph A dan B tidak mungkin kosong */
 /* F.S. Terbentuk panah dari node A ke B */
 
-Graph initGraphMap(MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D) {
-    Graph G;
-    CreateEmptyGraph(&G);
-    
-
+Graph initGraphMap(Graph *G, MATRIKS A, MATRIKS B, MATRIKS C, MATRIKS D) {
+    addElmtGraph(G,A,1);
+    addElmtGraph(G,B,2);
+    addElmtGraph(G,C,3);
+    addElmtGraph(G,D,4);
+    addPanahGraph(G,1,2);
+    addPanahGraph(G,2,1);
+    addPanahGraph(G,1,4);
+    addPanahGraph(G,4,1);
+    addPanahGraph(G,2,3);
+    addPanahGraph(G,3,2);
+    addPanahGraph(G,3,4);
+    addPanahGraph(G,4,3);
 }
 /* I.S. semua matriks terdefinisi, matriks tidak mungkin kosong, digunakan untuk init graph */
 /* F.S. Terbentuk graf fungsional yang dapat dipakai dalam peta */
@@ -140,27 +156,27 @@ POINT lokasiPlayer(Graph *G, int A, int B) {
 addressNode moveGraph(Graph *G, addressNode CurrNode, int Gerbang) {
     if (Gerbang==2) {
         if (ID(CurrNode)==3) {
-            return SearchNodeId(G,2);
+            return searchNodeId(G,2);
         } else if (ID(CurrNode)==4) {
-            return SearchNodeId(G,1);
+            return searchNodeId(G,1);
         }
     } else if (Gerbang==3) {
         if (ID(CurrNode)==1) {
-            return SearchNodeId(G,2);
+            return searchNodeId(G,2);
         } else if (ID(CurrNode)==4) {
-            return SearchNodeId(G,3);
+            return searchNodeId(G,3);
         }
     } else if (Gerbang==4) {
         if (ID(CurrNode)==1) {
-            return SearchNodeId(G,4);
+            return searchNodeId(G,4);
         } else if (ID(CurrNode)==2) {
-            return SearchNodeId(G,3);
+            return searchNodeId(G,3);
         }
     } else if (Gerbang==5) {
         if (ID(CurrNode)==2) {
-            return SearchNodeId(G,1);
+            return searchNodeId(G,1);
         } else if (ID(CurrNode)==3) {
-            return SearchNodeId(G,4);
+            return searchNodeId(G,4);
         }
     }
 }
