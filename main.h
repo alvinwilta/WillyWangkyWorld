@@ -1,5 +1,4 @@
-/*gcc src/mesinkata/mesinkata.c src/mesinkata/mesinkar.c src/mesinkata/mesintoken.c src/matriks/matriks.c 
-src/player/player.c src/queue/prioqueuechar.c src/stack/stack.c src/linkedlist/listlinier.c -o main main.c*/
+/*gcc src/mesinkata/mesinkata.c src/mesinkata/mesinkar.c src/mesinkata/mesintoken.c src/matriks/matriks.c src/player/player.c src/queue/prioqueuechar.c src/stack/stack.c src/linkedlist/listlinier.c src/preparation.c -o main main.c*/
 #include "src/mesinkata/mesinkata.h"
 #include "src/mesinkata/mesinkar.h"
 #include "src/mesinkata/mesintoken.h"
@@ -12,7 +11,10 @@ src/player/player.c src/queue/prioqueuechar.c src/stack/stack.c src/linkedlist/l
 #include "src/stack/stack.h"
 #include "src/array/array.h"
 #include "src/point/point.h"
+#include "src/tree/bintree.h"
+#include "src/tree/listrek.h"
 #include "src/boolean.h"
+#include "src/preparation.h"
 
 void quit();
 void main_menu();

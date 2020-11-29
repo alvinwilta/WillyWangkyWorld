@@ -66,8 +66,7 @@ void init(Player P1){
     CreateEmpty(&S2);
     CreateEmpty(&S3);
     MakeEmptyPrio(&PQ1,5);
-    TulisMATRIKS(M1);
-    legenda(P1);
+    Preparation(P1);
 }
 
 void legenda(Player P1){

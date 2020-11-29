@@ -1,13 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "./wahana/wahana.h"
-#include "./jam/jam.h"
-#include "./tree/bintree.h"
-#include "./matriks/matriks.h"
-#include "./tree/listrek.h"
-#include "./point/point.h"
-#include "./player/player.h"
+#include "preparation.h"
 
 int TotalUangPreparation = 0;
 int TotalAksi = 0;
@@ -146,7 +140,7 @@ void legendPrep(Player P1, int TotalAksi, int TotalDetikJam, int TotalUangPrepar
     int hour = TotalDetikJam / 3600;
     int menit = (TotalDetikJam % 3600) / 60;
     // printMap(M); // harusnya prosedure print map yang dipakai di main, akan ditambahkan di extern
-    printf("Legend:\n");
+    printf("\nLegend:\n");
     printf("P = Player\n");
     printf("W = Wahana\n");
     printf("O = Office\n");
@@ -158,7 +152,7 @@ void legendPrep(Player P1, int TotalAksi, int TotalDetikJam, int TotalUangPrepar
     printf("%d\n", Money(&P1));
     printf("Current Time: ");
     TulisJAM(PrepTime);
-    printf("Opening Time: 09.00\n");
+    printf("\nOpening Time: 09.00\n");
     printf("Time Remaining: 12 hour(s)\n");
     printf("Total aksi yang akan dilakukan: ");
     printf("%d", TotalAksi);

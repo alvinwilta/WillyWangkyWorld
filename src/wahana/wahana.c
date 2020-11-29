@@ -86,7 +86,7 @@ Wahana NewWahana(char *jenis, int id, POINT pos)
     }
     IDW(&W) = id;
     PosW(&W) = pos;
-    addressrek P = Alokasi(jenis);
+    addressrek P = AlokasiListrek(jenis);
     HistoryW(&W) = P;
     IsiW(&W) = 0;
     TotalPendapatan(&W) = 0;
@@ -134,7 +134,7 @@ void upgrade(Wahana *W, int pilihan, BinTree treeWahana)
     {
         A = Next(A);
     }
-    Next(A) = Alokasi(Akar(N));
+    Next(A) = AlokasiListrek(Akar(N));
     strcpy(JenisW(W), Akar(N));
     // strcpy(DeskripsiW(W), deskripsi);
 }

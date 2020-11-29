@@ -1,10 +1,10 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "../boolean.h"
 #include "../point/point.h"
 #include "../jam/jam.h"
 #include "../array/array.h"
 #include "player.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 /* *** Primitif-primitif yang harus direalisasikan *** */
 Player NewPlayer(POINT pos, JAM wkt, int money)

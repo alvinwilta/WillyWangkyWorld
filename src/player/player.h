@@ -24,7 +24,7 @@ typedef struct
 #define DefPos 3     //untuk absis atau ordinat
 #define DefJamHH 9   //jam awal main
 #define DefJamMM 00  //menit awal main
-#define DefMoney 100 //uang player baru
+#define DefMoney 1000 //uang player baru
 #define DefMat 5     //jumlah material awal (semua jenis)
 
 /* Selektor */
