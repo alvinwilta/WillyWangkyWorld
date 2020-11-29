@@ -4,6 +4,7 @@
 #include "mesinkata.h"
 #include "mesinkar.h"
 #include "mesintoken.h"
+#include "../array/array.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -19,6 +20,7 @@ int main()
 {
     Kata K4;
     Token T;
+    char Material[20];
     /*Test Mesin Kata*/
     /*
     Kata K1,K2,K3;
@@ -31,7 +33,7 @@ int main()
     printf("%d\n",N1);
     N2 = stringint(K3);
     printf("%d\n",N2);
-*/
+    */
     /*Test Mesin Token*/
     /*
     readSCANF(&K4);
@@ -39,11 +41,24 @@ int main()
     printf("Jumlah : %d\n",T.val);
     printf("Token item: %c\n",T.tkn);
     return 0;
-*/
+    */
     /*Test Baca File I/O*/
-    START("map.txt");
+    int i = 0;
+    int j = 1;
+    START("../../assets/material.txt");
     while((CC!=BLANK)&&(CC!=MARK)){
-        printf("%c",CC);
+        Material[i] = CC;
+        if ((CC==NEWLINE)&&(j%2==0)){
+            printf("%s",Material);
+            i = 0;
+            j++;
+        }else if ((CC==NEWLINE)&&(j%2==1)){
+            printf("%s",Material);
+            i = 0;
+            j++;
+        }else{
+            i++;
+        }
         ADV();
     }
     // membuka file

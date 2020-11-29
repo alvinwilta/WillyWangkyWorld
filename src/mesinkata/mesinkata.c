@@ -3,6 +3,7 @@
 #include "mesinkata.h"
 #include "../boolean.h"
 #include <string.h>
+#include "../array/array.h"
 /*
 #include "../wahana/wahana.h"
 #include "../graph/graph.h"

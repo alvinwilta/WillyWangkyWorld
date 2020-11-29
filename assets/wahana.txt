@@ -6,7 +6,7 @@ roller coaster terseru //deskripsi
 5 //durasi
 listrikhalilintar //Left dari tree
 attahalilintar //Right dari tree
-
+.
 2
 bianglala
 gondola terbesar dan paling menegangkan di dunia
@@ -85,4 +85,4 @@ wahana rumah hantu yang menyajikan pengalaman seram yang berlum pernah anda rasa
 10
 listrikmadhouse
 attamadhouse
-
+.

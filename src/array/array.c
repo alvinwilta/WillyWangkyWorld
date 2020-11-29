@@ -21,7 +21,7 @@ void MakeEmpty (TabInt * T){
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmtArrayArray (TabInt T){
+int NbElmtArray (TabInt T){
   /* Mengirimkan banyaknya elemen efektif tabel */
   /* Mengirimkan nol jika tabel kosong */
   /* *** Daya tampung container *** */

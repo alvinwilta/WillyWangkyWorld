@@ -1,8 +1,7 @@
 kayu
 10
-
 batu
 20
-
 paku
-30
+50
+.
