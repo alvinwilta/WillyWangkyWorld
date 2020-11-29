@@ -10,13 +10,14 @@ int main()
     POINT P;
     Absis(P) = 2;
     Ordinat(P) = 3;
-    char s[30] = "Pokpok";
+    char s[30] = "halilintar";
     Wahana W = NewWahana(s, 0001, P);
     printf("%s\n", JenisW(&W));
     printf("id: %d\n", IDW(&W));
     printf("<%d,%d>\n", Absis(PosW(&W)), Ordinat(PosW(&W)));
     // printf("%s: %s\n", NamaW(&W), DeskripsiW(&W));
     printf("Durasi: %d, Tarif: %d, Kapasitas: %d\n", DurasiW(&W), TarifW(&W), KapasitasW(&W));
+    printf("%s\n", DeskripsiW(&W));
     // upgrade(&W);
     // printf("Durasi: %d, Tarif: %d, Kapasitas: %d\n", DurasiW(&W), TarifW(&W), KapasitasW(&W));
     addPengunjung(&W);

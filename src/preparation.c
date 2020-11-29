@@ -9,6 +9,8 @@
 #include "./point/point.h"
 #include "./player/player.h"
 #include "./stack/stack.h"
+#include "./mesinkata/mesinkata.h"
+#include "./mesinkata/mesinkar.h"
 #include "preparation.h"
 
 int TotalUangPreparation = 0;
@@ -31,17 +33,16 @@ char ListNamaWahana[10][30] = {"halilintar", "bianglala", "niagara", "korakora",
 // main
 // 10006
 
-extern MATRIKS M;
-extern Player P1;
-extern int menu1;
-extern Kata name;
-extern POINT PosPlayer;
-extern int Money;
-extern int currDay;
-extern Stack S;
+// extern MATRIKS M;
+// extern int menu1;
+// extern Kata name;
+// extern POINT PosPlayer;
+// extern int Money;
+// extern int currDay;
+// extern Stack S;
 extern BinTree WahanaUpgrade;
 
-Wahana Build(Player *P, POINT pos)
+Wahana Build(Player *P, POINT pos, Stack S)
 {
 
     printf("Pilih wahana yang akan dibangun:\n");
@@ -56,6 +57,8 @@ Wahana Build(Player *P, POINT pos)
     Mundur(P);
     Money(P) -= 350;
     TotalWahana += 1;
+    TotalUangPreparation += 350;
+    TotalAksi += 1;
     TotalDetikJam += 7200;
     return W;
 
@@ -105,7 +108,7 @@ Wahana Build(Player *P, POINT pos)
     Push(&S, 10001);
 }
 
-void UpgradeWahana(Player *P, Wahana *W)
+void UpgradeWahana(Player *P, Wahana *W, Stack S)
 {
     char pilihan[30];
 
@@ -288,19 +291,18 @@ void UpgradeWahana(Player *P, Wahana *W)
     Push(&S, 10002);
 }
 
-void Buy(Player *P)
+void Buy(Player *P, Stack S)
 {
     char BuyItem[5];
     int TotalItem;
-    do
-    {
-        printf("Ingin membeli apa?\n");
-        printf("    - kayu\n");
-        printf("    - batu\n");
-        printf("    - paku\n");
-        scanf("%d", &TotalItem);
-        scanf("%s", BuyItem);
-    } while (strcmp(BuyItem, "kayu") || strcmp(BuyItem, "batu") || strcmp(BuyItem, "paku") || TotalItem <= 0);
+    printf("Ingin membeli apa?\n");
+    printf("    - kayu\n");
+    printf("    - batu\n");
+    printf("    - paku\n");
+    scanf("%d", &TotalItem);
+    scanf("%s", BuyItem);
+    printf("Total item: %d\n", TotalItem);
+    printf("Nama item: %s\n", BuyItem);
 
     boolean UangCukup;
     int totalUang = 0;
@@ -364,30 +366,30 @@ void Buy(Player *P)
     Push(&S, 10003);
 }
 
-void deBuy(Player *P, int wahanaName, int N)
+void deBuy(Player *P, int jenis, int N)
 {
     int totalRefund = 0;
-    if (wahanaName = 0)
+    if (jenis = 0)
     {
         totalRefund = 10 * N;
         AddUang(P, totalRefund);
         SubKayu(P, N);
     }
-    else if (wahanaName = 1)
+    else if (jenis = 1)
     {
         totalRefund = 20 * N;
         AddUang(P, totalRefund);
         SubBatu(P, N);
     }
     else
-    { // wahanaName = 2 (paku)
+    { // jenis = 2 (paku)
         totalRefund = 30 * N;
         AddUang(P, totalRefund);
         SubKayu(P, N);
     }
 }
 
-void legendPrep(Player P1, int TotalAksi, int TotalDetikJam, int TotalUangPreparation)
+void legendPrep(Player P1, Kata name)
 {
     JAM PrepTime;
     PrepTime = DetikToJAM(75600);
@@ -421,20 +423,45 @@ void legendPrep(Player P1, int TotalAksi, int TotalDetikJam, int TotalUangPrepar
     printf("\n");
 }
 
-void Preparation(Player P)
+void Preparation(Player P, Kata name, int currDay, Stack S)
 {
     char perintah[40];
     printf("Preparation phase day %d", currDay);
     int cekTotalDetikJam = TotalDetikJam;
     do
     {
-        legendPrep(P, TotalAksi, TotalDetikJam, TotalUangPreparation);
+        legendPrep(P, name);
         printf("\nMasukkan Perintah:\n");
         scanf("%s", perintah);
         if (!strcmp(perintah, "build"))
         {
             if (cekTotalDetikJam + 7200 <= 75600)
-                Build(&P, Pos(&P));
+                if (Money(&P) >= 350)
+                {
+                    Wahana W = Build(&P, Pos(&P), S);
+                }
+                else
+                {
+                    printf("Uang anda tidak cukup untuk membangun wahana apapun!\n");
+                }
+            else
+            {
+                printf("Waktu preparation tidak mencukupi untuk melakukan aksi!\n");
+            }
+        }
+        else if (!strcmp(perintah, "upgrade"))
+        {
+            if (cekTotalDetikJam + 7200 <= 75600)
+
+                if (Money(&P) >= 350)
+                {
+                    Wahana W;
+                    UpgradeWahana(&P, &W, S);
+                }
+                else
+                {
+                    printf("Uang anda tidak cukup untuk melakukan upgrade wahana apapun!\n");
+                }
             else
             {
                 printf("Waktu preparation tidak mencukupi untuk melakukan aksi!\n");
@@ -442,10 +469,10 @@ void Preparation(Player P)
         }
         else if (!strcmp(perintah, "buy"))
         {
-            if (cekTotalDetikJam + 7200 <= 75600)
+            if (cekTotalDetikJam + 3600 <= 75600)
                 if (Money(&P) >= 350)
                 {
-                    Buy(&P);
+                    Buy(&P, S);
                 }
                 else
                 {
@@ -458,6 +485,9 @@ void Preparation(Player P)
         }
 
     } while (TotalDetikJam <= 75600 && strcmp(perintah, "main"));
+    TotalUangPreparation = 0;
+    TotalAksi = 0;
+    TotalDetikJam = 0;
 }
 
 // void Undo(Wahana W) // belum selesai
