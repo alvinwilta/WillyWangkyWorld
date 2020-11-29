@@ -5,4 +5,6 @@
 #include "tree/listrek.h"
 #include "point/point.h"
 #include "player/player.h"
+#include "queue/queue.h"
+#include "queue/prioqueuechar.h"
 

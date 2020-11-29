@@ -9,6 +9,5 @@ int main(){
     MakeMATRIKS(10,20,&M2);
     MakeMATRIKS(10,20,&M3);
     MakeMATRIKS(10,20,&M4);
-    BacaMap(&M1,&M2,&M3,&M4);
     return 0;
 }

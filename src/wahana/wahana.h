@@ -22,7 +22,7 @@ typedef struct twahana
     int kapasitas;        // kapasitas wahana per permainan
     int tarif;            // tarif per permainan
     int durasi;           // durasi dalam menit
-    List history_upgrade; // history upgrade berdasarkan tree wahana dan upgrade yang dipilih, implementasi list berkait
+    BinTree history_upgrade; // history upgrade berdasarkan tree wahana dan upgrade yang dipilih, implementasi list berkait
     int isi_pengunjung;   // kapasitas wahana yang sudah terisi
     // Laporan Wahana
     int pendapatan_total;        // total pendapatan wahana selama game berjalan
