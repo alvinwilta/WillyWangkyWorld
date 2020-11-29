@@ -1,4 +1,4 @@
-/*gcc src/mesinkata/mesinkata.c src/mesinkata/mesinkar.c src/mesinkata/mesintoken.c src/graph/graph.c src/matriks/matriks.c src/player/player.c src/queue/prioqueuechar.c src/stack/stack.c src/linkedlist/listlinier.c src/preparation.c -o main main.c*/
+/*gcc src/mesinkata/mesinkata.c src/mesinkata/mesinkar.c src/mesinkata/mesintoken.c src/graph/graph.c src/matriks/matriks.c src/player/player.c src/queue/prioqueuechar.c src/stack/stack.c src/linkedlist/listlinier.c src/preparation.c src/graph/graph.c -o main main.c*/
 #include "src/mesinkata/mesinkata.h"
 #include "src/mesinkata/mesinkar.h"
 #include "src/mesinkata/mesintoken.h"

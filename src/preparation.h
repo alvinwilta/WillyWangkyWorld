@@ -18,7 +18,7 @@
 extern MATRIKS M;
 extern Player P1;
 extern int menu1;
-extern Kata name;
+/*extern Kata name;*/
 extern POINT PosPlayer;
 extern int Money;
 extern int currDay;
