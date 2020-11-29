@@ -52,7 +52,7 @@ int main() {
 	printf("hasil konkat [1,10,11,12] = "); PrintInfo(L2); printf("\n");
 	printf("\n---Proses terhadap elemen dalam list---\n");
 	printf("Menampilkan jumlah elemen (4), nilai max (12), nilai min (1) dalam List L2\n");
-	printf("Banyak elemen L2 = %d\nNilai max = %d\nNilai Min = %d\n", NbElmt(L2), Max(L2), Min(L2));
+	printf("Banyak elemen L2 = %d\nNilai max = %d\nNilai Min = %d\n", NbElmtLinkedList(L2), Max(L2), Min(L2));
 
 	return 0;
 }
