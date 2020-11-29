@@ -40,6 +40,7 @@ Wahana Build(Player *P, POINT pos)
     TotalWahana += 1;
     TotalDetikJam += 7200;
     return W;
+    // push(build,namawahana,pos)
 }
 
 void Buy(Player *P)
@@ -121,8 +122,8 @@ void deBuy(Player *P, int jenis, int N)
     else
     { // jenis = 2 (paku)
         totalRefund = 30 * N;
-        AddUang(&P, totalRefund);
-        SubKayu(&P, N);
+        AddUang(P, totalRefund);
+        SubKayu(P, N);
     }
     // popstack()
 }
@@ -144,7 +145,7 @@ void legendPrep(Player P1, int TotalAksi, int TotalDetikJam, int TotalUangPrepar
     PrepTime = DetikToJAM(75600);
     int hour = TotalDetikJam / 3600;
     int menit = (TotalDetikJam % 3600) / 60;
-    printMap(M);
+    // printMap(M); // harusnya prosedure print map yang dipakai di main, akan ditambahkan di extern
     printf("Legend:\n");
     printf("P = Player\n");
     printf("W = Wahana\n");
